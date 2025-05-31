@@ -1,0 +1,1517 @@
+{
+  "count": 15,
+  "next": "https://ll.thespacedevs.com/2.3.0/space_stations/?limit=10&offset=10",
+  "previous": null,
+  "results": [
+      {
+          "id": 4,
+          "url": "https://ll.thespacedevs.com/2.3.0/space_stations/4/",
+          "name": "International Space Station",
+          "image": {
+              "id": 1952,
+              "name": "ISS as seen from Shuttle Atlantis (STS-132)",
+              "image_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/international2520space2520station_image_20190220215716.jpeg",
+              "thumbnail_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305194230.jpeg",
+              "credit": "NASA",
+              "license": {
+                  "id": 4,
+                  "name": "NASA Image and Media Guidelines",
+                  "priority": 0,
+                  "link": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+              },
+              "single_use": false,
+              "variants": []
+          },
+          "status": {
+              "id": 1,
+              "name": "Active"
+          },
+          "founded": "1998-11-20",
+          "deorbited": null,
+          "description": "The International Space Station (ISS) is a space station, or a habitable artificial satellite, in low Earth orbit. Its first component was launched into orbit in 1998, with the first long-term residents arriving in November 2000. It has been inhabited continuously since that date. The last pressurised module was fitted in 2011, and an experimental inflatable space habitat was added in 2016. The station is expected to operate until 2030. Development and assembly of the station continues, with several new elements scheduled for launch in 2019. The ISS is the largest human-made body in low Earth orbit and can often be seen with the naked eye from Earth. The ISS consists of pressurised habitation modules, structural trusses, solar arrays, radiators, docking ports, experiment bays and robotic arms. ISS components have been launched by Russian Proton and Soyuz rockets, and American Space Shuttles.",
+          "orbit": "Low Earth Orbit",
+          "type": {
+              "id": 2,
+              "name": "Government"
+          },
+          "owners": [
+              {
+                  "response_mode": "normal",
+                  "id": 16,
+                  "url": "https://ll.thespacedevs.com/2.3.0/agencies/16/",
+                  "name": "Canadian Space Agency",
+                  "abbrev": "CSA",
+                  "type": {
+                      "id": 1,
+                      "name": "Government"
+                  },
+                  "featured": false,
+                  "country": [
+                      {
+                          "id": 26,
+                          "name": "Canada",
+                          "alpha_2_code": "CA",
+                          "alpha_3_code": "CAN",
+                          "nationality_name": "Canadian",
+                          "nationality_name_composed": "Canado"
+                      }
+                  ],
+                  "description": "The Canadian Space Agency was established by the Canadian Space Agency Act which received Royal Assent on May 10, 1990. \r\n\r\nThe Canadian space program is administered by the Canadian Space Agency. Canada has contributed technology, expertise and personnel to the world space effort, especially in collaboration with ESA and NASA. In addition to its astronauts and satellites, some of the most notable Canadian technological contributions to space exploration include the Canadarm on the Space Shuttle and Canadarm2 on the International Space Station.",
+                  "administrator": "President: Lisa Campbell",
+                  "founding_year": 1990,
+                  "launchers": "",
+                  "spacecraft": "",
+                  "parent": null,
+                  "image": null,
+                  "logo": {
+                      "id": 120,
+                      "name": "[AUTO] Canadian Space Agency - logo",
+                      "image_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/canadian2520space2520agency_logo_20231122160211.png",
+                      "thumbnail_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305184927.png",
+                      "credit": null,
+                      "license": {
+                          "id": 1,
+                          "name": "Unknown",
+                          "priority": 9,
+                          "link": null
+                      },
+                      "single_use": true,
+                      "variants": []
+                  },
+                  "social_logo": {
+                      "id": 47,
+                      "name": "[AUTO] Canadian Space Agency - social_logo",
+                      "image_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/canadian2520space2520agency_nation_20231122160211.png",
+                      "thumbnail_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305184741.png",
+                      "credit": null,
+                      "license": {
+                          "id": 1,
+                          "name": "Unknown",
+                          "priority": 9,
+                          "link": null
+                      },
+                      "single_use": true,
+                      "variants": []
+                  }
+              },
+              {
+                  "response_mode": "normal",
+                  "id": 27,
+                  "url": "https://ll.thespacedevs.com/2.3.0/agencies/27/",
+                  "name": "European Space Agency",
+                  "abbrev": "ESA",
+                  "type": {
+                      "id": 2,
+                      "name": "Multinational"
+                  },
+                  "featured": false,
+                  "country": [
+                      {
+                          "id": 1,
+                          "name": "France",
+                          "alpha_2_code": "FR",
+                          "alpha_3_code": "FRA",
+                          "nationality_name": "French",
+                          "nationality_name_composed": "Franco"
+                      },
+                      {
+                          "id": 3,
+                          "name": "Italy",
+                          "alpha_2_code": "IT",
+                          "alpha_3_code": "ITA",
+                          "nationality_name": "Italian",
+                          "nationality_name_composed": "Italo"
+                      },
+                      {
+                          "id": 4,
+                          "name": "Germany",
+                          "alpha_2_code": "DE",
+                          "alpha_3_code": "DEU",
+                          "nationality_name": "German",
+                          "nationality_name_composed": "Germano"
+                      },
+                      {
+                          "id": 7,
+                          "name": "Spain",
+                          "alpha_2_code": "ES",
+                          "alpha_3_code": "ESP",
+                          "nationality_name": "Spanish",
+                          "nationality_name_composed": "Hispano"
+                      },
+                      {
+                          "id": 8,
+                          "name": "Switzerland",
+                          "alpha_2_code": "CH",
+                          "alpha_3_code": "CHE",
+                          "nationality_name": "Swiss",
+                          "nationality_name_composed": "Swiss"
+                      },
+                      {
+                          "id": 10,
+                          "name": "United Kingdom",
+                          "alpha_2_code": "GB",
+                          "alpha_3_code": "GBR",
+                          "nationality_name": "British",
+                          "nationality_name_composed": "Brito"
+                      },
+                      {
+                          "id": 11,
+                          "name": "Austria",
+                          "alpha_2_code": "AT",
+                          "alpha_3_code": "AUT",
+                          "nationality_name": "Austrian",
+                          "nationality_name_composed": "Austro"
+                      },
+                      {
+                          "id": 15,
+                          "name": "Sweden",
+                          "alpha_2_code": "SE",
+                          "alpha_3_code": "SWE",
+                          "nationality_name": "Swedish",
+                          "nationality_name_composed": "Swedo"
+                      },
+                      {
+                          "id": 23,
+                          "name": "Portugal",
+                          "alpha_2_code": "PT",
+                          "alpha_3_code": "PRT",
+                          "nationality_name": "Portuguese",
+                          "nationality_name_composed": "Luso"
+                      },
+                      {
+                          "id": 27,
+                          "name": "Netherlands",
+                          "alpha_2_code": "NL",
+                          "alpha_3_code": "NLD",
+                          "nationality_name": "Dutch",
+                          "nationality_name_composed": "Dutch"
+                      },
+                      {
+                          "id": 31,
+                          "name": "Hungary",
+                          "alpha_2_code": "HU",
+                          "alpha_3_code": "HUN",
+                          "nationality_name": "Hungarian",
+                          "nationality_name_composed": "Hungarian"
+                      },
+                      {
+                          "id": 39,
+                          "name": "Poland",
+                          "alpha_2_code": "PL",
+                          "alpha_3_code": "POL",
+                          "nationality_name": "Polish",
+                          "nationality_name_composed": "Polono"
+                      },
+                      {
+                          "id": 45,
+                          "name": "Denmark",
+                          "alpha_2_code": "DK",
+                          "alpha_3_code": "DNK",
+                          "nationality_name": "Danish",
+                          "nationality_name_composed": "Dano"
+                      },
+                      {
+                          "id": 46,
+                          "name": "Czechia",
+                          "alpha_2_code": "CZ",
+                          "alpha_3_code": "CZE",
+                          "nationality_name": "Czech",
+                          "nationality_name_composed": "Czech"
+                      },
+                      {
+                          "id": 47,
+                          "name": "Romania",
+                          "alpha_2_code": "RO",
+                          "alpha_3_code": "ROU",
+                          "nationality_name": "Romanian",
+                          "nationality_name_composed": "Romanian"
+                      },
+                      {
+                          "id": 49,
+                          "name": "Norway",
+                          "alpha_2_code": "NO",
+                          "alpha_3_code": "NOR",
+                          "nationality_name": "Norwegian",
+                          "nationality_name_composed": "Norwegian"
+                      },
+                      {
+                          "id": 77,
+                          "name": "Finland",
+                          "alpha_2_code": "FI",
+                          "alpha_3_code": "FIN",
+                          "nationality_name": "Finnish",
+                          "nationality_name_composed": "Finno"
+                      },
+                      {
+                          "id": 78,
+                          "name": "Greece",
+                          "alpha_2_code": "GR",
+                          "alpha_3_code": "GRC",
+                          "nationality_name": "Greek",
+                          "nationality_name_composed": "Greco"
+                      },
+                      {
+                          "id": 80,
+                          "name": "Estonia",
+                          "alpha_2_code": "EE",
+                          "alpha_3_code": "EST",
+                          "nationality_name": "Estonian",
+                          "nationality_name_composed": "Estonian"
+                      },
+                      {
+                          "id": 81,
+                          "name": "Ireland",
+                          "alpha_2_code": "IE",
+                          "alpha_3_code": "IRL",
+                          "nationality_name": "Irish",
+                          "nationality_name_composed": "Irish"
+                      },
+                      {
+                          "id": 85,
+                          "name": "Luxembourg",
+                          "alpha_2_code": "LU",
+                          "alpha_3_code": "LUX",
+                          "nationality_name": "Luxembourger",
+                          "nationality_name_composed": "Luxembourgish"
+                      },
+                      {
+                          "id": 20,
+                          "name": "Belgium",
+                          "alpha_2_code": "BE",
+                          "alpha_3_code": "BEL",
+                          "nationality_name": "Belgian",
+                          "nationality_name_composed": "Belgo"
+                      },
+                      {
+                          "id": 86,
+                          "name": "Slovenia",
+                          "alpha_2_code": "SI",
+                          "alpha_3_code": "SVN",
+                          "nationality_name": "Slovenian",
+                          "nationality_name_composed": "Slovenian"
+                      }
+                  ],
+                  "description": "The European Space Agency is an intergovernmental organisation of 22 member states. Established in 1975 and headquartered in Paris, France, ESA has a worldwide staff of about 2,000 employees.\r\n\r\nESA's space flight programme includes human spaceflight (mainly through participation in the International Space Station program); the launch and operation of unmanned exploration missions to other planets and the Moon; Earth observation, science and telecommunication; designing launch vehicles; and maintaining a major spaceport, the Guiana Space Centre at Kourou, French Guiana.",
+                  "administrator": "Director General: Josef Aschbacher",
+                  "founding_year": 1975,
+                  "launchers": "Ariane | Vega",
+                  "spacecraft": "Space Rider",
+                  "parent": null,
+                  "image": {
+                      "id": 2324,
+                      "name": "ESA patch floating in the ISS Cupola",
+                      "image_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/esa_patch_float_image_20250211192109.png",
+                      "thumbnail_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/esa_patch_float_image_thumbnail_20250211192110.png",
+                      "credit": "ESA",
+                      "license": {
+                          "id": 2,
+                          "name": "ESA Standard Licence",
+                          "priority": 2,
+                          "link": "https://www.esa.int/ESA_Multimedia/Terms_and_conditions_of_use_of_images_and_videos_available_on_the_esa_website"
+                      },
+                      "single_use": false,
+                      "variants": []
+                  },
+                  "logo": {
+                      "id": 130,
+                      "name": "European Space Agency logo",
+                      "image_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/european2520space2520agency_logo_20221130101442.png",
+                      "thumbnail_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305184947.png",
+                      "credit": "ESA",
+                      "license": {
+                          "id": 2,
+                          "name": "ESA Standard Licence",
+                          "priority": 2,
+                          "link": "https://www.esa.int/ESA_Multimedia/Terms_and_conditions_of_use_of_images_and_videos_available_on_the_esa_website"
+                      },
+                      "single_use": true,
+                      "variants": []
+                  },
+                  "social_logo": {
+                      "id": 130,
+                      "name": "European Space Agency logo",
+                      "image_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/european2520space2520agency_logo_20221130101442.png",
+                      "thumbnail_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305184947.png",
+                      "credit": "ESA",
+                      "license": {
+                          "id": 2,
+                          "name": "ESA Standard Licence",
+                          "priority": 2,
+                          "link": "https://www.esa.int/ESA_Multimedia/Terms_and_conditions_of_use_of_images_and_videos_available_on_the_esa_website"
+                      },
+                      "single_use": true,
+                      "variants": []
+                  }
+              },
+              {
+                  "response_mode": "normal",
+                  "id": 37,
+                  "url": "https://ll.thespacedevs.com/2.3.0/agencies/37/",
+                  "name": "Japan Aerospace Exploration Agency",
+                  "abbrev": "JAXA",
+                  "type": {
+                      "id": 1,
+                      "name": "Government"
+                  },
+                  "featured": true,
+                  "country": [
+                      {
+                          "id": 28,
+                          "name": "Japan",
+                          "alpha_2_code": "JP",
+                          "alpha_3_code": "JPN",
+                          "nationality_name": "Japanese",
+                          "nationality_name_composed": "Nippo"
+                      }
+                  ],
+                  "description": "The Japan Aerospace Exploration Agency (JAXA) is Japan's national aero-space agency. Through the merger of three previously independent organizations, JAXA was formed on 1 October 2003. JAXA is responsible for research, technology development and the launch of satellites into orbit, and is involved in many more advanced missions, such as asteroid exploration and possible manned exploration of the Moon. JAXA launch their Epsilon vehicle from the Uchinoura Space Center and their H-II vehicles from the Tanegashima Space Center.",
+                  "administrator": "Administrator: Hiroshi Yamakawa",
+                  "founding_year": 2003,
+                  "launchers": "H-II",
+                  "spacecraft": "",
+                  "parent": null,
+                  "image": {
+                      "id": 16,
+                      "name": "[AUTO] Japan Aerospace Exploration Agency - image",
+                      "image_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/japan2520aerospace2520exploration2520agency_image_20190207032440.jpeg",
+                      "thumbnail_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305184621.jpeg",
+                      "credit": null,
+                      "license": {
+                          "id": 1,
+                          "name": "Unknown",
+                          "priority": 9,
+                          "link": null
+                      },
+                      "single_use": true,
+                      "variants": []
+                  },
+                  "logo": {
+                      "id": 151,
+                      "name": "[AUTO] Japan Aerospace Exploration Agency - logo",
+                      "image_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/japan2520aerospace2520exploration2520agency_logo_20190207032440.png",
+                      "thumbnail_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305185023.png",
+                      "credit": null,
+                      "license": {
+                          "id": 1,
+                          "name": "Unknown",
+                          "priority": 9,
+                          "link": null
+                      },
+                      "single_use": true,
+                      "variants": []
+                  },
+                  "social_logo": {
+                      "id": 69,
+                      "name": "[AUTO] Japan Aerospace Exploration Agency - social_logo",
+                      "image_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/japan2520aerospace2520exploration2520agency_nation_20230531052930.png",
+                      "thumbnail_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305184813.png",
+                      "credit": null,
+                      "license": {
+                          "id": 1,
+                          "name": "Unknown",
+                          "priority": 9,
+                          "link": null
+                      },
+                      "single_use": true,
+                      "variants": []
+                  }
+              },
+              {
+                  "response_mode": "normal",
+                  "id": 44,
+                  "url": "https://ll.thespacedevs.com/2.3.0/agencies/44/",
+                  "name": "National Aeronautics and Space Administration",
+                  "abbrev": "NASA",
+                  "type": {
+                      "id": 1,
+                      "name": "Government"
+                  },
+                  "featured": true,
+                  "country": [
+                      {
+                          "id": 2,
+                          "name": "United States of America",
+                          "alpha_2_code": "US",
+                          "alpha_3_code": "USA",
+                          "nationality_name": "American",
+                          "nationality_name_composed": "Americano"
+                      }
+                  ],
+                  "description": "The National Aeronautics and Space Administration is an independent agency of the executive branch of the United States federal government responsible for the civilian space program, as well as aeronautics and aerospace research. NASA have many launch facilities but most are inactive. The most commonly used pad will be LC-39B at Kennedy Space Center in Florida.",
+                  "administrator": "Acting Administrator:  James Free",
+                  "founding_year": 1958,
+                  "launchers": "Space Shuttle | SLS",
+                  "spacecraft": "Orion",
+                  "parent": null,
+                  "image": {
+                      "id": 19,
+                      "name": "[AUTO] National Aeronautics and Space Administration - image",
+                      "image_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/national2520aeronautics2520and2520space2520administration_image_20190207032448.jpeg",
+                      "thumbnail_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305184631.jpeg",
+                      "credit": null,
+                      "license": {
+                          "id": 1,
+                          "name": "Unknown",
+                          "priority": 9,
+                          "link": null
+                      },
+                      "single_use": true,
+                      "variants": []
+                  },
+                  "logo": {
+                      "id": 161,
+                      "name": "[AUTO] National Aeronautics and Space Administration - logo",
+                      "image_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/national2520aeronautics2520and2520space2520administration_logo_20190207032448.png",
+                      "thumbnail_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305185043.png",
+                      "credit": null,
+                      "license": {
+                          "id": 1,
+                          "name": "Unknown",
+                          "priority": 9,
+                          "link": null
+                      },
+                      "single_use": true,
+                      "variants": []
+                  },
+                  "social_logo": {
+                      "id": 76,
+                      "name": "[AUTO] National Aeronautics and Space Administration - social_logo",
+                      "image_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/national2520aeronautics2520and2520space2520administration_nation_20230803040809.jpg",
+                      "thumbnail_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305184823.jpeg",
+                      "credit": null,
+                      "license": {
+                          "id": 1,
+                          "name": "Unknown",
+                          "priority": 9,
+                          "link": null
+                      },
+                      "single_use": true,
+                      "variants": []
+                  }
+              },
+              {
+                  "response_mode": "normal",
+                  "id": 63,
+                  "url": "https://ll.thespacedevs.com/2.3.0/agencies/63/",
+                  "name": "Russian Federal Space Agency (ROSCOSMOS)",
+                  "abbrev": "RFSA",
+                  "type": {
+                      "id": 1,
+                      "name": "Government"
+                  },
+                  "featured": true,
+                  "country": [
+                      {
+                          "id": 5,
+                          "name": "Russia",
+                          "alpha_2_code": "RU",
+                          "alpha_3_code": "RUS",
+                          "nationality_name": "Russian",
+                          "nationality_name_composed": "Russo"
+                      }
+                  ],
+                  "description": "The Roscosmos State Corporation for Space Activities, commonly known as Roscosmos, is the governmental body responsible for the space science program of the Russian Federation and general aerospace research. Soyuz has many launch locations the Russian sites are Baikonur, Plesetsk and Vostochny however Ariane also purchases the vehicle and launches it from French Guiana.",
+                  "administrator": "Administrator: Yuri Borisov",
+                  "founding_year": 1992,
+                  "launchers": "Soyuz",
+                  "spacecraft": "Soyuz",
+                  "parent": null,
+                  "image": {
+                      "id": 25,
+                      "name": "[AUTO] Russian Federal Space Agency (ROSCOSMOS) - image",
+                      "image_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/russian2520federal2520space2520agency25202528roscosmos2529_image_20190207032459.jpeg",
+                      "thumbnail_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305184652.jpeg",
+                      "credit": null,
+                      "license": {
+                          "id": 1,
+                          "name": "Unknown",
+                          "priority": 9,
+                          "link": null
+                      },
+                      "single_use": true,
+                      "variants": []
+                  },
+                  "logo": {
+                      "id": 177,
+                      "name": "[AUTO] Russian Federal Space Agency (ROSCOSMOS) - logo",
+                      "image_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/russian2520federal2520space2520agency25202528roscosmos2529_logo_20190207032459.png",
+                      "thumbnail_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305185118.png",
+                      "credit": null,
+                      "license": {
+                          "id": 1,
+                          "name": "Unknown",
+                          "priority": 9,
+                          "link": null
+                      },
+                      "single_use": true,
+                      "variants": []
+                  },
+                  "social_logo": {
+                      "id": 89,
+                      "name": "[AUTO] Russian Federal Space Agency (ROSCOSMOS) - social_logo",
+                      "image_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/russian2520federal2520space2520agency25202528roscosmos2529_nation_20230531052758.jpg",
+                      "thumbnail_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305184841.jpeg",
+                      "credit": null,
+                      "license": {
+                          "id": 1,
+                          "name": "Unknown",
+                          "priority": 9,
+                          "link": null
+                      },
+                      "single_use": true,
+                      "variants": []
+                  }
+              }
+          ],
+          "response_mode": "normal",
+          "active_expeditions": [
+              {
+                  "id": 162,
+                  "url": "https://ll.thespacedevs.com/2.3.0/expeditions/162/",
+                  "name": "Expedition 73",
+                  "start": "2025-04-19T21:57:33Z",
+                  "end": null
+              }
+          ]
+      },
+      {
+          "id": 17,
+          "url": "https://ll.thespacedevs.com/2.3.0/space_stations/17/",
+          "name": "Genesis II",
+          "image": {
+              "id": 1953,
+              "name": "[AUTO] Genesis I - image",
+              "image_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/genesis_i_image_20200221101955.jpg",
+              "thumbnail_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305194232.jpeg",
+              "credit": null,
+              "license": {
+                  "id": 1,
+                  "name": "Unknown",
+                  "priority": 9,
+                  "link": null
+              },
+              "single_use": false,
+              "variants": []
+          },
+          "status": {
+              "id": 3,
+              "name": "Decommissioned"
+          },
+          "founded": "2007-06-28",
+          "deorbited": null,
+          "description": "Genesis II is the second of two experimental inflatable space habitats. It is a one-third scale model of Bigelow Aerospace's BA330 Module.\r\n\r\nGenesis II became inactive after the avionics systems stopped working 2.5 years into it's lifetime.",
+          "orbit": "Low Earth Orbit",
+          "type": {
+              "id": 3,
+              "name": "Commercial"
+          },
+          "owners": [
+              {
+                  "response_mode": "normal",
+                  "id": 140,
+                  "url": "https://ll.thespacedevs.com/2.3.0/agencies/140/",
+                  "name": "Bigelow Aerospace",
+                  "abbrev": "Bigelow",
+                  "type": {
+                      "id": 3,
+                      "name": "Commercial"
+                  },
+                  "featured": false,
+                  "country": [
+                      {
+                          "id": 2,
+                          "name": "United States of America",
+                          "alpha_2_code": "US",
+                          "alpha_3_code": "USA",
+                          "nationality_name": "American",
+                          "nationality_name_composed": "Americano"
+                      }
+                  ],
+                  "description": null,
+                  "administrator": null,
+                  "founding_year": null,
+                  "launchers": "",
+                  "spacecraft": "",
+                  "parent": null,
+                  "image": null,
+                  "logo": null,
+                  "social_logo": null
+              }
+          ],
+          "response_mode": "normal",
+          "active_expeditions": []
+      },
+      {
+          "id": 7,
+          "url": "https://ll.thespacedevs.com/2.3.0/space_stations/7/",
+          "name": "Tiangong 1",
+          "image": {
+              "id": 1948,
+              "name": "[AUTO] Tiangong 1 - image",
+              "image_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/tiangong25201_image_20190215013038.jpeg",
+              "thumbnail_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305194223.jpeg",
+              "credit": null,
+              "license": {
+                  "id": 1,
+                  "name": "Unknown",
+                  "priority": 9,
+                  "link": null
+              },
+              "single_use": true,
+              "variants": []
+          },
+          "status": {
+              "id": 2,
+              "name": "De-Orbited"
+          },
+          "founded": "2011-09-29",
+          "deorbited": "2018-04-02",
+          "description": "Tiangong-1 (Chinese: 天宫一号; pinyin: Tiāngōng yīhào; literally: \"Heavenly Palace 1\" or \"Celestial Palace 1\") was China's first prototype space station. It orbited Earth from September 2011 to April 2018, serving as both a manned laboratory and an experimental testbed to demonstrate orbital rendezvous and docking capabilities during its two years of active operational life.\r\n\r\nTiangong-1 was visited by a series of Shenzhou spacecraft during its two-year operational lifetime. The first of these, the unmanned Shenzhou 8, successfully docked with the module in November 2011, while the manned Shenzhou 9 mission docked in June 2012. A third and final mission to Tiangong-1, the manned Shenzhou 10, docked in June 2013. The manned missions to Tiangong-1 were notable for including China's first female astronauts, Liu Yang and Wang Yaping.\r\n\r\nOn 21 March 2016, after a lifespan extended by two years, the China Manned Space Engineering Office announced that Tiangong-1 had officially ended its service. They went on to state that the telemetry link with Tiangong-1 had been lost. A couple of months later, amateur satellite trackers watching Tiangong-1 found that China's space agency had lost control of the station. In September, after conceding they had lost control over the station, officials speculated that the station would re-enter and burn up in the atmosphere late in 2017. According to the China Manned Space Engineering Office, Tiangong-1 started reentry over the southern Pacific Ocean, northwest of Tahiti, on 2 April 2018 at 00:15 UTC.",
+          "orbit": "Low Earth Orbit",
+          "type": {
+              "id": 2,
+              "name": "Government"
+          },
+          "owners": [
+              {
+                  "response_mode": "normal",
+                  "id": 17,
+                  "url": "https://ll.thespacedevs.com/2.3.0/agencies/17/",
+                  "name": "China National Space Administration",
+                  "abbrev": "CNSA",
+                  "type": {
+                      "id": 1,
+                      "name": "Government"
+                  },
+                  "featured": true,
+                  "country": [
+                      {
+                          "id": 6,
+                          "name": "China",
+                          "alpha_2_code": "CN",
+                          "alpha_3_code": "CHN",
+                          "nationality_name": "Chinese",
+                          "nationality_name_composed": "Sino"
+                      }
+                  ],
+                  "description": "The China National Space Administration (CNSA) is the national space agency of the People's Republic of China. It is responsible for the national space program and for planning and development of space activities. CNSA and China Aerospace Corporation (CASC) assumed the authority over space development efforts previously held by the Ministry of Aerospace Industry. The CNSA has many launch sites around China with their orbital sites located in Jiuquan, Xichang, Taiyuan and Wenchang.",
+                  "administrator": "Administrator: Tang Dengjie",
+                  "founding_year": 1993,
+                  "launchers": "",
+                  "spacecraft": "Shenzhou",
+                  "parent": null,
+                  "image": {
+                      "id": 9,
+                      "name": "[AUTO] China National Space Administration - image",
+                      "image_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/china2520national2520space2520administration_image_20190207032431.jpeg",
+                      "thumbnail_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305184601.jpeg",
+                      "credit": null,
+                      "license": {
+                          "id": 1,
+                          "name": "Unknown",
+                          "priority": 9,
+                          "link": null
+                      },
+                      "single_use": true,
+                      "variants": []
+                  },
+                  "logo": {
+                      "id": 125,
+                      "name": "[AUTO] China National Space Administration - logo",
+                      "image_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/china2520national2520space2520administration_logo_20190207032431.png",
+                      "thumbnail_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305184936.png",
+                      "credit": null,
+                      "license": {
+                          "id": 1,
+                          "name": "Unknown",
+                          "priority": 9,
+                          "link": null
+                      },
+                      "single_use": true,
+                      "variants": []
+                  },
+                  "social_logo": {
+                      "id": 51,
+                      "name": "[AUTO] China National Space Administration - social_logo",
+                      "image_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/china2520national2520space2520administration_nation_20190602114400.png",
+                      "thumbnail_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305184747.png",
+                      "credit": null,
+                      "license": {
+                          "id": 1,
+                          "name": "Unknown",
+                          "priority": 9,
+                          "link": null
+                      },
+                      "single_use": true,
+                      "variants": []
+                  }
+              }
+          ],
+          "response_mode": "normal",
+          "active_expeditions": []
+      },
+      {
+          "id": 11,
+          "url": "https://ll.thespacedevs.com/2.3.0/space_stations/11/",
+          "name": "Salyut 3",
+          "image": {
+              "id": 1945,
+              "name": "[AUTO] Salyut 2 - image",
+              "image_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/salyut25202_image_20190217082304.jpeg",
+              "thumbnail_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305194218.jpeg",
+              "credit": null,
+              "license": {
+                  "id": 1,
+                  "name": "Unknown",
+                  "priority": 9,
+                  "link": null
+              },
+              "single_use": false,
+              "variants": []
+          },
+          "status": {
+              "id": 2,
+              "name": "De-Orbited"
+          },
+          "founded": "1974-06-25",
+          "deorbited": "1975-01-24",
+          "description": "Salyut 3 (Russian: Салют-3; English: Salute 3; also known as OPS-2 or Almaz 2) was a Soviet space station launched on 25 June 1974. It was the second Almaz military space station, and the first such station to be launched successfully. It was included in the Salyut program to disguise its true military nature. Due to the military nature of the station, the Soviet Union was reluctant to release information about its design, and about the missions relating to the station.\r\n\r\nIt attained an altitude of 219 to 270 km on launch and NASA reported its final orbital altitude was 268 to 272 km. Only one of the three intended crews successfully boarded and manned the station, brought by Soyuz 14; Soyuz 15 attempted to bring a second crew but failed to dock.\r\n\r\nAlthough little official information has been released about the station, several sources report that it contained multiple Earth-observation cameras, as well as an on-board gun. The station was deorbited, and re-entered the atmosphere on 24 January 1975. The next space station launched by the Soviet Union was the civilian station Salyut 4; the next military station was Salyut 5, which was the final Almaz space station.",
+          "orbit": "Low Earth Orbit",
+          "type": {
+              "id": 2,
+              "name": "Government"
+          },
+          "owners": [
+              {
+                  "response_mode": "normal",
+                  "id": 63,
+                  "url": "https://ll.thespacedevs.com/2.3.0/agencies/63/",
+                  "name": "Russian Federal Space Agency (ROSCOSMOS)",
+                  "abbrev": "RFSA",
+                  "type": {
+                      "id": 1,
+                      "name": "Government"
+                  },
+                  "featured": true,
+                  "country": [
+                      {
+                          "id": 5,
+                          "name": "Russia",
+                          "alpha_2_code": "RU",
+                          "alpha_3_code": "RUS",
+                          "nationality_name": "Russian",
+                          "nationality_name_composed": "Russo"
+                      }
+                  ],
+                  "description": "The Roscosmos State Corporation for Space Activities, commonly known as Roscosmos, is the governmental body responsible for the space science program of the Russian Federation and general aerospace research. Soyuz has many launch locations the Russian sites are Baikonur, Plesetsk and Vostochny however Ariane also purchases the vehicle and launches it from French Guiana.",
+                  "administrator": "Administrator: Yuri Borisov",
+                  "founding_year": 1992,
+                  "launchers": "Soyuz",
+                  "spacecraft": "Soyuz",
+                  "parent": null,
+                  "image": {
+                      "id": 25,
+                      "name": "[AUTO] Russian Federal Space Agency (ROSCOSMOS) - image",
+                      "image_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/russian2520federal2520space2520agency25202528roscosmos2529_image_20190207032459.jpeg",
+                      "thumbnail_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305184652.jpeg",
+                      "credit": null,
+                      "license": {
+                          "id": 1,
+                          "name": "Unknown",
+                          "priority": 9,
+                          "link": null
+                      },
+                      "single_use": true,
+                      "variants": []
+                  },
+                  "logo": {
+                      "id": 177,
+                      "name": "[AUTO] Russian Federal Space Agency (ROSCOSMOS) - logo",
+                      "image_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/russian2520federal2520space2520agency25202528roscosmos2529_logo_20190207032459.png",
+                      "thumbnail_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305185118.png",
+                      "credit": null,
+                      "license": {
+                          "id": 1,
+                          "name": "Unknown",
+                          "priority": 9,
+                          "link": null
+                      },
+                      "single_use": true,
+                      "variants": []
+                  },
+                  "social_logo": {
+                      "id": 89,
+                      "name": "[AUTO] Russian Federal Space Agency (ROSCOSMOS) - social_logo",
+                      "image_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/russian2520federal2520space2520agency25202528roscosmos2529_nation_20230531052758.jpg",
+                      "thumbnail_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305184841.jpeg",
+                      "credit": null,
+                      "license": {
+                          "id": 1,
+                          "name": "Unknown",
+                          "priority": 9,
+                          "link": null
+                      },
+                      "single_use": true,
+                      "variants": []
+                  }
+              }
+          ],
+          "response_mode": "normal",
+          "active_expeditions": []
+      },
+      {
+          "id": 14,
+          "url": "https://ll.thespacedevs.com/2.3.0/space_stations/14/",
+          "name": "Salyut 6",
+          "image": {
+              "id": 1946,
+              "name": "[AUTO] Salyut 6 - image",
+              "image_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/salyut25206_image_20190318095930.jpg",
+              "thumbnail_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305194219.jpeg",
+              "credit": null,
+              "license": {
+                  "id": 1,
+                  "name": "Unknown",
+                  "priority": 9,
+                  "link": null
+              },
+              "single_use": true,
+              "variants": []
+          },
+          "status": {
+              "id": 2,
+              "name": "De-Orbited"
+          },
+          "founded": "1977-09-29",
+          "deorbited": "1982-07-29",
+          "description": "Salyut 6, also known as DOS-5, was a Soviet orbital space station, the eighth flown as part of the Salyut programme. Launched on 29 September 1977 by a Proton rocket, the station was the first of the \"second-generation\" type of space station. Salyut 6 possessed several revolutionary advances over the earlier Soviet space stations, which it nevertheless resembled in overall design. These included the addition of a second docking port, a new main propulsion system and the station's primary scientific instrument, the BST-1M multispectral telescope. The addition of the second docking port made crew handovers and station resupply by unmanned Progress freighters possible for the first time.",
+          "orbit": "Low Earth Orbit",
+          "type": {
+              "id": 2,
+              "name": "Government"
+          },
+          "owners": [
+              {
+                  "response_mode": "normal",
+                  "id": 63,
+                  "url": "https://ll.thespacedevs.com/2.3.0/agencies/63/",
+                  "name": "Russian Federal Space Agency (ROSCOSMOS)",
+                  "abbrev": "RFSA",
+                  "type": {
+                      "id": 1,
+                      "name": "Government"
+                  },
+                  "featured": true,
+                  "country": [
+                      {
+                          "id": 5,
+                          "name": "Russia",
+                          "alpha_2_code": "RU",
+                          "alpha_3_code": "RUS",
+                          "nationality_name": "Russian",
+                          "nationality_name_composed": "Russo"
+                      }
+                  ],
+                  "description": "The Roscosmos State Corporation for Space Activities, commonly known as Roscosmos, is the governmental body responsible for the space science program of the Russian Federation and general aerospace research. Soyuz has many launch locations the Russian sites are Baikonur, Plesetsk and Vostochny however Ariane also purchases the vehicle and launches it from French Guiana.",
+                  "administrator": "Administrator: Yuri Borisov",
+                  "founding_year": 1992,
+                  "launchers": "Soyuz",
+                  "spacecraft": "Soyuz",
+                  "parent": null,
+                  "image": {
+                      "id": 25,
+                      "name": "[AUTO] Russian Federal Space Agency (ROSCOSMOS) - image",
+                      "image_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/russian2520federal2520space2520agency25202528roscosmos2529_image_20190207032459.jpeg",
+                      "thumbnail_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305184652.jpeg",
+                      "credit": null,
+                      "license": {
+                          "id": 1,
+                          "name": "Unknown",
+                          "priority": 9,
+                          "link": null
+                      },
+                      "single_use": true,
+                      "variants": []
+                  },
+                  "logo": {
+                      "id": 177,
+                      "name": "[AUTO] Russian Federal Space Agency (ROSCOSMOS) - logo",
+                      "image_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/russian2520federal2520space2520agency25202528roscosmos2529_logo_20190207032459.png",
+                      "thumbnail_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305185118.png",
+                      "credit": null,
+                      "license": {
+                          "id": 1,
+                          "name": "Unknown",
+                          "priority": 9,
+                          "link": null
+                      },
+                      "single_use": true,
+                      "variants": []
+                  },
+                  "social_logo": {
+                      "id": 89,
+                      "name": "[AUTO] Russian Federal Space Agency (ROSCOSMOS) - social_logo",
+                      "image_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/russian2520federal2520space2520agency25202528roscosmos2529_nation_20230531052758.jpg",
+                      "thumbnail_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305184841.jpeg",
+                      "credit": null,
+                      "license": {
+                          "id": 1,
+                          "name": "Unknown",
+                          "priority": 9,
+                          "link": null
+                      },
+                      "single_use": true,
+                      "variants": []
+                  }
+              }
+          ],
+          "response_mode": "normal",
+          "active_expeditions": []
+      },
+      {
+          "id": 12,
+          "url": "https://ll.thespacedevs.com/2.3.0/space_stations/12/",
+          "name": "Salyut 4",
+          "image": {
+              "id": 1951,
+              "name": "[AUTO] Salyut 4 - image",
+              "image_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/salyut25204_image_20190310081804.jpg",
+              "thumbnail_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305194228.jpeg",
+              "credit": null,
+              "license": {
+                  "id": 1,
+                  "name": "Unknown",
+                  "priority": 9,
+                  "link": null
+              },
+              "single_use": true,
+              "variants": []
+          },
+          "status": {
+              "id": 2,
+              "name": "De-Orbited"
+          },
+          "founded": "1974-12-26",
+          "deorbited": "1977-02-03",
+          "description": "Salyut 4 represented the second phase of DOS civilian space station. Although the basic design of Salyut 1 was retained, it switched to three large solar panels mounted on the forward module rather than its predecessor's four small panels on the docking module and engine compartment, presumably to generate more power. It had an interior floor area of 34.8 sq. The pitch of the station was 2 X 59 N, yaw was 2 X 59 N and roll was 2 X 20 N. The electric System produced an average of 2.00 kW of power. It had 2,000 kg of scientific equipment alongside two sets of three solar panels each and was equipped with the Delta Navigation System which was a new autonomous navigation system that calculates orbital elements without assistance from ground. It was powered by KTDU-66 thrusters. Instrumentation",
+          "orbit": "Low Earth Orbit",
+          "type": {
+              "id": 2,
+              "name": "Government"
+          },
+          "owners": [
+              {
+                  "response_mode": "normal",
+                  "id": 63,
+                  "url": "https://ll.thespacedevs.com/2.3.0/agencies/63/",
+                  "name": "Russian Federal Space Agency (ROSCOSMOS)",
+                  "abbrev": "RFSA",
+                  "type": {
+                      "id": 1,
+                      "name": "Government"
+                  },
+                  "featured": true,
+                  "country": [
+                      {
+                          "id": 5,
+                          "name": "Russia",
+                          "alpha_2_code": "RU",
+                          "alpha_3_code": "RUS",
+                          "nationality_name": "Russian",
+                          "nationality_name_composed": "Russo"
+                      }
+                  ],
+                  "description": "The Roscosmos State Corporation for Space Activities, commonly known as Roscosmos, is the governmental body responsible for the space science program of the Russian Federation and general aerospace research. Soyuz has many launch locations the Russian sites are Baikonur, Plesetsk and Vostochny however Ariane also purchases the vehicle and launches it from French Guiana.",
+                  "administrator": "Administrator: Yuri Borisov",
+                  "founding_year": 1992,
+                  "launchers": "Soyuz",
+                  "spacecraft": "Soyuz",
+                  "parent": null,
+                  "image": {
+                      "id": 25,
+                      "name": "[AUTO] Russian Federal Space Agency (ROSCOSMOS) - image",
+                      "image_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/russian2520federal2520space2520agency25202528roscosmos2529_image_20190207032459.jpeg",
+                      "thumbnail_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305184652.jpeg",
+                      "credit": null,
+                      "license": {
+                          "id": 1,
+                          "name": "Unknown",
+                          "priority": 9,
+                          "link": null
+                      },
+                      "single_use": true,
+                      "variants": []
+                  },
+                  "logo": {
+                      "id": 177,
+                      "name": "[AUTO] Russian Federal Space Agency (ROSCOSMOS) - logo",
+                      "image_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/russian2520federal2520space2520agency25202528roscosmos2529_logo_20190207032459.png",
+                      "thumbnail_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305185118.png",
+                      "credit": null,
+                      "license": {
+                          "id": 1,
+                          "name": "Unknown",
+                          "priority": 9,
+                          "link": null
+                      },
+                      "single_use": true,
+                      "variants": []
+                  },
+                  "social_logo": {
+                      "id": 89,
+                      "name": "[AUTO] Russian Federal Space Agency (ROSCOSMOS) - social_logo",
+                      "image_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/russian2520federal2520space2520agency25202528roscosmos2529_nation_20230531052758.jpg",
+                      "thumbnail_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305184841.jpeg",
+                      "credit": null,
+                      "license": {
+                          "id": 1,
+                          "name": "Unknown",
+                          "priority": 9,
+                          "link": null
+                      },
+                      "single_use": true,
+                      "variants": []
+                  }
+              }
+          ],
+          "response_mode": "normal",
+          "active_expeditions": []
+      },
+      {
+          "id": 6,
+          "url": "https://ll.thespacedevs.com/2.3.0/space_stations/6/",
+          "name": "Skylab",
+          "image": {
+              "id": 1949,
+              "name": "[AUTO] Skylab - image",
+              "image_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/skylab_image_20190215230143.jpeg",
+              "thumbnail_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305194225.jpeg",
+              "credit": null,
+              "license": {
+                  "id": 1,
+                  "name": "Unknown",
+                  "priority": 9,
+                  "link": null
+              },
+              "single_use": true,
+              "variants": []
+          },
+          "status": {
+              "id": 2,
+              "name": "De-Orbited"
+          },
+          "founded": "1973-05-14",
+          "deorbited": "1979-07-11",
+          "description": "Skylab was a United States space station launched and operated by NASA, and occupied for about 24 weeks between May 1973 and February 1974 – the only space station the U.S. has operated exclusively. In 1979 it fell back to Earth amid huge worldwide media attention. Skylab included a workshop, a solar observatory, and other systems necessary for crew survival and scientific experiments. It was launched unmanned by a modified Saturn V rocket, with a weight of 170,000 pounds (77,000 kg). Lifting Skylab into low earth orbit was the final mission and launch of a Saturn V rocket (famous for carrying the manned Moon landing missions). Three missions delivered three-astronaut crews in the Apollo command and service module (Apollo CSM), launched by the smaller Saturn IB rocket. For the final two manned missions to Skylab, a backup Apollo CSM/Saturn IB was assembled and made ready in case an in-orbit rescue mission was needed, but this backup vehicle was never flown.",
+          "orbit": "Low Earth Orbit",
+          "type": {
+              "id": 2,
+              "name": "Government"
+          },
+          "owners": [
+              {
+                  "response_mode": "normal",
+                  "id": 44,
+                  "url": "https://ll.thespacedevs.com/2.3.0/agencies/44/",
+                  "name": "National Aeronautics and Space Administration",
+                  "abbrev": "NASA",
+                  "type": {
+                      "id": 1,
+                      "name": "Government"
+                  },
+                  "featured": true,
+                  "country": [
+                      {
+                          "id": 2,
+                          "name": "United States of America",
+                          "alpha_2_code": "US",
+                          "alpha_3_code": "USA",
+                          "nationality_name": "American",
+                          "nationality_name_composed": "Americano"
+                      }
+                  ],
+                  "description": "The National Aeronautics and Space Administration is an independent agency of the executive branch of the United States federal government responsible for the civilian space program, as well as aeronautics and aerospace research. NASA have many launch facilities but most are inactive. The most commonly used pad will be LC-39B at Kennedy Space Center in Florida.",
+                  "administrator": "Acting Administrator:  James Free",
+                  "founding_year": 1958,
+                  "launchers": "Space Shuttle | SLS",
+                  "spacecraft": "Orion",
+                  "parent": null,
+                  "image": {
+                      "id": 19,
+                      "name": "[AUTO] National Aeronautics and Space Administration - image",
+                      "image_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/national2520aeronautics2520and2520space2520administration_image_20190207032448.jpeg",
+                      "thumbnail_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305184631.jpeg",
+                      "credit": null,
+                      "license": {
+                          "id": 1,
+                          "name": "Unknown",
+                          "priority": 9,
+                          "link": null
+                      },
+                      "single_use": true,
+                      "variants": []
+                  },
+                  "logo": {
+                      "id": 161,
+                      "name": "[AUTO] National Aeronautics and Space Administration - logo",
+                      "image_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/national2520aeronautics2520and2520space2520administration_logo_20190207032448.png",
+                      "thumbnail_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305185043.png",
+                      "credit": null,
+                      "license": {
+                          "id": 1,
+                          "name": "Unknown",
+                          "priority": 9,
+                          "link": null
+                      },
+                      "single_use": true,
+                      "variants": []
+                  },
+                  "social_logo": {
+                      "id": 76,
+                      "name": "[AUTO] National Aeronautics and Space Administration - social_logo",
+                      "image_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/national2520aeronautics2520and2520space2520administration_nation_20230803040809.jpg",
+                      "thumbnail_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305184823.jpeg",
+                      "credit": null,
+                      "license": {
+                          "id": 1,
+                          "name": "Unknown",
+                          "priority": 9,
+                          "link": null
+                      },
+                      "single_use": true,
+                      "variants": []
+                  }
+              }
+          ],
+          "response_mode": "normal",
+          "active_expeditions": []
+      },
+      {
+          "id": 8,
+          "url": "https://ll.thespacedevs.com/2.3.0/space_stations/8/",
+          "name": "Tiangong 2",
+          "image": {
+              "id": 1947,
+              "name": "[AUTO] Tiangong 2 - image",
+              "image_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/tiangong25202_image_20190215013232.jpeg",
+              "thumbnail_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305194221.jpeg",
+              "credit": null,
+              "license": {
+                  "id": 1,
+                  "name": "Unknown",
+                  "priority": 9,
+                  "link": null
+              },
+              "single_use": true,
+              "variants": []
+          },
+          "status": {
+              "id": 2,
+              "name": "De-Orbited"
+          },
+          "founded": "2016-09-15",
+          "deorbited": "2019-07-19",
+          "description": "Tiangong-2 (Chinese: 天宫二号; pinyin: Tiāngōng èrhào; literally: \"Celestial Palace 2\") is a Chinese space laboratory and part of the Project 921-2 space station program. Tiangong-2 was launched on 15 September 2016.\r\n\r\nTiangong-2 is neither designed nor planned to be a permanent orbital station; rather, it is intended as a testbed for key technologies that will be used in the Chinese large modular space station, which is planned for launch between 2019 and 2022.",
+          "orbit": "Low Earth Orbit",
+          "type": {
+              "id": 2,
+              "name": "Government"
+          },
+          "owners": [
+              {
+                  "response_mode": "normal",
+                  "id": 17,
+                  "url": "https://ll.thespacedevs.com/2.3.0/agencies/17/",
+                  "name": "China National Space Administration",
+                  "abbrev": "CNSA",
+                  "type": {
+                      "id": 1,
+                      "name": "Government"
+                  },
+                  "featured": true,
+                  "country": [
+                      {
+                          "id": 6,
+                          "name": "China",
+                          "alpha_2_code": "CN",
+                          "alpha_3_code": "CHN",
+                          "nationality_name": "Chinese",
+                          "nationality_name_composed": "Sino"
+                      }
+                  ],
+                  "description": "The China National Space Administration (CNSA) is the national space agency of the People's Republic of China. It is responsible for the national space program and for planning and development of space activities. CNSA and China Aerospace Corporation (CASC) assumed the authority over space development efforts previously held by the Ministry of Aerospace Industry. The CNSA has many launch sites around China with their orbital sites located in Jiuquan, Xichang, Taiyuan and Wenchang.",
+                  "administrator": "Administrator: Tang Dengjie",
+                  "founding_year": 1993,
+                  "launchers": "",
+                  "spacecraft": "Shenzhou",
+                  "parent": null,
+                  "image": {
+                      "id": 9,
+                      "name": "[AUTO] China National Space Administration - image",
+                      "image_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/china2520national2520space2520administration_image_20190207032431.jpeg",
+                      "thumbnail_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305184601.jpeg",
+                      "credit": null,
+                      "license": {
+                          "id": 1,
+                          "name": "Unknown",
+                          "priority": 9,
+                          "link": null
+                      },
+                      "single_use": true,
+                      "variants": []
+                  },
+                  "logo": {
+                      "id": 125,
+                      "name": "[AUTO] China National Space Administration - logo",
+                      "image_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/china2520national2520space2520administration_logo_20190207032431.png",
+                      "thumbnail_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305184936.png",
+                      "credit": null,
+                      "license": {
+                          "id": 1,
+                          "name": "Unknown",
+                          "priority": 9,
+                          "link": null
+                      },
+                      "single_use": true,
+                      "variants": []
+                  },
+                  "social_logo": {
+                      "id": 51,
+                      "name": "[AUTO] China National Space Administration - social_logo",
+                      "image_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/china2520national2520space2520administration_nation_20190602114400.png",
+                      "thumbnail_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305184747.png",
+                      "credit": null,
+                      "license": {
+                          "id": 1,
+                          "name": "Unknown",
+                          "priority": 9,
+                          "link": null
+                      },
+                      "single_use": true,
+                      "variants": []
+                  }
+              }
+          ],
+          "response_mode": "normal",
+          "active_expeditions": []
+      },
+      {
+          "id": 9,
+          "url": "https://ll.thespacedevs.com/2.3.0/space_stations/9/",
+          "name": "Salyut 1",
+          "image": {
+              "id": 1944,
+              "name": "[AUTO] Salyut 1 - image",
+              "image_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/salyut25201_image_20190217072508.jpeg",
+              "thumbnail_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305194216.jpeg",
+              "credit": null,
+              "license": {
+                  "id": 1,
+                  "name": "Unknown",
+                  "priority": 9,
+                  "link": null
+              },
+              "single_use": true,
+              "variants": []
+          },
+          "status": {
+              "id": 2,
+              "name": "De-Orbited"
+          },
+          "founded": "1971-04-19",
+          "deorbited": "1971-10-11",
+          "description": "Salyut 1 (DOS-1) was the first space station of any kind, launched into low Earth orbit by the Soviet Union on April 19, 1971. The Salyut program followed this with five more successful launches out of seven more stations. The final module of the program, Zvezda (DOS-8) became the core of the Russian segment of the International Space Station and remains in orbit.",
+          "orbit": "Low Earth Orbit",
+          "type": {
+              "id": 2,
+              "name": "Government"
+          },
+          "owners": [
+              {
+                  "response_mode": "normal",
+                  "id": 63,
+                  "url": "https://ll.thespacedevs.com/2.3.0/agencies/63/",
+                  "name": "Russian Federal Space Agency (ROSCOSMOS)",
+                  "abbrev": "RFSA",
+                  "type": {
+                      "id": 1,
+                      "name": "Government"
+                  },
+                  "featured": true,
+                  "country": [
+                      {
+                          "id": 5,
+                          "name": "Russia",
+                          "alpha_2_code": "RU",
+                          "alpha_3_code": "RUS",
+                          "nationality_name": "Russian",
+                          "nationality_name_composed": "Russo"
+                      }
+                  ],
+                  "description": "The Roscosmos State Corporation for Space Activities, commonly known as Roscosmos, is the governmental body responsible for the space science program of the Russian Federation and general aerospace research. Soyuz has many launch locations the Russian sites are Baikonur, Plesetsk and Vostochny however Ariane also purchases the vehicle and launches it from French Guiana.",
+                  "administrator": "Administrator: Yuri Borisov",
+                  "founding_year": 1992,
+                  "launchers": "Soyuz",
+                  "spacecraft": "Soyuz",
+                  "parent": null,
+                  "image": {
+                      "id": 25,
+                      "name": "[AUTO] Russian Federal Space Agency (ROSCOSMOS) - image",
+                      "image_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/russian2520federal2520space2520agency25202528roscosmos2529_image_20190207032459.jpeg",
+                      "thumbnail_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305184652.jpeg",
+                      "credit": null,
+                      "license": {
+                          "id": 1,
+                          "name": "Unknown",
+                          "priority": 9,
+                          "link": null
+                      },
+                      "single_use": true,
+                      "variants": []
+                  },
+                  "logo": {
+                      "id": 177,
+                      "name": "[AUTO] Russian Federal Space Agency (ROSCOSMOS) - logo",
+                      "image_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/russian2520federal2520space2520agency25202528roscosmos2529_logo_20190207032459.png",
+                      "thumbnail_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305185118.png",
+                      "credit": null,
+                      "license": {
+                          "id": 1,
+                          "name": "Unknown",
+                          "priority": 9,
+                          "link": null
+                      },
+                      "single_use": true,
+                      "variants": []
+                  },
+                  "social_logo": {
+                      "id": 89,
+                      "name": "[AUTO] Russian Federal Space Agency (ROSCOSMOS) - social_logo",
+                      "image_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/russian2520federal2520space2520agency25202528roscosmos2529_nation_20230531052758.jpg",
+                      "thumbnail_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305184841.jpeg",
+                      "credit": null,
+                      "license": {
+                          "id": 1,
+                          "name": "Unknown",
+                          "priority": 9,
+                          "link": null
+                      },
+                      "single_use": true,
+                      "variants": []
+                  }
+              }
+          ],
+          "response_mode": "normal",
+          "active_expeditions": []
+      },
+      {
+          "id": 5,
+          "url": "https://ll.thespacedevs.com/2.3.0/space_stations/5/",
+          "name": "Mir",
+          "image": {
+              "id": 1943,
+              "name": "[AUTO] Mir - image",
+              "image_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/mir_image_20190218204938.jpeg",
+              "thumbnail_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305194215.jpeg",
+              "credit": null,
+              "license": {
+                  "id": 1,
+                  "name": "Unknown",
+                  "priority": 9,
+                  "link": null
+              },
+              "single_use": true,
+              "variants": []
+          },
+          "status": {
+              "id": 2,
+              "name": "De-Orbited"
+          },
+          "founded": "1986-02-20",
+          "deorbited": "2001-03-23",
+          "description": "Mir was a space station that operated in low Earth orbit from 1986 to 2001, operated by the Soviet Union and later by Russia. Mir was the first modular space station and was assembled in orbit from 1986 to 1996.\r\n\r\nThe station served as a microgravity research laboratory in which crews conducted experiments in biology, human biology, physics, astronomy, meteorology and spacecraft systems with a goal of developing technologies required for permanent occupation of space.",
+          "orbit": "Low Earth Orbit",
+          "type": {
+              "id": 2,
+              "name": "Government"
+          },
+          "owners": [
+              {
+                  "response_mode": "normal",
+                  "id": 63,
+                  "url": "https://ll.thespacedevs.com/2.3.0/agencies/63/",
+                  "name": "Russian Federal Space Agency (ROSCOSMOS)",
+                  "abbrev": "RFSA",
+                  "type": {
+                      "id": 1,
+                      "name": "Government"
+                  },
+                  "featured": true,
+                  "country": [
+                      {
+                          "id": 5,
+                          "name": "Russia",
+                          "alpha_2_code": "RU",
+                          "alpha_3_code": "RUS",
+                          "nationality_name": "Russian",
+                          "nationality_name_composed": "Russo"
+                      }
+                  ],
+                  "description": "The Roscosmos State Corporation for Space Activities, commonly known as Roscosmos, is the governmental body responsible for the space science program of the Russian Federation and general aerospace research. Soyuz has many launch locations the Russian sites are Baikonur, Plesetsk and Vostochny however Ariane also purchases the vehicle and launches it from French Guiana.",
+                  "administrator": "Administrator: Yuri Borisov",
+                  "founding_year": 1992,
+                  "launchers": "Soyuz",
+                  "spacecraft": "Soyuz",
+                  "parent": null,
+                  "image": {
+                      "id": 25,
+                      "name": "[AUTO] Russian Federal Space Agency (ROSCOSMOS) - image",
+                      "image_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/russian2520federal2520space2520agency25202528roscosmos2529_image_20190207032459.jpeg",
+                      "thumbnail_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305184652.jpeg",
+                      "credit": null,
+                      "license": {
+                          "id": 1,
+                          "name": "Unknown",
+                          "priority": 9,
+                          "link": null
+                      },
+                      "single_use": true,
+                      "variants": []
+                  },
+                  "logo": {
+                      "id": 177,
+                      "name": "[AUTO] Russian Federal Space Agency (ROSCOSMOS) - logo",
+                      "image_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/russian2520federal2520space2520agency25202528roscosmos2529_logo_20190207032459.png",
+                      "thumbnail_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305185118.png",
+                      "credit": null,
+                      "license": {
+                          "id": 1,
+                          "name": "Unknown",
+                          "priority": 9,
+                          "link": null
+                      },
+                      "single_use": true,
+                      "variants": []
+                  },
+                  "social_logo": {
+                      "id": 89,
+                      "name": "[AUTO] Russian Federal Space Agency (ROSCOSMOS) - social_logo",
+                      "image_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/russian2520federal2520space2520agency25202528roscosmos2529_nation_20230531052758.jpg",
+                      "thumbnail_url": "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/255bauto255d__image_thumbnail_20240305184841.jpeg",
+                      "credit": null,
+                      "license": {
+                          "id": 1,
+                          "name": "Unknown",
+                          "priority": 9,
+                          "link": null
+                      },
+                      "single_use": true,
+                      "variants": []
+                  }
+              }
+          ],
+          "response_mode": "normal",
+          "active_expeditions": []
+      }
+  ]
+}

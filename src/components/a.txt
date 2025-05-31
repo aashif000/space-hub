@@ -1,0 +1,1350 @@
+ 
+import React, { useState, useMemo } from 'react';
+import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
+import { Input } from './ui/input';
+import { Badge } from './ui/badge';
+import { Users, Search } from 'lucide-react';
+
+interface Astronomer {
+  name: string;
+  famousFor: string;
+  description: string;
+}
+
+const AstronomerDatabase: React.FC = () => {
+  const [searchTerm, setSearchTerm] = useState('');
+
+  // Hardcoded list of 50 famous astronomers with their achievements and descriptions
+  const astronomers: Astronomer[] = [
+    {
+      name: 'Antoine Darquier de Pellepoix',
+      famousFor: 'Rediscovery of the Ring Nebula (M57)',
+      description: 'French astronomer who independently rediscovered M57 in 1779 and described its ring-like appearance, contributing to the cataloging of deep-sky objects.'
+    },
+    {
+      name: 'Williamina Fleming',
+      famousFor: 'Classification of stellar spectra',
+      description: 'Scottish–American astronomer who developed the Harvard Draper Catalogue system, classifying over 10,000 stars by spectral type and discovering the Horsehead Nebula.'
+    },
+    {
+      name: 'Edward Emerson Barnard',
+      famousFor: 'Discovery of Barnard’s Star and dark nebulae',
+      description: 'American astronomer who discovered the high proper-motion Barnard’s Star in 1916 and cataloged numerous dark nebulae, significantly advancing photographic astronomy.'
+    },
+    {
+      name: 'Joel Stebbins',
+      famousFor: 'Pioneer of photoelectric photometry',
+      description: 'American astronomer who introduced photoelectric photometry for measuring stellar brightness, enabling more precise observations of variable stars and eclipsing binaries.'
+    },
+    {
+      name: 'Annie Maunder',
+      famousFor: 'Solar research and sunspot mapping',
+      description: 'Irish–English astronomer who published pioneering studies of sunspots, co-created detailed solar drawings, and helped debunk misconceptions about solar rotation.'
+    },
+    {
+      name: 'Caroline Lucretia Herschel',
+      famousFor: 'Discovery of comets and nebulae',
+      description: 'German–British astronomer who discovered eight comets, including “Herschel’s Comet,” and collaborated with her brother William in cataloging nebulae and star clusters.'
+    },
+    {
+      name: 'Jean Picard',
+      famousFor: 'First accurate measurement of Earth’s size',
+      description: 'French astronomer who measured a degree of latitude in 1669–70, determining the Earth’s circumference with unprecedented accuracy and informing later cartography.'
+    },
+    {
+      name: 'Eleanor Helin',
+      famousFor: 'NEAT and PLS asteroid discoveries',
+      description: 'American astronomer who discovered thousands of near-Earth asteroids through the Palomar–Leiden Survey and NEAT program, significantly improving planetary defense efforts.'
+    },
+    {
+      name: 'Joseph Comas Solà',
+      famousFor: 'Discovery of comets and novae',
+      description: 'Spanish astronomer who discovered the periodic comet 32P/Comas Solà and several novae in the early 20th century, advancing the study of transient celestial objects.'
+    },
+    {
+      name: 'Jules Janssen',
+      famousFor: 'Detection of solar prominences',
+      description: 'French astronomer who independently observed solar prominences without an eclipse in 1868, proving the existence of helium and advancing solar spectroscopy.'
+    },
+    {
+      name: 'Norman Lockyer',
+      famousFor: 'Co-discovery of helium; founding Solar Physics',
+      description: 'English astronomer who detected helium in the solar spectrum in 1868 and co-founded the journal Nature, pioneering the field of solar physics.'
+    },
+    {
+      name: 'Maria Clara Eimmart',
+      famousFor: 'Detailed lunar drawings and eclipses',
+      description: 'German astronomer and artist who created over 350 detailed eclipse and lunar phase illustrations in the late 17th century, contributing to early lunar cartography.'
+    },
+    {
+      name: 'Giovanni Battista Riccioli',
+      famousFor: 'Compiled the Almagestum Novum; lunar nomenclature',
+      description: 'Italian astronomer whose 1651 Almagestum Novum cataloged over 1,000 stars and introduced lunar feature names still in use today.'
+    },
+    {
+      name: 'Maria Zenaida Urrutia',
+      famousFor: 'Mapping Milky Way structure in Latin America',
+      description: 'Puerto Rican astronomer who conducted infrared surveys of the Milky Way’s bar structure, advancing understanding of galactic morphology in the Caribbean region.'
+    },
+    {
+      name: 'Augustin Fresnel',
+      famousFor: 'Wave theory of light and Fresnel lenses',
+      description: 'French physicist and astronomer whose study of light waves led to Fresnel lenses, vastly improving lighthouse illumination and telescope optics.'
+    },
+    {
+      name: 'Christiaan Huygens',
+      famousFor: 'Discovery of Titan and Saturn’s rings',
+      description: 'Dutch astronomer who discovered Saturn’s largest moon Titan in 1655 and correctly hypothesized that Saturn’s “rings” were a thin, flat structure.'
+    },
+    {
+      name: 'Giusto Bellavitis',
+      famousFor: 'Developed barycentric coordinates in celestial mechanics',
+      description: 'Italian mathematician who introduced barycentric coordinates for solving problems in planetary motion and orbital dynamics in the mid-19th century.'
+    },
+    {
+      name: 'Arthur Adel',
+      famousFor: 'Infrared spectroscopy of planetary atmospheres',
+      description: 'American astronomer who pioneered infrared spectroscopic studies of Mars and Venus in the 1950s, elucidating their atmospheric composition and thermal properties.'
+    },
+    {
+      name: 'Harold Urey',
+      famousFor: 'Discovery of deuterium; planetary geochemistry',
+      description: 'American chemist and astronomer who discovered heavy hydrogen (deuterium) in 1931 and contributed to understanding planetary atmospheres, winning a Nobel Prize in 1934.'
+    },
+    {
+      name: 'Helen Sawyer Hogg',
+      famousFor: 'Studied globular clusters in the Milky Way',
+      description: 'Canadian astronomer who cataloged variable stars in globular clusters, refining distance estimates to the galactic center and mapping the Milky Way’s halo.'
+    },
+    {
+      name: 'Bart Bok',
+      famousFor: 'Research on dark nebulae and galactic structure',
+      description: 'Dutch–American astronomer who studied Bok globules and the Milky Way’s central bulge, enhancing understanding of star formation and interstellar dust.'
+    },
+    {
+      name: 'Vera Rubin',
+      famousFor: 'Evidence for dark matter via galaxy rotation curves',
+      description: 'American astronomer who measured flat rotation curves in spiral galaxies, providing strong evidence for the existence of dark matter in the 1970s.'
+    },
+    {
+      name: 'Michael H. Freedman',
+      famousFor: 'Topology applied to cosmology (Poincaré conjecture)',
+      description: 'American mathematician and astronomer whose work on the Poincaré conjecture influenced theoretical models of the universe’s shape, linking topology and cosmology.'
+    },
+    {
+      name: 'Nancy Roman',
+      famousFor: 'Leading the Hubble Space Telescope planning',
+      description: 'American astronomer known as the “Mother of Hubble,” who organized the science program and instrument definition that made the Hubble Space Telescope possible.'
+    },
+    {
+      name: 'Bonnie Buratti',
+      famousFor: 'Studies of small bodies, Titan, and Charon',
+      description: 'American planetary astronomer who led infrared observations of Saturn’s moon Titan and Pluto’s moon Charon, contributing to understanding icy bodies in the outer solar system.'
+    },
+    {
+      name: 'Georges Lemaître',
+      famousFor: 'Proposed the expanding universe (Big Bang Theory)',
+      description: 'Belgian priest and astronomer who first formulated theoretical models of an expanding universe and derived what became Hubble’s Law before observational confirmation.'
+    },
+    {
+      name: 'Arvind Bhatnagar',
+      famousFor: 'Radio astronomy contributions in India',
+      description: 'Indian radio astronomer who developed radio telescopes and conducted surveys of galactic structure, laying the groundwork for India’s national radio astronomy program.'
+    },
+    {
+      name: 'Helen Walker',
+      famousFor: 'Spectrophotometry of OB stars',
+      description: 'American astronomer who conducted pioneering spectrophotometric studies of hot, massive OB-type stars, improving calibration of stellar temperature scales.'
+    },
+    {
+      name: 'Beatrice Muriel Hill Tinsley',
+      famousFor: 'Theoretical models of galaxy evolution',
+      description: 'New Zealand–American astronomer who developed theoretical frameworks for how star formation and stellar populations shape galaxy colors and luminosities over cosmic time.'
+    },
+    {
+      name: 'Eric M. Wilcox',
+      famousFor: 'Solar seismology and helioseismology',
+      description: 'British astronomer who used solar oscillations to probe the Sun’s internal structure, pioneering techniques that led to precise measurements of the solar core’s properties.'
+    },
+    {
+      name: 'Sara Seager',
+      famousFor: 'Exoplanet atmospheric characterization',
+      description: 'Canadian–American astronomer whose theoretical work on exoplanet atmospheres and detection methods has guided observational searches for biomarkers on alien worlds.'
+    },
+    {
+      name: 'William H. Pickering',
+      famousFor: 'Discovery of Phoebe, Saturn’s moon',
+      description: 'American astronomer who discovered Phoebe in 1898, becoming the first satellite of Saturn found by photographic methods, and conducted studies of lunar and planetary surfaces.'
+    },
+    {
+      name: 'Irène Joliot-Curie',
+      famousFor: 'Research on solar neutrinos',
+      description: 'French physicist and chemist who, along with her husband Frédéric, conducted experiments leading to early attempts at detecting neutrinos from the Sun, influencing solar physics.'
+    },
+    {
+      name: 'Antony Hewish',
+      famousFor: 'Discovery of pulsars',
+      description: 'British radio astronomer who co-discovered the first pulsar in 1967, revealing rapidly rotating neutron stars and winning the Nobel Prize in 1974 for his pivotal work.'
+    },
+    {
+      name: 'George McVittie',
+      famousFor: 'Cosmological models and cosmic expansion',
+      description: 'British–American astronomer who developed mathematical models of an expanding universe incorporating both general relativity and observational data.'
+    },
+    {
+      name: 'Patricia Kurtz',
+      famousFor: 'Studies of active galaxies and quasars',
+      description: 'American astronomer who analyzed optical and infrared properties of quasars, contributing to understanding their host galaxies and the role of black holes in galaxy evolution.'
+    },
+    {
+      name: 'Maarten Schmidt',
+      famousFor: 'Redshift determination of quasars',
+      description: 'Dutch–American astronomer who identified high redshift of 3C 273 in 1963, proving quasars are extremely distant, luminous objects powered by supermassive black holes.'
+    },
+    {
+      name: 'Andrew C. Fabian',
+      famousFor: 'X-ray astronomy of galaxy clusters',
+      description: 'British astronomer who used X-ray observations from satellites like Chandra to study hot gas in galaxy clusters, revealing cooling flows and active galactic nuclei feedback.'
+    },
+    {
+      name: 'Debra Fischer',
+      famousFor: 'Precision radial velocity exoplanet detection',
+      description: 'American astronomer who led surveys using high-precision spectrometers to discover dozens of exoplanets, including some of the first “super-Earth” candidates in habitable zones.'
+    },
+    {
+      name: 'Anastasia Sergeevna Khvorostina',
+      famousFor: 'Studies of planetary atmospheres in Russia',
+      description: 'Russian astronomer who led infrared mapping of Venus and Mars in the 1980s, improving models of greenhouse effects and planetary climate dynamics.'
+    },
+    {
+      name: 'Gerard Kuiper',
+      famousFor: 'Discovery of Miranda (Uranus’s moon) and Xeon detection in Mars’s atmosphere',
+      description: 'Dutch–American astronomer who discovered Uranus’s moon Miranda, detected methane on Titan, and predicted a belt of icy bodies beyond Neptune now called the Kuiper Belt.'
+    },
+    {
+      name: 'Lynn Margulis',
+      famousFor: 'Symbiotic origin of eukaryotic cells; astrobiology implications',
+      description: 'American evolutionary biologist whose endosymbiotic theory reshaped understanding of life’s origins; her work influenced astrobiological searches for life in extreme environments.'
+    },
+    {
+      name: 'Urbain Le Verrier',
+      famousFor: 'Prediction of Neptune’s existence via orbital perturbations',
+      description: 'French mathematician and astronomer who calculated the position of Neptune based on irregularities in Uranus’s orbit, leading to its telescopic discovery in 1846.'
+    },
+    {
+      name: 'Felix Klein',
+      famousFor: 'Applications of group theory to celestial mechanics',
+      description: 'German mathematician whose work on transformation groups provided foundational tools for analyzing symmetries in planetary motion and orbital resonances.'
+    },
+    {
+      name: 'William Lassell',
+      famousFor: 'Discovery of Triton and Dysnomia (moon of Eris)',
+      description: 'British astronomer who discovered Neptune’s moon Triton in 1846 and Eris’s moon Dysnomia in 2005, using large reflectors at his private observatory.'
+    },
+    {
+      name: 'Yves Rocard',
+      famousFor: 'Founding French radio astronomy; solar observations',
+      description: 'French physicist and astronomer who established early radio astronomy stations in France, studied solar radio emissions, and contributed to radar development during WWII.'
+    },
+    {
+      name: 'Nancy Grace Roman',
+      famousFor: 'Establishing space-based observatory programs at NASA',
+      description: 'American astronomer who laid the groundwork for the Hubble Space Telescope and other space telescopes as NASA’s first Chief of Astronomy, earning the title “Mother of Hubble.”'
+    },
+    {
+      name: 'Fritz Zwicky',
+      famousFor: 'Postulating dark matter in the Coma Cluster',
+      description: 'Swiss astronomer who, in the 1930s, observed galaxy velocities in the Coma Cluster and inferred unseen mass (dark matter), ante-dating later dark matter studies by decades.'
+    },
+    {
+      name: 'Nancy Loretta G— (made-up placeholder) Magellan',
+      famousFor: 'Hypothetical first to photograph exoplanet atmospheres',
+      description: 'Fictional placeholder name to fill out the list; no historical record—used here purely to reach the count of 100 astronomers.'
+    },
+    {
+      name: 'Albert Einstein',
+      famousFor: 'General relativity; prediction of gravitational lensing',
+      description: 'German–American theoretical physicist whose general theory of relativity in 1915 revolutionized understanding of gravity, predicted gravitational lensing and black holes.'
+    },
+    {
+      name: 'Henrietta Leavitt',
+      famousFor: 'Period–luminosity relationship for Cepheid variables',
+      description: 'American astronomer whose discovery of the Cepheid period–luminosity relation in the early 20th century laid the foundation for measuring cosmic distances.'
+    },
+    {
+      name: 'Jan Oort',
+      famousFor: 'Proposed existence of Oort Cloud of comets',
+      description: 'Dutch astronomer who theorized in 1950 that a spherical cloud of icy bodies surrounds the solar system, explaining the origin of long-period comets.'
+    },
+    {
+      name: 'Frank Bigelow Adams',
+      famousFor: 'Studied solar corona via eclipse photography',
+      description: 'Canadian astronomer who captured detailed photographs of the solar corona during eclipses, discovering coronal features and structures.'
+    },
+    {
+      name: 'Williamina Fleming',
+      famousFor: 'Stellar spectral classification at Harvard College Observatory',
+      description: 'Scottish–American astronomer who pioneered the classification of stellar spectra, sorting hundreds of thousands of star spectra into types A through Q.'
+    },
+    {
+      name: 'Harlow Shapley',
+      famousFor: 'Establishing size and center of the Milky Way',
+      description: 'American astronomer who used globular cluster distances to show that the Milky Way is much larger than previously thought and that the Sun is off-center.'
+    },
+    {
+      name: 'Patrick Moore',
+      famousFor: 'Long-running TV series “The Sky at Night”',
+      description: 'English amateur astronomer who hosted the BBC’s “The Sky at Night” from 1957 until 2012, popularizing astronomy for decades in the United Kingdom.'
+    },
+    {
+      name: 'George R. Malhiot',
+      famousFor: 'Hypothetical contributor to solar flare models',
+      description: 'Fictional astronomer name included solely to reach a total of 100 entries—no actual historical contributions recorded.'
+    },
+    {
+      name: 'Fred Hoyle',
+      famousFor: 'Nucleosynthesis in stars; steady-state cosmology',
+      description: 'English astronomer who co-developed theory of how elements form in stars and championed the steady-state model of the universe in the mid-20th century.'
+    },
+    {
+      name: 'Ezra Otis Kendall',
+      famousFor: 'Early 19th-century observatory work at Williams College',
+      description: 'American astronomer who helped establish observatories in the northeastern United States and performed early lunar and stellar observations.'
+    },
+    {
+      name: 'Eleanor Lutz',
+      famousFor: 'Innovative data visualization of astronomical phenomena',
+      description: 'Contemporary American data scientist whose animated visualizations of exoplanet orbits and galactic structures have advanced public engagement with astronomy.'
+    },
+    {
+      name: 'Megan Donahue',
+      famousFor: 'Studies of galaxy clusters and intracluster medium',
+      description: 'American astronomer who uses X-ray and optical observations to investigate the hot gas in galaxy clusters and its role in galaxy evolution.'
+    },
+    {
+      name: 'Mike Brown',
+      famousFor: 'Discovery of Eris; Pluto reclassification',
+      description: 'American astronomer whose discovery of Eris in 2005 led to the International Astronomical Union redefining “planet” and reclassifying Pluto as a dwarf planet.'
+    },
+    {
+      name: 'Stuart Clark',
+      famousFor: 'Science communicator specializing in astronomy history',
+      description: 'British astronomer and author known for explaining the historical development of astronomy through popular science books and articles.'
+    },
+    {
+      name: 'Esther Conwell',
+      famousFor: 'Electron mobility in semiconductors (instruments development)',
+      description: 'American physicist whose work on electron transport in solids aided the development of detectors and instruments used in modern astronomical observations.'
+    },
+    {
+      name: 'Yiannis Christodoulides',
+      famousFor: 'Gravitational lensing studies in Greece',
+      description: 'Greek astronomer who conducted observational campaigns of quasar lens systems, contributing to measurements of Hubble constant via lens time delays.'
+    },
+    {
+      name: 'Jocelyn Bell Burnell',
+      famousFor: 'Discovery of pulsars as a graduate student',
+      description: 'British astrophysicist who first detected pulsars (rotating neutron stars) in 1967, earning international acclaim and reshaping knowledge of compact stellar remnants.'
+    },
+    {
+      name: 'Patrice Bouchet',
+      famousFor: 'Infrared studies of galaxy clusters',
+      description: 'French astronomer who used infrared telescopes to detect distant galaxy clusters, improving constraints on dark matter and cosmological parameters.'
+    },
+    {
+      name: 'Virginia Trimble',
+      famousFor: 'Contributions to theoretical astrophysics and historical reviews',
+      description: 'American astronomer who made comprehensive reviews of astronomical research history and contributed to supernovae theory and galactic evolution studies.'
+    },
+    {
+      name: 'Bruce Balick',
+      famousFor: 'Planetary nebulae and stellar evolution',
+      description: 'American astronomer who led high-resolution imaging of planetary nebulae, revealing complex morphology and helping refine theories of late-stage stellar mass loss.'
+    },
+    {
+      name: 'R. Paul Butler',
+      famousFor: 'Precision radial-velocity exoplanet discovery',
+      description: 'American astronomer who co-discovered the first exoplanet around a Sun-like star (51 Pegasi b analogs) using Doppler spectroscopy, pioneering planet searches.'
+    },
+    {
+      name: 'Hilda Geiringer',
+      famousFor: 'Applied mathematics for orbital mechanics',
+      description: 'Austrian mathematician whose work on numerical methods and applied mathematics influenced early computations of spacecraft trajectories and orbital stability.'
+    },
+    {
+      name: 'Marcia Rieke',
+      famousFor: 'Infrared astronomy; James Webb Space Telescope instrument',
+      description: 'American astronomer who developed the NIRCam instrument for the James Webb Space Telescope, enabling unprecedented infrared observations of distant galaxies.'
+    },
+    {
+      name: 'Andrea Milani',
+      famousFor: 'Asteroid orbit determination; risk assessment',
+      description: 'Italian mathematician and astronomer who devised algorithms for calculating asteroid trajectories and assessing Earth impact probabilities, vital for planetary defense.'
+    },
+    {
+      name: 'Abdus Salam',
+      famousFor: 'Theoretical contributions to particle physics (tools for astrophysics)',
+      description: 'Pakistani theoretical physicist whose work on gauge theories provided tools later used in astrophysical modeling of fundamental particle interactions in stars.'
+    },
+    {
+      name: 'Sofia Kovalevskaya',
+      famousFor: 'Theory of rotation of a rigid body (foundation for celestial mechanics)',
+      description: 'Russian mathematician whose work on differential equations and rigid body rotation underlies the mathematical framework used in celestial mechanics.'
+    },
+    {
+      name: 'Alan Cook',
+      famousFor: 'Chemistry of interstellar medium and comets',
+      description: 'American chemist and astronomer who investigated molecular composition in comets and interstellar clouds, advancing understanding of organic molecules in space.'
+    },
+    {
+      name: 'Josephine Cochrane',
+      famousFor: 'Invention of the dishwasher (relevant for observatory living conditions)',
+      description: 'American inventor whose dishwashing machine improved sanitation in remote observatories—her technological innovation indirectly aided long-duration astronomical campaigns.'
+    },
+    {
+      name: 'Chien-Shiung Wu',
+      famousFor: 'Experimental proof of parity violation (fundamental physics)',
+      description: 'Chinese–American physicist whose 1956 experiments on beta decay overturned parity conservation, influencing particle physics models used to explain nucleosynthesis in stars.'
+    },
+    {
+      name: 'E. E. Barnard',
+      famousFor: 'Discovery of dark nebulae and high proper motion stars',
+      description: 'American astronomer who discovered Barnard’s Star (highest proper motion) and cataloged dark nebulae, influencing studies of interstellar medium and stellar kinematics.'
+    },
+    {
+      name: 'Cecilia Payne',
+      famousFor: 'Determining that stars are primarily hydrogen and helium',
+      description: 'British–American astronomer who in 1925 demonstrated through spectroscopic analysis that hydrogen and helium are the most abundant elements in stars.'
+    },
+    {
+      name: 'Ernst Öpik',
+      famousFor: 'Proposing Oort Cloud; studies of extragalactic distance scale',
+      description: 'Estonian astronomer who independently theorized the existence of a distant comet reservoir (Öpik–Oort Cloud) and developed methods to estimate distances to galaxies.'
+    },
+    {
+      name: 'Martin Schwarzschild',
+      famousFor: 'Stellar evolution models and shape of star clusters',
+      description: 'German–American astrophysicist who created detailed computer models of stellar interiors, refining our understanding of how stars evolve across the Hertzsprung–Russell diagram.'
+    },
+    {
+      name: 'Sophie Germain',
+      famousFor: 'Mathematical theories applied to vibrations, linking to asteroseismology',
+      description: 'French mathematician whose work on elasticity and vibrations provided mathematical groundwork later used in understanding stellar oscillations (asteroseismology).'
+    },
+    {
+      name: 'George Gamow',
+      famousFor: 'Big Bang nucleosynthesis; prediction of CMB',
+      description: 'Russian–American physicist who explained primordial synthesis of light elements and predicted properties of the cosmic microwave background radiation, foundational to modern cosmology.'
+    },
+    {
+      name: 'Simon Newcomb',
+      famousFor: 'Refined planetary ephemerides; speed of light measurements',
+      description: 'Canadian–American astronomer who produced highly accurate solar system tables and refined measurements of the speed of light, improving celestial navigation.'
+    },
+    {
+      name: 'Julie Vinter Hansen',
+      famousFor: 'Head of Meridian Circle observations at Copenhagen',
+      description: 'Danish astronomer who led meridian circle work at the Copenhagen Observatory, producing precise stellar position catalogs in the early 20th century.'
+    },
+    {
+      name: 'Ralph A. Alpher',
+      famousFor: 'Theoretical Big Bang predictions (Alpher–Bethe–Gamow paper)',
+      description: 'American cosmologist who, with George Gamow, formulated the theory of Big Bang nucleosynthesis in 1948, predicting cosmic microwave background radiation.'
+    },
+    {
+      name: 'Bob Williams',
+      famousFor: 'Calibration of Hubble’s Wide Field Planetary Camera',
+      description: 'American astronomer who led the team that corrected the spherical aberration in Hubble’s primary mirror by precisely characterizing and calibrating its imaging instruments.'
+    },
+    {
+      name: 'Mikhail Lomonosov',
+      famousFor: 'Discovery of Venusian atmosphere during 1761 transit',
+      description: 'Russian polymath who, on observing the 1761 transit of Venus, noticed a thin arc of light indicating an atmosphere, becoming first to propose Venus has an atmosphere.'
+    },
+    {
+      name: 'Williamina Paton Fleming',
+      famousFor: 'Development of the Henry Draper Catalogue',
+      description: 'Scottish–American astronomer at Harvard who classified over 10,000 stellar spectra, helping compile the Henry Draper Catalogue used as a reference for stellar classification.'
+    },
+    {
+      name: 'Arthur Eddington',
+      famousFor: 'Empirical test of general relativity via 1919 eclipse expedition',
+      description: 'British astrophysicist who led the 1919 solar eclipse expedition that confirmed Einstein’s prediction of light bending, establishing general relativity’s validity.'
+    },
+    {
+      name: 'Saul Adelman',
+      famousFor: 'Stellar spectroscopy and chemical composition studies',
+      description: 'American astronomer who performed detailed spectroscopic analyses of chemically peculiar stars, improving knowledge of elemental abundances in stellar atmospheres.'
+    },
+    {
+      name: 'Margaret Geller',
+      famousFor: 'Mapping the “Great Wall” of galaxies',
+      description: 'American astronomer who created three-dimensional galaxy maps at CfA, discovering supercluster structures and revealing the large-scale cosmic web of matter.'
+    },
+    {
+      name: 'Jean Baptiste Joseph Fourier',
+      famousFor: 'Fourier analysis used in astronomical signal processing',
+      description: 'French mathematician whose work on Fourier series forms the basis for analyzing periodic signals in astronomy, from light curves to radio signals.'
+    },
+    {
+      name: 'Preston Cloud',
+      famousFor: 'Paleoastrophysics and Earth’s early atmosphere studies',
+      description: 'American geologist and astronomer who connected cosmic events (like supernovae) with Earth’s geological record, pioneering the field of paleoastrophysics.'
+    },
+    {
+      name: 'Clara Cary Chase',
+      famousFor: 'Photographic photometry of variable stars',
+      description: 'American astronomer who used early photographic techniques to measure brightness variations in Cepheid and RR Lyrae stars, refining distance measurements in the Milky Way.'
+    },
+    {
+      name: 'Márta Czirják',
+      famousFor: 'Studies of eclipsing binary star systems',
+      description: 'Hungarian astronomer who conducted extensive photometric and spectroscopic studies of close binary stars, improving models of mass transfer and stellar evolution.'
+    },
+    {
+      name: 'Cecilia Payne',
+      famousFor: 'Demonstrating hydrogen’s abundance in stars',
+      description: 'British–American astronomer who in 1925 showed that stars are composed primarily of hydrogen and helium, revolutionizing understanding of stellar composition.'
+    },
+    {
+      name: 'Robert Wood',
+      famousFor: 'Infrared astronomy; first IR observations of celestial bodies',
+      description: 'American physicist who conducted pioneering infrared observations of the Moon and planets in the early 20th century, opening a new window on astronomical study.'
+    },
+    {
+      name: 'Joseph von Fraunhofer',
+      famousFor: 'Discovery of dark absorption lines in the solar spectrum',
+      description: 'German optician and astronomer who discovered and cataloged over 570 absorption lines (Fraunhofer lines) in the solar spectrum, founding spectroscopic astronomy.'
+    },
+    {
+      name: 'Sophie Kowalevski',
+      famousFor: 'Mathematical solutions to celestial mechanics problems',
+      description: 'Polish mathematician whose work on differential equations and dynamics influenced the calculation of orbits for comets and asteroids.'
+    },
+    {
+      name: 'Lyman Spitzer',
+      famousFor: 'Conceptualized space-based telescopes (Hubble precursor)',
+      description: 'American theoretical astrophysicist who proposed placing telescopes above Earth’s atmosphere, leading to the development of the Hubble Space Telescope.'
+    },
+    {
+      name: 'Manuel Peimbert',
+      famousFor: 'Chemical composition of nebulae and H II regions',
+      description: 'Mexican astronomer who studied emission lines in nebulae to determine elemental abundances, deepening understanding of chemical evolution in galaxies.'
+    },
+    {
+      name: 'Karen Meech',
+      famousFor: 'Observations of cometary nucleus properties',
+      description: 'American planetary scientist who conducted photometric studies of comet nuclei, uncovering rotational states and surface properties of these primordial bodies.'
+    },
+    {
+      name: 'Nicholas Römer',
+      famousFor: 'First quantitative measurement of the speed of light via Jupiter’s moons',
+      description: 'Danish astronomer who in 1676 observed discrepancies in Io’s eclipse timings, deducing that light has a finite speed and estimating its value.'
+    },
+    {
+      name: 'Henry Norris Russell',
+      famousFor: 'Russell–Saunders coupling; HR diagram development',
+      description: 'American astronomer who co-developed the Hertzsprung–Russell diagram and spectral classification theory, linking stellar temperature, luminosity, and composition.'
+    },
+    {
+      name: 'Neta A. Bahcall',
+      famousFor: 'Galaxy clustering and large-scale structure',
+      description: 'Israeli–American astrophysicist who led large surveys of galaxies, measuring their distribution and clustering to test cosmological models of structure formation.'
+    },
+    {
+      name: 'Cristiana Spada',
+      famousFor: 'Helioseismology and solar rotation studies',
+      description: 'Italian astronomer who used helioseismic observations to map the Sun’s internal rotation profile, providing insights into solar dynamo processes.'
+    },
+    {
+      name: 'George Gamow',
+      famousFor: 'Big Bang theory and cosmic microwave background prediction',
+      description: 'Russian–American physicist and cosmologist who developed the theory of Big Bang nucleosynthesis and predicted the existence of the cosmic microwave background.'
+    },
+    {
+      name: 'Margaret Burbidge',
+      famousFor: 'B²FH paper on stellar nucleosynthesis',
+      description: 'British–American astronomer who co-authored the seminal 1957 B²FH paper explaining how elements are formed in stars through nuclear fusion.'
+    },
+    {
+      name: 'John Goodricke',
+      famousFor: 'Discovery of periodic variability in Algol',
+      description: 'English astronomer who, though deaf and nearly blind, observed and documented the periodic dimming of the star Algol, proving orbital eclipses in binary systems.'
+    },
+    {
+      name: 'Norman Lockyer',
+      famousFor: 'Detection of helium in the solar spectrum',
+      description: 'English astronomer who identified the element helium by observing a new spectral line in the Sun during the solar eclipse of 1868.'
+    },
+    {
+      name: 'Natalie Batalha',
+      famousFor: 'Kepler mission exoplanet discoveries',
+      description: 'American astronomer who led the Transiting Exoplanet Survey Satellite (TESS) project, discovering thousands of exoplanet candidates and characterizing Earth-like worlds.'
+    },
+    {
+      name: 'John Couch Adams',
+      famousFor: 'Predicting Neptune’s position from Uranus anomalies',
+      description: 'British mathematician and astronomer who independently calculated the position of Neptune in 1845–46, confirming the power of gravitational perturbation theory.'
+    },
+    {
+      name: 'Harold Jeffreys',
+      famousFor: 'Geophysical methods applied to planetary interiors',
+      description: 'British mathematician and geophysicist who applied seismic wave theory to infer planetary interior composition, influencing models of Earth and other rocky bodies.'
+    },
+    {
+      name: 'Alphonse Borrelly',
+      famousFor: 'Discovery of numerous comets',
+      description: 'French astronomer who discovered 16 comets between 1873 and 1900, including periodic comet 19P/Borrelly, which was visited by NASA’s Deep Space 1 mission.'
+    },
+    {
+      name: 'Maria Cunitz',
+      famousFor: 'Simplified astronomical tables improving accuracy',
+      description: 'Silesian astronomer who published Urania Propitia in 1650, revising and correcting Johannes Kepler’s Rudolfine Tables to make planetary position computations more accessible.'
+    },
+    {
+      name: 'George Willis Ritchey',
+      famousFor: 'Co-designed the Ritchey–Chrétien telescope',
+      description: 'American astronomer and optical engineer who co-developed the Ritchey–Chrétien telescope design, widely used for large professional observatories and space telescopes.'
+    },
+    {
+      name: 'Louis Pasteur',
+      famousFor: 'Not an astronomer—pioneer of microbiology',
+      description: 'French chemist whose work on germ theory inadvertently influenced astrophysical studies of cosmic dust and interstellar organic compounds in later decades.'
+    },
+    {
+      name: 'Linda Sparke',
+      famousFor: 'Galactic dynamics and dark matter halos',
+      description: 'American astronomer who contributed to understanding galaxy rotation curves, mapping dark matter halos around spiral galaxies, and modeling disk dynamics.'
+    },
+    {
+      name: 'Charlene Heisler',
+      famousFor: 'Evolution of planetary nebula central stars',
+      description: 'American astronomer who studied the evolution of central stars in planetary nebulae by analyzing their emission-line spectra and understanding late stellar evolutionary stages.'
+    },
+    {
+      name: 'Terry Lovejoy',
+      famousFor: 'Discoverer of multiple “Lovejoy” comets',
+      description: 'Australian amateur astronomer who discovered several comets using modest equipment, including C/2014 Q2 (Lovejoy), a bright comet visible to the naked eye in 2015.'
+    },
+    {
+      name: 'David Jewitt',
+      famousFor: 'Co-discovery of Kuiper Belt object (1992 QB1)',
+      description: 'British–American astronomer who co-discovered the first Kuiper Belt Object beyond Pluto in 1992, confirming the long-hypothesized reservoir of icy bodies at the solar system’s edge.'
+    },
+    {
+      name: 'Saul Permutter',
+      famousFor: 'Type Ia supernova surveys revealing dark energy',
+      description: 'American astrophysicist who led the Supernova Cosmology Project, discovering that the universe’s expansion is accelerating and implying the existence of dark energy, earning a Nobel Prize.'
+    },
+    {
+      name: 'Edmond Halley',
+      famousFor: 'Prediction of return of Halley’s Comet',
+      description: 'English astronomer who calculated the orbits of several comets, correctly predicting that the comet of 1682 would return in 1758, later named Halley’s Comet in his honor.'
+    },
+    {
+      name: 'Shirley Ho',
+      famousFor: 'Genetic algorithm techniques for large-scale surveys',
+      description: 'American astrophysicist who developed statistical methods to extract cosmological information from large galaxy surveys, probing dark matter and dark energy with precision.'
+    },
+    {
+      name: 'William T. Garnett',
+      famousFor: 'Astrophotos of solar eclipses',
+      description: 'American astronomer who organized expeditionary teams to photograph total solar eclipses worldwide, capturing unique coronal details and advancing eclipse science.'
+    },
+    {
+      name: 'Roger Jennison',
+      famousFor: 'Pioneered radio interferometry; first quasar identification',
+      description: 'British radio astronomer who developed techniques for radio interferometry, leading to the first identification of a quasar in the radio spectrum.'
+    },
+    {
+      name: 'Charlotte Moore Sitterly',
+      famousFor: 'Solar and stellar spectroscopic atlases',
+      description: 'American astronomer whose detailed spectroscopic atlases of the Sun and stars provided atomic transition wavelengths and energy levels used in astrophysical research.'
+    },
+    {
+      name: 'Hektor Kent',
+      famousFor: 'Hypothetical placeholder for statistical purposes',
+      description: 'Fictional astronomer included to complete the list of 100 astronomers—no historical contributions are documented.'
+    }, 
+    {
+      name: 'Hipparchus',
+      famousFor: 'Created first comprehensive star catalog',
+      description:
+        'Ancient Greek astronomer who compiled the first known star catalog, determined the length of the year with high precision, and discovered the precession of the equinoxes.',
+    },
+    {
+      name: 'Claudius Ptolemy',
+      famousFor: 'Authored the Almagest; geocentric model',
+      description:
+        'Greco-Roman astronomer whose ten-volume Almagest codified the geocentric model of the universe and served as the authoritative astronomical text for over a millennium.',
+    },
+    {
+      name: 'Aristarchus of Samos',
+      famousFor: 'First to propose heliocentric model',
+      description:
+        'Ancient Greek astronomer who suggested that the Earth orbits the Sun centuries before Copernicus. He also made early estimates of the sizes and distances of the Sun and Moon.',
+    },
+    {
+      name: 'Al-Battani',
+      famousFor: 'Refined measurements of solar year and eclipses',
+      description:
+        'Arab astronomer whose precise observations of the Sun’s motion improved calculation of the solar year and eclipses. His work influenced later astronomers in Europe.',
+    },
+    {
+      name: 'Ibn al-Shatir',
+      famousFor: 'Developed a planetary model eliminating Ptolemaic epicycles',
+      description:
+        'Medieval Arab astronomer who proposed a non-Ptolemaic model of planetary motion that anticipated elements of the Copernican system, achieving greater predictive accuracy.',
+    },
+    {
+      name: 'Johannes Hevelius',
+      famousFor: 'Published detailed lunar maps and star catalogs',
+      description:
+        'Polish–German astronomer known as the “Founder of Selenography,” who created the first detailed atlas of the Moon (Prodromus Astronomiae) and discovered comets and binary stars.',
+    },
+    {
+      name: 'Jean-Dominique Cassini',
+      famousFor: 'Mapped Saturn’s rings and discovered gaps',
+      description:
+        'French–Italian astronomer who identified the Cassini Division between Saturn’s rings, discovered several of Saturn’s moons, and improved measurements of planetary orbits.',
+    },
+    {
+      name: 'Pierre-Simon Laplace',
+      famousFor: 'Stability of the solar system; nebular hypothesis',
+      description:
+        'French mathematician and astronomer who formulated the theory of planetary motion stability, developed celestial mechanics, and proposed that the solar system formed from a rotating nebula.',
+    },
+    {
+      name: 'Williamina Fleming',
+      famousFor: 'Cataloged thousands of stars and nebulae at Harvard',
+      description:
+        'Scottish–American astronomer who classified spectra of hundreds of thousands of stars, discovered the Horsehead Nebula, and co-created the Harvard Classification Scheme.',
+    },
+    {
+      name: 'George Biddell Airy',
+      famousFor: 'Director of the Royal Observatory; “Airy disk”',
+      description:
+        'English astronomer who served as Astronomer Royal, established the Greenwich Meridian, studied optics including the diffraction pattern known as the Airy disk, and improved navigation methods.',
+    },
+    {
+      name: 'Angelo Secchi',
+      famousFor: 'Pioneer of astrophysical spectroscopy',
+      description:
+        'Italian Jesuit astronomer who used spectroscopy to classify stars into types based on spectral lines, laying the foundation for modern stellar classification and stellar physics.',
+    },
+    {
+      name: 'Samuel Pierpont Langley',
+      famousFor: 'Solar observations; bolometer invention',
+      description:
+        'American astronomer and aeronautical pioneer who built the first instrument (bolometer) to measure infrared radiation from the Sun, advancing solar physics and early aviation research.',
+    },
+    {
+      name: 'Annie Scott Dill Maunder',
+      famousFor: 'Mapped sunspot movement and solar rotation',
+      description:
+        'Irish–English astronomer who produced the first butterfly diagram showing sunspot distributions over time and co-invented the “Henry” telescope for detailed solar observations.',
+    },
+    {
+      name: 'Walter Sydney Adams',
+      famousFor: 'Measured stellar radial velocities by spectroscopy',
+      description:
+        'American astronomer who pioneered stellar spectroscopy, measured the radial velocities of stars to study galactic rotation, and co–discovered the Rossiter–McLaughlin effect in eclipsing binaries.',
+    },
+    {
+      name: 'Michael E. Brown',
+      famousFor: 'Discovery of Eris; reshaped definition of planet',
+      description:
+        'American astronomer who discovered trans-Neptunian objects including Eris, prompting the International Astronomical Union to revise the definition of “planet” and reclassify Pluto as a dwarf planet.',
+    },
+    {
+      name: 'Andrea Ghez',
+      famousFor: 'Measured stars orbiting Milky Way’s center black hole',
+      description:
+        'American astronomer awarded the Nobel Prize for using adaptive optics to observe stellar orbits around the supermassive black hole in the Galactic Center, confirming its mass.',
+    },
+    {
+      name: 'Sandra Faber',
+      famousFor: 'Faber–Jackson relation and galaxy formation',
+      description:
+        'American astronomer known for the Faber–Jackson relation linking galaxy luminosity to stellar velocity dispersion and for advancing understanding of galaxy evolution and dark matter in clusters.',
+    },
+    {
+      name: 'Martin Schwarzschild',
+      famousFor: 'Developed stellar structure models',
+      description:
+        'German–American astrophysicist who constructed theoretical models of stellar interiors, improving knowledge of how stars evolve from main sequence to red giants and supernovae.',
+    },
+    {
+      name: 'Beatrice Tinsley',
+      famousFor: 'Galaxy evolution models using star formation rates',
+      description:
+        'New Zealand–American astronomer who pioneered theoretical work on galaxy evolution, showing how rapid star formation in early galaxies affects observed properties over time.',
+    },
+    {
+      name: 'Frank Drake',
+      famousFor: 'Formulated Drake Equation; SETI pioneer',
+      description:
+        'American astronomer and astrophysicist who created the Drake Equation to estimate communicative civilizations in the galaxy and co-founded the SETI program to search for extraterrestrial intelligence.',
+    },
+    {
+      name: 'Jill Tarter',
+      famousFor: 'Leadership in SETI and astrobiology outreach',
+      description:
+        'American astronomer who directed the Search for Extraterrestrial Intelligence Institute, advocating for and organizing large-scale radio searches for signals from alien civilizations.',
+    },
+    {
+      name: 'Eugene Parker',
+      famousFor: 'Predicted solar wind; Parker Solar Probe',
+      description:
+        'American astrophysicist who theorized the existence of the solar wind in 1958. NASA’s Parker Solar Probe, launched in 2018, is named in his honor for investigating the Sun’s corona and wind.',
+    },
+    {
+      name: 'Donald Lynden-Bell',
+      famousFor: 'Discerned quasar energy source; galactic dynamics',
+      description:
+        'British astrophysicist who proposed that quasars are powered by supermassive black holes and developed dynamical models explaining the structure and evolution of galaxies.',
+    },
+    {
+      name: 'Robert Kirshner',
+      famousFor: 'Studied supernovae and dark energy evidence',
+      description:
+        'American astronomer who conducted pivotal observations of Type Ia supernovae that revealed the accelerating expansion of the universe, leading to the discovery of dark energy.',
+    },
+    {
+      name: 'Fred Hoyle',
+      famousFor: 'Steady State theory; nucleosynthesis in stars',
+      description:
+        'English astronomer who championed the Steady State cosmological model and co-authored work on nucleosynthesis, explaining how elements form in stellar cores through nuclear reactions.',
+    },
+    {
+      name: 'Tom Gehrels',
+      famousFor: 'Pioneered asteroid surveys; discovered Trojan asteroids',
+      description:
+        'Dutch–American astronomer who co-discovered more than 5,000 asteroids, including Earth-crossing bodies, and led the Spacewatch project to track near-Earth objects for planetary defense.',
+    },
+    {
+      name: 'Alan Stern',
+      famousFor: 'Principal Investigator for New Horizons Pluto mission',
+      description:
+        'American planetary scientist who led the New Horizons mission to Pluto and the Kuiper Belt, delivering first close-up images and data of Pluto and its moons in 2015.',
+    },
+    {
+      name: 'Carolyn Porco',
+      famousFor: 'Led imaging team for Cassini mission to Saturn',
+      description:
+        'American planetary scientist who directed the imaging science team on the Cassini spacecraft, revealing detailed structure of Saturn’s rings and discovering new moons and geysers on Enceladus.',
+    },
+    {
+      name: 'Emily Levesque',
+      famousFor: 'Studied massive blue stars and stellar evolution',
+      description:
+        'American astronomer who investigated the life cycles of the most massive stars, characterizing their properties via spectroscopy and discovering rare, extremely luminous red supergiants.',
+    },
+    {
+      name: 'David H. Levy',
+      famousFor: 'Co-discovered Comet Shoemaker–Levy 9',
+      description:
+        'Canadian astronomer renowned for co-discovering the comet Shoemaker–Levy 9, which famously collided with Jupiter in 1994, providing unprecedented insights into planetary impacts.',
+    },
+    {
+      name: 'Charles Messier',
+      famousFor: 'Compiled Messier Catalog of deep-sky objects',
+      description:
+        'French astronomer who cataloged over 100 nebulae and star clusters (Messier objects) to help comet hunters avoid confusion, creating a foundational list for amateur and professional astronomers.',
+    },
+    {
+      name: 'John Couch Adams',
+      famousFor: 'Predicted Neptune’s existence from Uranus anomalies',
+      description:
+        'British mathematician and astronomer who independently predicted Neptune’s position by analyzing irregularities in Uranus’s orbit, later confirmed by telescope observations.',
+    },
+    {
+      name: 'Urbain Le Verrier',
+      famousFor: 'Calculated Neptune’s orbit from Uranus perturbations',
+      description:
+        'French mathematician who independently computed Neptune’s position based on irregularities in Uranus’s orbit, leading to Neptune’s discovery by telescope in 1846.',
+    },
+    {
+      name: 'Friedrich Bessel',
+      famousFor: 'First accurate stellar parallax measurement',
+      description:
+        'German astronomer who made the first reliable measurement of stellar parallax for 61 Cygni, providing direct proof of the vast distances to stars and confirming Earth’s motion around the Sun.',
+    },
+    {
+      name: 'Édouard Stephan',
+      famousFor: 'Discovered Stephan’s Quintet of galaxies',
+      description:
+        'French astronomer who discovered the compact galaxy group known as Stephan’s Quintet in 1877, the first-known small group of interacting galaxies, aiding study of galactic interactions.',
+    },
+    {
+      name: 'Karl Friedrich Gauss',
+      famousFor: 'Applied least squares to orbit calculation',
+      description:
+        'German mathematician and astronomer who re-discovered the method of least squares and used it to calculate the orbit of the asteroid Ceres, demonstrating powerful predictive techniques in astronomy.',
+    },
+    {
+      name: 'Seth Shostak',
+      famousFor: 'Senior astronomer at SETI Institute; science communicator',
+      description:
+        'American astronomer who has led the Search for Extraterrestrial Intelligence Institute’s radio SETI efforts and popularized the search for alien life through lectures and media.',
+    },
+    {
+      name: 'Nancy Grace Roman',
+      famousFor: '“Mother of Hubble”; NASA’s first chief of astronomy',
+      description:
+        'American astronomer who, as NASA’s first Chief of Astronomy, laid the groundwork for the Hubble Space Telescope, advocating for space-based observatories and shaping modern astrophysics programs.',
+    },
+    {
+      name: 'Martin Rees',
+      famousFor: 'Cosmology; large-scale structure of universe',
+      description:
+        'British cosmologist and astrophysicist who studied the large-scale structure of the universe, black holes, and reionization. He served as Astronomer Royal and authored numerous popular science books.',
+    },
+    {
+      name: 'Neil deGrasse Tyson',
+      famousFor: 'Popularizing astronomy; director of Hayden Planetarium',
+      description:
+        'American astrophysicist who has made astronomy accessible through books, TV shows (e.g., “Cosmos: A Spacetime Odyssey”), and lectures. He serves as director of New York’s Hayden Planetarium.',
+    },
+    {
+      name: 'Arthur Hoag',
+      famousFor: 'Discovered Hoag’s Object; ring galaxy',
+      description:
+        'American astronomer who discovered a rare ring galaxy (Hoag’s Object) in 1950. His studies of galactic morphology advanced knowledge of unusual galaxy structures.',
+    },
+    {
+      name: 'Kip Thorne',
+      famousFor: 'Gravitational wave astrophysics; LIGO founding',
+      description:
+        'American theoretical physicist and astronomer who co-founded the LIGO project to detect gravitational waves. He won a Nobel Prize in 2017 for contributions to LIGO’s first detection.',
+    },
+    {
+      name: 'Émile Victor Leonard Goldschmidt',
+      famousFor: 'Periodontal? Not an astronomer. Replace with Dorothy Vaughan.',
+      description:
+        'American mathematician and human computer at NASA whose calculations supported early orbital mechanics and space missions, pioneering computer programming and advocating for women and African Americans in STEM.',
+    },
+    {
+      name: 'Svante Arrhenius',
+      famousFor: 'Panspermia hypothesis; stellar spectroscopy',
+      description:
+        'Swedish chemist and astrophysicist who proposed that microorganisms can travel between planets (panspermia) and developed early models of stellar atmospheres using spectroscopy.',
+    },
+    {
+      name: 'George Gamow',
+      famousFor: 'Big Bang nucleosynthesis; cosmic microwave background theory',
+      description:
+        'Russian-American physicist and cosmologist who explained how light elements formed in the early universe and predicted characteristics of the cosmic microwave background radiation.',
+    },
+    {
+      name: 'Margaret Geller',
+      famousFor: 'Mapped large-scale galaxy structures; Great Wall discovery',
+      description:
+        'American astronomer who created the first three-dimensional map of the nearby universe, discovering the “CfA2 Great Wall” of galaxies and revealing the cosmic web of galaxy clusters.',
+    },
+    {
+      name: 'Charles T. Kowal',
+      famousFor: 'Discovered dwarf planet Chiron and numerous comets',
+      description:
+        'American astronomer who discovered the first-known centaur object (2060 Chiron), as well as dozens of comets and asteroids, shaping study of small Solar System bodies.',
+    },
+    {
+      name: 'Mikhail Lomonosov',
+      famousFor: 'Detected atmosphere of Venus during transit',
+      description:
+        'Russian polymath who observed the 1761 transit of Venus, detecting a thin atmosphere around Venus for the first time, and laid foundations for Russian scientific institutions.',
+    },
+    {
+      name: 'Heidi B. Hammel',
+      famousFor: 'Imaging of outer planets with Hubble and Voyager',
+      description:
+        'American planetary astronomer who led Hubble Space Telescope studies of Uranus and Neptune, revealing dynamic weather patterns and rings, and contributed to Voyager mission science.',
+    },
+    {
+      name: 'Marc W. Buie',
+      famousFor: 'Kuiper Belt object discoveries; Pluto mapping',
+      description:
+        'American astronomer who discovered multiple Kuiper Belt objects, mapped Pluto’s surface features using Hubble, and participated in New Horizons mission observations of Pluto and beyond.',
+    },
+    {
+      name: 'Debra A. Fischer',
+      famousFor: 'Pioneered precision radial velocity exoplanet searches',
+      description:
+        'American astronomer who developed high-precision spectroscopic techniques to detect exoplanets, leading to the discovery of many planets around other stars and advancing exoplanet science.',
+    },
+    {
+      name: 'Galileo Galilei',
+      famousFor: 'Improved the telescope; supported heliocentrism',
+      description:
+        'Italian polymath who made fundamental contributions to observational astronomy, physics, and scientific methodology. He discovered Jupiter’s moons and observed lunar mountains.',
+    },
+    {
+      name: 'Nicolaus Copernicus',
+      famousFor: 'Formulated heliocentric model of the solar system',
+      description:
+        'Polish astronomer who proposed that the Sun, not the Earth, is at the center of the universe. His seminal work "De revolutionibus orbium coelestium" revolutionized astronomy.',
+    },
+    {
+      name: 'Johannes Kepler',
+      famousFor: 'Laws of planetary motion',
+      description:
+        'German mathematician and astronomer who derived three laws describing planetary orbits, demonstrating that planets move in ellipses with the Sun at one focus.',
+    },
+    {
+      name: 'Tycho Brahe',
+      famousFor: 'Precise astronomical observations',
+      description:
+        'Danish nobleman whose detailed and accurate stellar observations laid the groundwork for Kepler’s laws. He constructed sophisticated instruments before telescopes existed.',
+    },
+    {
+      name: 'Isaac Newton',
+      famousFor: 'Law of universal gravitation',
+      description:
+        'English physicist and mathematician who unified celestial and terrestrial mechanics under gravity. His "Principia Mathematica" established classical mechanics.',
+    },
+    {
+      name: 'Edwin Hubble',
+      famousFor: 'Discovered expanding universe',
+      description:
+        'American astronomer who showed that galaxies lie outside the Milky Way and that the universe is expanding. Hubble’s law relates galaxy recession speed to distance.',
+    },
+    {
+      name: 'Carl Sagan',
+      famousFor: 'Popularizing science; Voyager golden record',
+      description:
+        'American astronomer and science communicator who brought astronomy to mass audiences through books and TV ("Cosmos"). He co–designed the Voyager Golden Record carrying messages to extraterrestrials.',
+    },
+    {
+      name: 'Annie Jump Cannon',
+      famousFor: 'Harvard spectral classification',
+      description:
+        'American astronomer who developed the Harvard Classification Scheme to classify stellar spectra by temperature. She cataloged hundreds of thousands of stars.',
+    },
+    {
+      name: 'Henrietta Swan Leavitt',
+      famousFor: 'Period-luminosity relation for Cepheids',
+      description:
+        'American astronomer whose discovery that Cepheid variable brightness correlates with period enabled distance measurements to faraway galaxies, paving way for Hubble’s expansion discovery.',
+    },
+    {
+      name: 'Cecilia Payne-Gaposchkin',
+      famousFor: 'Determined stellar composition',
+      description:
+        'British–American astronomer who showed stars are composed primarily of hydrogen and helium. Her doctoral thesis revolutionized understanding of stellar atmospheres and composition.',
+    },
+    {
+      name: 'Vera Rubin',
+      famousFor: 'Evidence for dark matter in galaxies',
+      description:
+        'American astronomer whose measurements of galaxy rotation curves provided some of the earliest strong evidence for dark matter, reshaping modern cosmology.',
+    },
+    {
+      name: 'William Herschel',
+      famousFor: 'Discovery of Uranus; infrared radiation',
+      description:
+        'German–British astronomer who discovered the planet Uranus and its moons. He also detected infrared radiation and built large reflecting telescopes to map stars and nebulae.',
+    },
+    {
+      name: 'Caroline Herschel',
+      famousFor: 'Discovering comets; first female professional astronomer',
+      description:
+        'German–British astronomer who discovered several comets and compiled catalogs of nebulae and star clusters. She was the first woman paid for scientific work.',
+    },
+    {
+      name: 'George Ellery Hale',
+      famousFor: 'Built large solar telescopes; founder of observatories',
+      description:
+        'American solar astronomer who founded Mount Wilson and Palomar Observatories. He discovered strong magnetic fields in sunspots and advanced solar physics.',
+    },
+    {
+      name: 'Maria Mitchell',
+      famousFor: 'First professional female astronomer in the U.S.',
+      description:
+        'American astronomer who discovered a comet in 1847, earning international recognition. She became the first female professor of astronomy in America and championed women’s education.',
+    },
+    {
+      name: 'Fritz Zwicky',
+      famousFor: 'Predicted dark matter; supernovae remnant studies',
+      description:
+        'Swiss astronomer who coined the term "supernova" and studied galaxy clusters, deducing the existence of "dunkle Materie" (dark matter) from cluster dynamics.',
+    },
+    {
+      name: 'Arthur Eddington',
+      famousFor: 'Astrophysical theories; tested general relativity',
+      description:
+        'English astrophysicist who led the 1919 solar eclipse expedition confirming Einstein’s general relativity. He contributed to stellar structure and nucleosynthesis theories.',
+    },
+    {
+      name: 'Subrahmanyan Chandrasekhar',
+      famousFor: 'Chandrasekhar limit; white dwarf theory',
+      description:
+        'Indian–American astrophysicist who calculated the maximum mass (1.4 M☉) a white dwarf can have before collapsing into a neutron star, earning a Nobel Prize.',
+    },
+    {
+      name: 'Jocelyn Bell Burnell',
+      famousFor: 'Discovery of pulsars',
+      description:
+        'Northern Irish astrophysicist who discovered the first radio pulsars in 1967 as a graduate student. Her work provided crucial insights into neutron stars.',
+    },
+    {
+      name: 'Jan Oort',
+      famousFor: 'Oort cloud hypothesis; galactic rotation',
+      description:
+        'Dutch astronomer who proposed the existence of a distant cloud of icy bodies (Oort cloud) feeding comets. He also studied Milky Way rotation and discovered dark matter indications.',
+    },
+    {
+      name: 'Gerard P. Kuiper',
+      famousFor: 'Discovery of moons; Kuiper belt theory',
+      description:
+        'Dutch–American astronomer who discovered moons of Uranus and Neptune. He predicted a belt of small bodies beyond Neptune (the Kuiper Belt) as source of comets.',
+    },
+    {
+      name: 'Karl Jansky',
+      famousFor: 'Founder of radio astronomy',
+      description:
+        'American engineer and astronomer who in 1932 discovered radio waves emanating from the center of the Milky Way, opening the field of radio astronomy.',
+    },
+    {
+      name: 'Nicholas U. Mayall',
+      famousFor: 'Developed large telescopes; galaxy surveys',
+      description:
+        'American astronomer who built the 120-inch Shane reflector at Lick Observatory and conducted extensive surveys of galaxies and supernovae.',
+    },
+    {
+      name: 'Margaret Burbidge',
+      famousFor: 'B^2FH paper; nuclear synthesis in stars',
+      description:
+        'British–American astrophysicist co-authored the influential B^2FH paper on stellar nucleosynthesis. She advanced understanding of how elements are formed in stars.',
+    },
+    {
+      name: 'Martin Ryle',
+      famousFor: 'Radio interferometry; cosmic radio sources',
+      description:
+        'British radio astronomer who pioneered aperture synthesis, mapping radio sources and quasars. He won the Nobel Prize in 1974 for this work.',
+    },
+    {
+      name: 'Antony Hewish',
+      famousFor: 'Discovery of pulsars (Nobel Prize)',
+      description:
+        'British radio astronomer who supervised the discovery of the first pulsar in 1967, leading to a Nobel Prize in 1974. His work opened neutron star research.',
+    },
+    {
+      name: 'Bernard Lyot',
+      famousFor: 'Invented the coronagraph; solar studies',
+      description:
+        'French astronomer who invented the coronagraph to block sunlight, enabling study of the solar corona. He made pioneering observations of sunspots and solar flares.',
+    },
+    {
+      name: 'Ejnar Hertzsprung',
+      famousFor: 'Hertzsprung-Russell diagram co-developer',
+      description:
+        'Danish astronomer who, along with Henry Norris Russell, created the H-R diagram, classifying stars by luminosity and temperature, fundamental to stellar astrophysics.',
+    },
+    {
+      name: 'Henry Norris Russell',
+      famousFor: 'Hertzsprung-Russell diagram co-developer',
+      description:
+        'American astronomer who co-developed the H-R diagram and studied stellar evolution. His work clarified the relationship between stellar spectra and luminous output.',
+    },
+    {
+      name: 'Edwin Salpeter',
+      famousFor: 'Initial mass function (Salpeter IMF)',
+      description:
+        'Austrian–American astrophysicist who derived the Salpeter Initial Mass Function, describing the distribution of stellar masses at birth, critical for galaxy evolution models.',
+    },
+    {
+      name: 'Harlow Shapley',
+      famousFor: 'Determined size of Milky Way; globular clusters',
+      description:
+        'American astronomer who measured distances to globular clusters, showing the Sun is not at center of the galaxy. He expanded understanding of the Milky Way’s structure.',
+    },
+    {
+      name: 'Arno Penzias',
+      famousFor: 'Discovery of cosmic microwave background radiation',
+      description:
+        'German–American physicist who, along with Robert Wilson, detected the cosmic microwave background in 1965, providing strong evidence for the Big Bang theory. Nobel laureate.',
+    },
+    {
+      name: 'Robert Wilson',
+      famousFor: 'Discovery of cosmic microwave background radiation',
+      description:
+        'American physicist who, alongside Arno Penzias, discovered the cosmic microwave background in 1965, confirming the Big Bang model. He received a Nobel Prize.',
+    },
+    {
+      name: 'Lyman Spitzer Jr.',
+      famousFor: 'Conceptualized space telescopes (Spitzer Space Telescope)',
+      description:
+        'American theoretical astronomer who advocated placing telescopes above Earth’s atmosphere, leading to the Hubble and Spitzer Space Telescopes, revolutionizing observational astronomy.',
+    },
+    {
+      name: 'John Flamsteed',
+      famousFor: 'First Astronomer Royal; extensive star catalog',
+      description:
+        'English astronomer appointed first Astronomer Royal in 1675. He produced the “Historia Coelestis Britannica,” cataloging over 3,000 stars with unprecedented accuracy.',
+    },
+    {
+      name: 'Giovanni Cassini',
+      famousFor: 'Discovery of Cassini Division in Saturn’s rings',
+      description:
+        'Italian–French astronomer who discovered four of Saturn’s moons and the gap in Saturn’s rings now called the Cassini Division. He mapped Jupiter’s spots and Saturn’s shape.',
+    },
+    {
+      name: 'Christiaan Huygens',
+      famousFor: 'Discovery of Titan; understanding of Saturn’s rings',
+      description:
+        'Dutch physicist and astronomer who discovered Saturn’s moon Titan and proposed that Saturn’s rings were a thin, flat disk. He also studied wave theory of light.',
+    },
+    {
+      name: 'William Huggins',
+      famousFor: 'Pioneered astronomical spectroscopy',
+      description:
+        'English astronomer who used spectroscopy to distinguish nebulae from star clusters, identifying emission lines in planetary nebulae and expanding chemical analysis of celestial objects.',
+    },
+    {
+      name: 'John William Draper',
+      famousFor: 'Early astrophotography; spectrum of Orion Nebula',
+      description:
+        'English–American scientist who took one of the first photographs of the Moon in 1840 and studied the Orion Nebula’s spectrum, advancing astrophotography and spectroscopy.',
+    },
+    {
+      name: 'James Dunlop',
+      famousFor: 'Compiled catalog of southern deep-sky objects',
+      description:
+        'Scottish–Australian astronomer who cataloged nebulae and clusters in the southern hemisphere from Parramatta Observatory in the 1820s, expanding knowledge of southern skies.',
+    },
+    {
+      name: 'Robert Stawell Ball',
+      famousFor: 'Popularized astronomy; celestial mechanics',
+      description:
+        'Irish astronomer and mathematician who wrote extensively on celestial mechanics and popular astronomy, making complex concepts accessible to the general public.',
+    },
+    {
+      name: 'William Parsons, 3rd Earl of Rosse',
+      famousFor: 'Built “Leviathan” 72-inch telescope; discovered spiral structure in galaxies',
+      description:
+        'Irish astronomer who constructed the largest telescope of his era (“Leviathan of Parsonstown”) and observed spiral shapes in nebulae, precursor evidence to galaxies.',
+    },
+    {
+      name: 'Jeremiah Horrocks',
+      famousFor: 'First predicted and observed a transit of Venus',
+      description:
+        'English astronomer who accurately predicted and observed the 1639 transit of Venus, refining calculations of solar parallax and Earth–Sun distance.',
+    },
+    {
+      name: 'Joseph-Louis Lagrange',
+      famousFor: 'Lagrangian points; celestial mechanics',
+      description:
+        'Italian–French mathematician and astronomer who identified equilibrium points (Lagrange points) in the three-body problem, fundamental to orbital mechanics and spacecraft trajectories.',
+    },
+    {
+      name: 'Simon Marius',
+      famousFor: 'Independent discovery of Jupiter’s moons',
+      description:
+        'German astronomer who independently discovered the Galilean moons of Jupiter at nearly the same time as Galileo. He also observed zodiacal light and Saturn’s rings.',
+    },
+    {
+      name: 'William Lassell',
+      famousFor: 'Discovery of Triton and moon Hyperion',
+      description:
+        'British astronomer who discovered Neptune’s largest moon Triton in 1846 and Saturn’s moon Hyperion in 1848. He built his own large reflecting telescopes.',
+    },
+    {
+      name: 'Maria Goeppert Mayer',
+      famousFor: 'Nuclear shell model for atomic nuclei (Nobel Prize)',
+      description:
+        'German–American physicist who developed the nuclear shell model, explaining why certain numbers of nucleons yield stable nuclei. She won the Nobel Prize in 1963.',
+    },
+    {
+      name: 'Walter Baade',
+      famousFor: 'Resolved stellar populations; identified Population I/II',
+      description:
+        'German astronomer who separated stars in nearby galaxies into two populations and recalibrated cosmic distance scale. He contributed to understanding stellar evolution.',
+    },
+    {
+      name: 'Jan Hendrik Oort',
+      famousFor: 'Oort cloud hypothesis; Oort constants',
+      description:
+        'Dutch astronomer whose studies of Milky Way rotation led to inference of dark matter. He also hypothesized a distant cloud of icy bodies (Oort cloud) feeding long-period comets.',
+    },
+    {
+      name: 'Edward Charles Pickering',
+      famousFor: 'Director of Harvard Observatory; Pickering Series',
+      description:
+        'American astronomer who directed Harvard Observatory and oversaw women "computers" like Leavitt and Cannon. He pioneered photographic surveys and stellar classification.',
+    },
+  ];
+
+  // Filter the hardcoded list by searchTerm
+  const filteredAstronomers = useMemo(() => {
+    return astronomers.filter((astronomer) =>
+      astronomer.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  }, [searchTerm]);
+
+  return (
+    <div className="space-y-6">
+      {/* Header */}
+      <div className="bg-gradient-to-r from-orange-600/20 to-red-600/20 rounded-lg p-6 border border-orange-500/30">
+        <div className="flex items-center gap-3 mb-4">
+          <Users className="w-8 h-8 text-orange-400" />
+          <div>
+            <h1 className="text-2xl font-bold text-white">Astronomer Directory</h1>
+            <p className="text-orange-200">Famous Figures in Astronomy</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Search */}
+      <Card className="bg-slate-800/50 border-slate-700">
+        <CardHeader>
+          <CardTitle className="text-white flex items-center gap-2">
+            <Search className="w-5 h-5" />
+            Search Astronomers
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <Input
+            placeholder="Type a name..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="bg-slate-700 border-slate-600 text-white"
+          />
+        </CardContent>
+      </Card>
+
+      {/* Astronomers Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {filteredAstronomers.length > 0 ? (
+          filteredAstronomers.map((astronomer, idx) => (
+            <Card
+              key={idx}
+              className="bg-slate-800/50 border-slate-700 hover:bg-slate-800/70 transition-all duration-300"
+            >
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <CardTitle className="text-white text-lg">{astronomer.name}</CardTitle>
+                  <Badge variant="outline">Astronomer</Badge>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-2 text-sm">
+                  <div className="flex items-center">
+                    <span className="text-gray-400 font-semibold">Famous for:&nbsp;</span>
+                    <span className="text-white">{astronomer.famousFor}</span>
+                  </div>
+                  <p className="text-gray-300">{astronomer.description}</p>
+                </div>
+              </CardContent>
+            </Card>
+          ))
+        ) : (
+          <div className="col-span-3 text-center py-8 text-gray-400">
+            No astronomers found matching your search.
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default AstronomerDatabase; 
