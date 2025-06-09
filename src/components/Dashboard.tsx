@@ -1,9 +1,11 @@
 
 import React from 'react';
 import { useSpaceData } from '../contexts/DataContext';
+import { useTheme } from '../contexts/ThemeContext';
 import { Rocket, Satellite, Globe, Users, Activity, AlertTriangle } from 'lucide-react';
 
 const Dashboard = () => {
+  const { theme } = useTheme();
   const { spaceXData, issData, launchLibraryData, allDataLoaded } = useSpaceData();
 
   if (!allDataLoaded) {
@@ -45,12 +47,19 @@ const Dashboard = () => {
     },
   ];
 
-  return (
-    <div className="space-y-6">
+  return (    <div className="space-y-6">
       {/* Welcome Header */}
-      <div className="bg-gradient-to-r from-blue-900/50 to-purple-900/50 rounded-lg p-6 border border-blue-500/20">
-        <h1 className="text-4xl font-bold text-white mb-2">Explore</h1>
-        <p className="text-blue-200 text-lg">
+      <div className={`rounded-lg p-6 border ${
+        theme === 'dark' 
+          ? 'bg-gradient-to-r from-blue-900/50 to-purple-900/50 border-blue-500/20' 
+          : 'bg-gradient-to-r from-blue-500/10 to-purple-500/10 border-blue-400/30'
+      }`}>
+        <h1 className={`text-4xl font-bold mb-2 ${
+          theme === 'dark' ? 'text-white' : 'text-gray-900'
+        }`}>Explore</h1>
+        <p className={`text-lg ${
+          theme === 'dark' ? 'text-blue-200' : 'text-blue-700'
+        }`}>
           Welcome to Cosmic Nexus - Your gateway to space exploration data
         </p>
       </div>

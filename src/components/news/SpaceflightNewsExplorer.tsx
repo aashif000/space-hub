@@ -5,6 +5,7 @@ import { Input } from '../ui/input';
 import { Button } from '../ui/button';
 import { Badge } from '../ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
+import { useTheme } from '../../contexts/ThemeContext';
 import { ExternalLink, Calendar, User, Search, Filter, Star } from 'lucide-react';
 
 interface SpaceflightArticle {
@@ -44,6 +45,7 @@ interface SpaceflightBlog {
 }
 
 export const SpaceflightNewsExplorer = () => {
+  const { theme } = useTheme();
   const [articles, setArticles] = useState<SpaceflightArticle[]>([]);
   const [blogs, setBlogs] = useState<SpaceflightBlog[]>([]);
   const [loading, setLoading] = useState(false);

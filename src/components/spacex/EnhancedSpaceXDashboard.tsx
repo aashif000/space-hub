@@ -4,6 +4,7 @@ import { Badge } from '../ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
 import { Input } from '../ui/input';
 import { Button } from '../ui/button';
+import { useTheme } from '../../contexts/ThemeContext';
 import {
   Rocket,
   Users,
@@ -21,6 +22,8 @@ import {
 } from 'lucide-react';
 
 export const EnhancedSpaceXDashboard: React.FC = () => {
+  const { theme } = useTheme();
+  
   // Loading state
   const [isLoading, setIsLoading] = useState(true);
 
@@ -167,41 +170,57 @@ export const EnhancedSpaceXDashboard: React.FC = () => {
       item[field]?.toString().toLowerCase().includes(searchTerm.toLowerCase())
     );
   };
-
   return (
     <div className="space-y-8 p-4">
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-lg p-6 border border-blue-500/30">
+      <div className={`rounded-lg p-6 border theme-transition ${
+        theme === 'dark' 
+          ? 'bg-gradient-to-r from-blue-600/20 to-purple-600/20 border-blue-500/30' 
+          : 'bg-gradient-to-r from-blue-500/10 to-purple-500/10 border-blue-400/30'
+      }`}>
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between">
           <div className="mb-4 md:mb-0">
-            <h1 className="text-3xl font-bold text-white mb-2">SpaceX Mission Control</h1>
-            <p className="text-blue-200">Advancing the future of space exploration</p>
-          </div>
+            <h1 className={`text-3xl font-bold mb-2 ${
+              theme === 'dark' ? 'text-white' : 'text-gray-900'
+            }`}>SpaceX Mission Control</h1>
+            <p className={`${
+              theme === 'dark' ? 'text-blue-200' : 'text-blue-700'
+            }`}>Advancing the future of space exploration</p>          </div>
           {company && (
             <div className="text-right">
-              <div className="text-2xl font-bold text-green-400">
+              <div className={`text-2xl font-bold ${
+                theme === 'dark' ? 'text-green-400' : 'text-green-600'
+              }`}>
                 {company.valuation
                   ? `$${(company.valuation / 1_000_000_000).toFixed(1)}B`
-                  : 'N/A'}
-              </div>
-              <div className="text-sm text-gray-400">Company Valuation</div>
+                  : 'N/A'}              </div>
+              <div className={`text-sm ${
+                theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
+              }`}>Company Valuation</div>
             </div>
           )}
         </div>
       </div>
 
-      {/* Stats Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {/* Stats Grid */}      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {stats.map((stat, idx) => (
           <Card
             key={idx}
-            className="bg-slate-800/50 border-slate-700 hover:bg-slate-800/70 transition-all duration-300 hover:scale-105"
+            className={`border transition-all duration-300 hover:scale-105 ${
+              theme === 'dark' 
+                ? 'bg-slate-800/50 border-slate-700 hover:bg-slate-800/70' 
+                : 'theme-card hover:theme-card'
+            }`}
           >
             <CardContent className="p-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <div className="text-2xl font-bold text-white">{stat.value}</div>
-                  <div className="text-sm text-gray-400">{stat.title}</div>
+                  <div className={`text-2xl font-bold ${
+                    theme === 'dark' ? 'text-white' : 'theme-text-primary'
+                  }`}>{stat.value}</div>
+                  <div className={`text-sm ${
+                    theme === 'dark' ? 'text-gray-400' : 'theme-text-secondary'
+                  }`}>{stat.title}</div>
                 </div>
                 <div className={`p-3 rounded-full ${stat.bgColor}`}>
                   <stat.icon className={`w-6 h-6 ${stat.color}`} />
@@ -210,22 +229,29 @@ export const EnhancedSpaceXDashboard: React.FC = () => {
             </CardContent>
           </Card>
         ))}
-      </div>
-
-      {/* Search & Filter */}
+      </div>      {/* Search & Filter */}
       <div className="flex flex-col sm:flex-row gap-4">
         <div className="relative flex-1">
-          <Search className="absolute left-3 top-3 w-4 h-4 text-gray-400" />
+          <Search className={`absolute left-3 top-3 w-4 h-4 ${
+            theme === 'dark' ? 'text-gray-400' : 'text-gray-500'
+          }`} />
           <Input
             placeholder="Search (e.g. names, types, serials...)"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="pl-10 bg-slate-800/50 border-slate-700 text-white placeholder-gray-400"
+            className={`pl-10 transition-colors ${
+              theme === 'dark' 
+                ? 'bg-slate-800/50 border-slate-700 text-white placeholder-gray-400' 
+                : 'theme-card theme-border theme-text-primary'
+            }`}
           />
-        </div>
-        <Button
+        </div>        <Button
           variant="outline"
-          className="border-slate-700 text-white hover:bg-slate-800"
+          className={`transition-colors ${
+            theme === 'dark' 
+              ? 'border-slate-700 text-white hover:bg-slate-800' 
+              : 'theme-nav-button'
+          }`}
           onClick={() => {
             setActiveFilter(activeFilter === 'all' ? 'filtered' : 'all');
           }}
@@ -233,11 +259,11 @@ export const EnhancedSpaceXDashboard: React.FC = () => {
           <Filter className="w-4 h-4 mr-2" />
           Filters
         </Button>
-      </div>
-
-      {/* Tabs */}
+      </div>      {/* Tabs */}
       <Tabs defaultValue="launches" className="space-y-6">
-        <TabsList className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 lg:grid-cols-14 bg-slate-800/50 rounded-t-lg overflow-x-auto">
+        <TabsList className={`grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 lg:grid-cols-14 rounded-t-lg overflow-x-auto ${
+          theme === 'dark' ? 'bg-slate-800/50' : 'theme-card'
+        }`}>
           <TabsTrigger value="launches">Launches</TabsTrigger>
           <TabsTrigger value="rockets">Rockets</TabsTrigger>
           <TabsTrigger value="crew">Crew</TabsTrigger>
@@ -252,21 +278,27 @@ export const EnhancedSpaceXDashboard: React.FC = () => {
           <TabsTrigger value="payloads">Payloads</TabsTrigger>
           <TabsTrigger value="roadster">Roadster</TabsTrigger>
           <TabsTrigger value="company">Company</TabsTrigger>
-        </TabsList>
-
-        {/* --- Launches Tab --- */}
-        <TabsContent value="launches" className="p-4 bg-slate-800/20 rounded-b-lg">
+        </TabsList>        {/* --- Launches Tab --- */}
+        <TabsContent value="launches" className={`p-4 rounded-b-lg ${
+          theme === 'dark' ? 'bg-slate-800/20' : 'theme-card'
+        }`}>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {filterBySearch(launches, 'name')
               .slice(0, 12)
               .map((launch) => (
                 <Card
                   key={launch.id}
-                  className="bg-slate-800/50 border-slate-700 hover:bg-slate-800/70 transition-all duration-300 group"
+                  className={`border transition-all duration-300 group ${
+                    theme === 'dark' 
+                      ? 'bg-slate-800/50 border-slate-700 hover:bg-slate-800/70' 
+                      : 'theme-card hover:theme-card'
+                  }`}
                 >
                   <CardHeader className="pb-3">
                     <div className="flex items-center justify-between">
-                      <CardTitle className="text-lg text-white group-hover:text-blue-400 transition-colors">
+                      <CardTitle className={`text-lg group-hover:text-blue-400 transition-colors ${
+                        theme === 'dark' ? 'text-white' : 'theme-text-primary'
+                      }`}>
                         {launch.name}
                       </CardTitle>
                       <Badge
@@ -286,19 +318,23 @@ export const EnhancedSpaceXDashboard: React.FC = () => {
                         )}
                       </Badge>
                     </div>
-                  </CardHeader>
-                  <CardContent>
+                  </CardHeader>                  <CardContent>
                     <div className="space-y-2 text-sm">
-                      <div className="flex items-center text-gray-400">
+                      <div className={`flex items-center ${
+                        theme === 'dark' ? 'text-gray-400' : 'theme-text-secondary'
+                      }`}>
                         <Calendar className="w-4 h-4 mr-2" />
                         {new Date(launch.date_utc).toLocaleDateString()}
                       </div>
-                      <div className="flex items-center text-gray-400">
+                      <div className={`flex items-center ${
+                        theme === 'dark' ? 'text-gray-400' : 'theme-text-secondary'
+                      }`}>
                         <Rocket className="w-4 h-4 mr-2" />
-                        Flight #{launch.flight_number}
-                      </div>
+                        Flight #{launch.flight_number}                      </div>
                       {launch.details && (
-                        <p className="text-gray-300 text-xs mt-2 line-clamp-2">
+                        <p className={`text-xs mt-2 line-clamp-2 ${
+                          theme === 'dark' ? 'text-gray-300' : 'theme-text-secondary'
+                        }`}>
                           {launch.details}
                         </p>
                       )}

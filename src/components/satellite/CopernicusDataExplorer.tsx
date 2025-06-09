@@ -5,6 +5,7 @@ import { Input } from '../ui/input';
 import { Button } from '../ui/button';
 import { Badge } from '../ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
+import { useTheme } from '../../contexts/ThemeContext';
 import { Satellite, Download, Calendar, MapPin, Cloud, Search } from 'lucide-react';
 
 interface CopernicusFeature {
@@ -28,6 +29,7 @@ interface CopernicusFeature {
 }
 
 export const CopernicusDataExplorer = () => {
+  const { theme } = useTheme();
   const [sentinelData, setSentinelData] = useState<CopernicusFeature[]>([]);
   const [loading, setLoading] = useState(false);
   const [searchParams, setSearchParams] = useState({
@@ -69,23 +71,34 @@ export const CopernicusDataExplorer = () => {
     const i = Math.floor(Math.log(bytes) / Math.log(1024));
     return Math.round(bytes / Math.pow(1024, i) * 100) / 100 + ' ' + sizes[i];
   };
-
   return (
     <div className="space-y-6">
-      <div className="bg-gradient-to-r from-green-600/20 to-blue-600/20 rounded-lg p-6 border border-green-500/30">
+      <div className={`rounded-lg p-6 border ${
+        theme === 'dark' 
+          ? 'bg-gradient-to-r from-green-600/20 to-blue-600/20 border-green-500/30' 
+          : 'bg-gradient-to-r from-green-500/10 to-blue-500/10 border-green-400/30'
+      }`}>
         <div className="flex items-center gap-3 mb-4">
-          <Satellite className="w-8 h-8 text-green-400" />
+          <Satellite className={`w-8 h-8 ${
+            theme === 'dark' ? 'text-green-400' : 'text-green-600'
+          }`} />
           <div>
-            <h1 className="text-2xl font-bold text-white">Satellite Data</h1>
-            <p className="text-green-200">European Space Agency Earth Observation Data</p>
+            <h1 className={`text-2xl font-bold ${
+              theme === 'dark' ? 'text-white' : 'text-gray-900'
+            }`}>Satellite Data</h1>
+            <p className={`${
+              theme === 'dark' ? 'text-green-200' : 'text-green-700'
+            }`}>European Space Agency Earth Observation Data</p>
           </div>
         </div>
-      </div>
-
-      {/* Search Controls */}
-      <Card className="bg-slate-800/50 border-slate-700">
+      </div>      {/* Search Controls */}
+      <Card className={`border ${
+        theme === 'dark' ? 'bg-slate-800/50 border-slate-700' : 'theme-card theme-border'
+      }`}>
         <CardHeader>
-          <CardTitle className="text-white flex items-center gap-2">
+          <CardTitle className={`flex items-center gap-2 ${
+            theme === 'dark' ? 'text-white' : 'theme-text-primary'
+          }`}>
             <Search className="w-5 h-5" />
             Search Parameters
           </CardTitle>
@@ -93,100 +106,164 @@ export const CopernicusDataExplorer = () => {
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             <div>
-              <label className="text-sm text-gray-400 mb-1 block">Cloud Cover (%)</label>
+              <label className={`text-sm mb-1 block ${
+                theme === 'dark' ? 'text-gray-400' : 'theme-text-secondary'
+              }`}>Cloud Cover (%)</label>
               <Input
                 value={searchParams.cloudCover}
                 onChange={(e) => setSearchParams({...searchParams, cloudCover: e.target.value})}
                 placeholder="[0,10]"
-                className="bg-slate-700 border-slate-600 text-white"
+                className={`${
+                  theme === 'dark' 
+                    ? 'bg-slate-700 border-slate-600 text-white' 
+                    : 'theme-card theme-border theme-text-primary'
+                }`}
               />
             </div>
             <div>
-              <label className="text-sm text-gray-400 mb-1 block">Start Date</label>
+              <label className={`text-sm mb-1 block ${
+                theme === 'dark' ? 'text-gray-400' : 'theme-text-secondary'
+              }`}>Start Date</label>
               <Input
                 type="date"
                 value={searchParams.startDate.split('T')[0]}
                 onChange={(e) => setSearchParams({...searchParams, startDate: `${e.target.value}T00:00:00Z`})}
-                className="bg-slate-700 border-slate-600 text-white"
+                className={`${
+                  theme === 'dark' 
+                    ? 'bg-slate-700 border-slate-600 text-white' 
+                    : 'theme-card theme-border theme-text-primary'
+                }`}
               />
             </div>
             <div>
-              <label className="text-sm text-gray-400 mb-1 block">End Date</label>
+              <label className={`text-sm mb-1 block ${
+                theme === 'dark' ? 'text-gray-400' : 'theme-text-secondary'
+              }`}>End Date</label>
               <Input
                 type="date"
                 value={searchParams.completionDate.split('T')[0]}
                 onChange={(e) => setSearchParams({...searchParams, completionDate: `${e.target.value}T23:59:59Z`})}
-                className="bg-slate-700 border-slate-600 text-white"
+                className={`${
+                  theme === 'dark' 
+                    ? 'bg-slate-700 border-slate-600 text-white' 
+                    : 'theme-card theme-border theme-text-primary'
+                }`}
               />
             </div>
             <div>
-              <label className="text-sm text-gray-400 mb-1 block">Max Records</label>
+              <label className={`text-sm mb-1 block ${
+                theme === 'dark' ? 'text-gray-400' : 'theme-text-secondary'
+              }`}>Max Records</label>
               <Input
                 type="number"
                 value={searchParams.maxRecords}
                 onChange={(e) => setSearchParams({...searchParams, maxRecords: e.target.value})}
-                className="bg-slate-700 border-slate-600 text-white"
+                className={`${
+                  theme === 'dark' 
+                    ? 'bg-slate-700 border-slate-600 text-white' 
+                    : 'theme-card theme-border theme-text-primary'
+                }`}
               />
             </div>
-          </div>
-          <div className="flex gap-2 mt-4">
-            <Button onClick={() => fetchCopernicusData('Sentinel2')} disabled={loading}>
+          </div>          <div className="flex gap-2 mt-4">
+            <Button 
+              onClick={() => fetchCopernicusData('Sentinel2')} 
+              disabled={loading}
+              className={theme === 'dark' ? '' : 'theme-button'}
+            >
               Search Sentinel-2
             </Button>
-            <Button onClick={() => fetchCopernicusData('Sentinel3')} disabled={loading} variant="outline">
+            <Button 
+              onClick={() => fetchCopernicusData('Sentinel3')} 
+              disabled={loading} 
+              variant="outline"
+              className={theme === 'dark' ? '' : 'theme-nav-button'}
+            >
               Search Sentinel-3
             </Button>
-            <Button onClick={() => fetchCopernicusData('Sentinel1')} disabled={loading} variant="outline">
+            <Button 
+              onClick={() => fetchCopernicusData('Sentinel1')} 
+              disabled={loading} 
+              variant="outline"
+              className={theme === 'dark' ? '' : 'theme-nav-button'}
+            >
               Search Sentinel-1
             </Button>
           </div>
         </CardContent>
-      </Card>
-
-      {/* Results */}
+      </Card>      {/* Results */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {loading ? (
           <div className="col-span-full flex items-center justify-center py-12">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-500"></div>
+            <div className={`animate-spin rounded-full h-12 w-12 border-b-2 ${
+              theme === 'dark' ? 'border-green-500' : 'border-green-600'
+            }`}></div>
           </div>
         ) : (
           sentinelData.map((feature) => (
-            <Card key={feature.id} className="bg-slate-800/50 border-slate-700 hover:bg-slate-800/70 transition-all duration-300">
+            <Card key={feature.id} className={`border transition-all duration-300 ${
+              theme === 'dark' 
+                ? 'bg-slate-800/50 border-slate-700 hover:bg-slate-800/70' 
+                : 'theme-card hover:theme-card'
+            }`}>
               <CardHeader className="pb-3">
                 <div className="flex items-center justify-between">
-                  <Badge variant="outline" className="text-green-400 border-green-500">
+                  <Badge 
+                    variant="outline" 
+                    className={`${
+                      theme === 'dark' 
+                        ? 'text-green-400 border-green-500' 
+                        : 'text-green-600 border-green-600'
+                    }`}
+                  >
                     {feature.properties.collection}
                   </Badge>
                   <Badge variant={feature.properties.status === 'ONLINE' ? 'default' : 'secondary'}>
                     {feature.properties.status}
                   </Badge>
                 </div>
-                <CardTitle className="text-sm text-white line-clamp-2">
+                <CardTitle className={`text-sm line-clamp-2 ${
+                  theme === 'dark' ? 'text-white' : 'theme-text-primary'
+                }`}>
                   {feature.properties.title}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-2 text-sm">
-                  <div className="flex items-center text-gray-400">
+                  <div className={`flex items-center ${
+                    theme === 'dark' ? 'text-gray-400' : 'theme-text-secondary'
+                  }`}>
                     <Satellite className="w-4 h-4 mr-2" />
                     {feature.properties.platform} - {feature.properties.productType}
                   </div>
-                  <div className="flex items-center text-gray-400">
+                  <div className={`flex items-center ${
+                    theme === 'dark' ? 'text-gray-400' : 'theme-text-secondary'
+                  }`}>
                     <Calendar className="w-4 h-4 mr-2" />
                     {new Date(feature.properties.startDate).toLocaleDateString()}
                   </div>
                   {feature.properties.cloudCover !== undefined && (
-                    <div className="flex items-center text-gray-400">
+                    <div className={`flex items-center ${
+                      theme === 'dark' ? 'text-gray-400' : 'theme-text-secondary'
+                    }`}>
                       <Cloud className="w-4 h-4 mr-2" />
                       {feature.properties.cloudCover.toFixed(2)}% cloud cover
                     </div>
                   )}
                   {feature.properties.services?.download && (
                     <div className="flex items-center justify-between mt-3">
-                      <span className="text-xs text-gray-500">
+                      <span className={`text-xs ${
+                        theme === 'dark' ? 'text-gray-500' : 'text-gray-600'
+                      }`}>
                         {formatFileSize(feature.properties.services.download.size)}
                       </span>
-                      <Button size="sm" variant="outline" className="h-6 text-xs">
+                      <Button 
+                        size="sm" 
+                        variant="outline" 
+                        className={`h-6 text-xs ${
+                          theme === 'dark' ? '' : 'theme-nav-button'
+                        }`}
+                      >
                         <Download className="w-3 h-3 mr-1" />
                         Download
                       </Button>

@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { Badge } from '../ui/badge';
+import { useTheme } from '../../contexts/ThemeContext';
 import { Users, Rocket, MapPin, Clock } from 'lucide-react';
 
 interface Astronaut {
@@ -16,6 +17,7 @@ interface SpacePopulation {
 }
 
 export const SpacePopulationTracker = () => {
+  const { theme } = useTheme();
   const [spaceData, setSpaceData] = useState<SpacePopulation | null>(null);
   const [loading, setLoading] = useState(true);
   const [lastUpdated, setLastUpdated] = useState<Date>(new Date());

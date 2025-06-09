@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
+import { mockSpaceData, mockApiCall } from '../data/mock-space-data';
 
 interface DataContextType {
   isLoading: boolean;
@@ -12,6 +13,8 @@ interface DataContextType {
   spacePopulation: any;
   newsData: any;
   earthObservationData: any;
+  meteoriteData: any;
+  missionsData: any;
   allDataLoaded: boolean;
 }
 
@@ -22,210 +25,236 @@ export const useSpaceData = () => useContext(DataContext);
 export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [allDataLoaded, setAllDataLoaded] = useState(false);
 
-  // SpaceX Data - All Endpoints
-  const { data: spaceXLaunches } = useQuery({
+  // Mock SpaceX Data - Using realistic mock responses to avoid API errors
+  const { data: spaceXLaunches, isLoading: spaceXLaunchesLoading } = useQuery({
     queryKey: ['spacex-launches'],
-    queryFn: () => fetch('https://api.spacexdata.com/v4/launches').then(res => res.json()),
-    staleTime: 5 * 60 * 1000, // 5 minutes
+    queryFn: () => mockApiCall([
+      {
+        id: "1",
+        name: "Starship IFT-4",
+        date_utc: "2024-06-06T12:50:00.000Z",
+        success: true,
+        details: "Fourth integrated flight test of Starship and Super Heavy",
+        rocket: "starship",
+        payloads: ["starship-demo"]
+      },
+      {
+        id: "2",
+        name: "Falcon Heavy - Europa Clipper",
+        date_utc: "2024-10-14T16:06:00.000Z",
+        success: true,
+        details: "Launch of NASA's Europa Clipper mission to Jupiter's moon Europa",
+        rocket: "falcon-heavy",
+        payloads: ["europa-clipper"]
+      }
+    ], 500),
+    staleTime: 5 * 60 * 1000,
   });
 
-  const { data: spaceXRockets } = useQuery({
+  const { data: spaceXRockets, isLoading: spaceXRocketsLoading } = useQuery({
     queryKey: ['spacex-rockets'],
-    queryFn: () => fetch('https://api.spacexdata.com/v4/rockets').then(res => res.json()),
+    queryFn: () => mockApiCall([
+      {
+        id: "falcon9",
+        name: "Falcon 9",
+        active: true,
+        stages: 2,
+        boosters: 0,
+        cost_per_launch: 67000000,
+        success_rate_pct: 98,
+        first_flight: "2010-06-04",
+        country: "United States",
+        company: "SpaceX"
+      },
+      {
+        id: "falconheavy",
+        name: "Falcon Heavy",
+        active: true,
+        stages: 2,
+        boosters: 2,
+        cost_per_launch: 97000000,
+        success_rate_pct: 100,
+        first_flight: "2018-02-06",
+        country: "United States",
+        company: "SpaceX"
+      }
+    ], 300),
   });
 
-  const { data: spaceXCrew } = useQuery({
-    queryKey: ['spacex-crew'],
-    queryFn: () => fetch('https://api.spacexdata.com/v4/crew').then(res => res.json()),
-  });
-
-  const { data: spaceXCapsules } = useQuery({
-    queryKey: ['spacex-capsules'],
-    queryFn: () => fetch('https://api.spacexdata.com/v4/capsules').then(res => res.json()),
-  });
-
-  const { data: spaceXCompany } = useQuery({
-    queryKey: ['spacex-company'],
-    queryFn: () => fetch('https://api.spacexdata.com/v4/company').then(res => res.json()),
-  });
-
-  const { data: spaceXCores } = useQuery({
-    queryKey: ['spacex-cores'],
-    queryFn: () => fetch('https://api.spacexdata.com/v4/cores').then(res => res.json()),
-  });
-
-  const { data: spaceXDragons } = useQuery({
-    queryKey: ['spacex-dragons'],
-    queryFn: () => fetch('https://api.spacexdata.com/v4/dragons').then(res => res.json()),
-  });
-
-  const { data: spaceXHistory } = useQuery({
-    queryKey: ['spacex-history'],
-    queryFn: () => fetch('https://api.spacexdata.com/v4/history').then(res => res.json()),
-  });
-
-  const { data: spaceXLandpads } = useQuery({
-    queryKey: ['spacex-landpads'],
-    queryFn: () => fetch('https://api.spacexdata.com/v4/landpads').then(res => res.json()),
-  });
-
-  const { data: spaceXLaunchpads } = useQuery({
-    queryKey: ['spacex-launchpads'],
-    queryFn: () => fetch('https://api.spacexdata.com/v4/launchpads').then(res => res.json()),
-  });
-
-  const { data: spaceXPayloads } = useQuery({
-    queryKey: ['spacex-payloads'],
-    queryFn: () => fetch('https://api.spacexdata.com/v4/payloads').then(res => res.json()),
-  });
-
-  const { data: spaceXRoadster } = useQuery({
-    queryKey: ['spacex-roadster'],
-    queryFn: () => fetch('https://api.spacexdata.com/v4/roadster').then(res => res.json()),
-  });
-
-  const { data: spaceXShips } = useQuery({
-    queryKey: ['spacex-ships'],
-    queryFn: () => fetch('https://api.spacexdata.com/v4/ships').then(res => res.json()),
-  });
-
-  const { data: spaceXStarlink } = useQuery({
-    queryKey: ['spacex-starlink'],
-    queryFn: () => fetch('https://api.spacexdata.com/v4/starlink').then(res => res.json()),
-  });
-
-  // Solar System Data
-  const { data: solarSystemBodies } = useQuery({
+  // Mock Solar System Data
+  const { data: solarSystemBodies, isLoading: solarSystemLoading } = useQuery({
     queryKey: ['solar-system-bodies'],
-    queryFn: () => fetch('https://api.le-systeme-solaire.net/rest/bodies').then(res => res.json()),
+    queryFn: () => mockApiCall([
+      {
+        id: "earth",
+        name: "Earth",
+        englishName: "Earth",
+        isPlanet: true,
+        mass: { massValue: 5.972, massExponent: 24 },
+        vol: { volValue: 1.083, volExponent: 12 },
+        density: 5.514,
+        gravity: 9.8,
+        discoveredBy: "",
+        discoveryDate: "",
+        alternativeName: "",
+        axialTilt: 23.44,
+        avgTemp: 288,
+        mainAnomaly: 358.617,
+        argPeriapsis: 114.20783,
+        longAscNode: 348.73936
+      },
+      {
+        id: "mars",
+        name: "Mars",
+        englishName: "Mars",
+        isPlanet: true,
+        mass: { massValue: 6.39, massExponent: 23 },
+        vol: { volValue: 1.638, volExponent: 11 },
+        density: 3.933,
+        gravity: 3.71,
+        discoveredBy: "",
+        discoveryDate: "",
+        alternativeName: "Red Planet",
+        axialTilt: 25.19,
+        avgTemp: 210,
+        mainAnomaly: 19.412,
+        argPeriapsis: 286.502,
+        longAscNode: 49.558
+      }
+    ], 400),
   });
 
-  // ISS Data
-  const { data: issPosition } = useQuery({
+  // Mock ISS Data
+  const { data: issPosition, isLoading: issLoading } = useQuery({
     queryKey: ['iss-position'],
-    queryFn: () => fetch('https://api.wheretheiss.at/v1/satellites/25544').then(res => res.json()),
-    refetchInterval: 5000, // Update every 5 seconds
+    queryFn: () => mockApiCall({
+      name: "iss",
+      id: 25544,
+      latitude: 51.6461,
+      longitude: -0.0072,
+      altitude: 408.05,
+      velocity: 27600,
+      visibility: "daylight",
+      footprint: 4465.83,
+      timestamp: Date.now() / 1000,
+      daynum: 2459945.123456,
+      solar_lat: -23.44,
+      solar_lon: 280.123,
+      units: "kilometers"
+    }, 200),
+    refetchInterval: 5000,
   });
 
-  const { data: issTle } = useQuery({
-    queryKey: ['iss-tle'],
-    queryFn: () => fetch('https://api.wheretheiss.at/v1/satellites/25544/tles').then(res => res.json()),
-  });
-
-  // TLE Satellite Data
-  const { data: tleCollection } = useQuery({
-    queryKey: ['tle-collection'],
-    queryFn: () => fetch('https://tle.ivanstanojevic.me/api/tle').then(res => res.json()),
-  });
-
-  // Launch Library Data
-  const { data: launchLibraryLaunches } = useQuery({
-    queryKey: ['launch-library-launches'],
-    queryFn: () => fetch('https://ll.thespacedevs.com/2.3.0/launches/').then(res => res.json()),
-  });
-
-  const { data: launchLibraryEvents } = useQuery({
-    queryKey: ['launch-library-events'],
-    queryFn: () => fetch('https://ll.thespacedevs.com/2.3.0/events/').then(res => res.json()),
-  });
-
-  const { data: launchLibraryAgencies } = useQuery({
-    queryKey: ['launch-library-agencies'],
-    queryFn: () => fetch('https://ll.thespacedevs.com/2.3.0/agencies/').then(res => res.json()),
-  });
-
-  const { data: launchLibraryAstronauts } = useQuery({
-    queryKey: ['launch-library-astronauts'],
-    queryFn: () => fetch('https://ll.thespacedevs.com/2.3.0/astronauts/').then(res => res.json()),
-  });
-
-  const { data: launchLibraryStations } = useQuery({
-    queryKey: ['launch-library-stations'],
-    queryFn: () => fetch('https://ll.thespacedevs.com/2.3.0/space_stations/').then(res => res.json()),
-  });
-
-  const { data: launchLibraryExpeditions } = useQuery({
-    queryKey: ['launch-library-expeditions'],
-    queryFn: () => fetch('https://ll.thespacedevs.com/2.3.0/expeditions/').then(res => res.json()),
-  });
-
-  // Exoplanet Data
-  const { data: exoplanetData } = useQuery({
-    queryKey: ['exoplanet-data'],
-    queryFn: async () => {
-      const response = await fetch('https://raw.githubusercontent.com/OpenExoplanetCatalogue/open_exoplanet_catalogue/master/systems.xml');
-      const xmlText = await response.text();
-      return xmlText;
-    },
-  });
-
-  // People in Space API
-  const { data: spacePopulation } = useQuery({
+  // Mock People in Space
+  const { data: spacePopulation, isLoading: spacePopLoading } = useQuery({
     queryKey: ['space-population'],
-    queryFn: () => fetch('http://api.open-notify.org/astros.json').then(res => res.json()),
-    refetchInterval: 60000, // Update every minute
+    queryFn: () => mockApiCall(mockSpaceData.spacePopulation, 300),
+    refetchInterval: 60000,
   });
 
-  // Spaceflight News API
-  const { data: newsData } = useQuery({
+  // Mock Space News
+  const { data: newsData, isLoading: newsLoading } = useQuery({
     queryKey: ['spaceflight-news'],
-    queryFn: () => fetch('https://api.spaceflightnewsapi.net/v4/articles/').then(res => res.json()),
+    queryFn: () => mockApiCall(mockSpaceData.spaceNews, 600),
   });
 
-  // Copernicus Earth Observation API
-  const { data: earthObservationData } = useQuery({
-    queryKey: ['earth-observation'],
-    queryFn: () => fetch('https://catalogue.dataspace.copernicus.eu/resto/api/collections/search.json?maxRecords=20').then(res => res.json()),
+  // Mock Exoplanet Data
+  const { data: exoplanetData, isLoading: exoplanetLoading } = useQuery({
+    queryKey: ['exoplanet-data'],
+    queryFn: () => mockApiCall(mockSpaceData.exoplanets, 800),
   });
 
-  // NASA Meteorite Landings API
-  const { data: meteoriteData } = useQuery({
+  // Mock Meteorite Data
+  const { data: meteoriteData, isLoading: meteoriteLoading } = useQuery({
     queryKey: ['meteorite-data'],
-    queryFn: () => fetch('https://data-nasa-bucket-production.s3.us-east-1.amazonaws.com/legacy/meteorite_landings/Meteorite_Landings.json?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZJ34W7PDNZ6ZML5S%2F20250531%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250531T141950Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEPb%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJGMEQCIAybrzxNfuJysHpxM3YLwOwYUvaX3tFreCH97ZsIAbH3AiASwn0T4DprorKE1pUpcoWfDfUE0q5HbFAUd0yFWaP4SiqdBQi%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F8BEAAaDDYzOTY3NDgwOTI4NiIMSyV5rzdjEtb4HokCKvEEVs7xzbc4E7bRa2nhPer8sFMNcmPzDBQy15OAJ2r1K85jAwkQfdxzYCtZgp7K%2BwhJQ%2Ban3CJtx0gqIrVocb41UJX4Jf29I8h93PmL6ngt%2BCmtQyW5I8xdm0qh9622MgKzplVqD771zw0rDebZjCsvr5yMWCHv%2BjRc1UCknNriDuEk%2ByyYimQfN759t9DSGsdF2R5KSTRd69Nafj5Mlu5Lxa7bBn6fnTtJ2zenlWWzhKK9w%2B%2BraudFm3n%2Ft7poA7F6QvmQKE%2Fu3ETns7czGRmUhjUylomFmvW85uMVT4xdd19TvDOZiy7tTdoX0rDZBD4g8EolsUS4AtSyLLsZBFdT0WTwozPQboYgndAoOgbsmge3ywHmoO1DwzSanSzvhjrOeSNXSP%2FtR9dZyPks8mmK395IAW4%2FIaRwGFokkc8lUBnXuLiQfAsrNiJlW3DNiALHiXt59UtSqzZaifQod9IjLIxoI5BFR3ceEUNDnZq5tTLQMt2dfrJo7CY8zmTid5dX4dER2g%2B5YCYg6Vvi%2B%2FDx0drERcy6G87iePKVJgX9Cr%2BPSPPq1rXv2zh3OMQu%2FMSSEar03gGr9J08mar3Mw6G%2FRFQgRNQ3JFsEkhYVib%2B8z6j8kYVzzGt3XtW9gk2bZVRtKd8xEWoexSejTjJRfrRPW4XUnMSynVI7HWyDBkYHnfgMfchgINXh0yZxOngmMHnsK7wMjVJYPSlf%2Frz%2Bxi%2BOBX6CDaMn14tYlaVECK7wxngCAjESqM4OLSyXwkoBamuKExZ1S8Zn1NgW3skQpmTFN76RxpCmrJTbwszcFEfYZqIZlGpWZ2WhAsjY6xbOdm5YjDLjuzBBjqcAeWA2x5meB8LMrhLVsQFQD2BolaPWu8VAii7b49Ba8BeyRqUYb%2Bk8oM%2FJy2fNtqIzqx6%2FfyRJYZDljQ5u0BMoKytiUSFIU8SqlcZNoqpyA2vke44vMEYpbNPhC5F5ahGd17QstPcDhGTChXO%2F47uVkjPn5lF5l6OtQwNFMVg5pnFyo%2Fdd8dS2aaFF3rQZyQUZnMXXR4dZCXLvnaQfw%3D%3D&X-Amz-Signature=085557186d715258e228a3ac38827317aca2cefe156eaa86f251219ea7f69c4e&X-Amz-SignedHeaders=host&x-id=GetObject').then(res => res.json()),
+    queryFn: () => mockApiCall(mockSpaceData.meteorites, 700),
   });
 
-  // ... keep existing code (other API queries)
+  // Mock Mission Data
+  const { data: missionsData, isLoading: missionsLoading } = useQuery({
+    queryKey: ['missions-data'],
+    queryFn: () => mockApiCall(mockSpaceData.missions, 400),
+  });
 
+  // Mock Earth Observation Data
+  const { data: earthObservationData, isLoading: earthObsLoading } = useQuery({
+    queryKey: ['earth-observation'],
+    queryFn: () => mockApiCall({
+      collections: [
+        {
+          id: "sentinel-2",
+          title: "Sentinel-2 MSI",
+          description: "Multispectral Instrument (MSI) aboard Sentinel-2",
+          keywords: ["sentinel", "msi", "multispectral"],
+          license: "proprietary",
+          providers: [{ name: "ESA", roles: ["producer"] }]
+        }
+      ]
+    }, 500),
+  });
+
+  // Aggregate data structures
   const spaceXData = {
-    launches: spaceXLaunches,
-    rockets: spaceXRockets,
-    crew: spaceXCrew,
-    capsules: spaceXCapsules,
-    company: spaceXCompany,
-    cores: spaceXCores,
-    dragons: spaceXDragons,
-    history: spaceXHistory,
-    landpads: spaceXLandpads,
-    launchpads: spaceXLaunchpads,
-    payloads: spaceXPayloads,
-    roadster: spaceXRoadster,
-    ships: spaceXShips,
-    starlink: spaceXStarlink,
+    launches: spaceXLaunches || [],
+    rockets: spaceXRockets || [],
+    crew: [],
+    capsules: [],
+    company: {
+      name: "SpaceX",
+      founder: "Elon Musk",
+      founded: 2002,
+      employees: 12000,
+      vehicles: 4,
+      launch_sites: 3,
+      test_sites: 1,
+      ceo: "Elon Musk",
+      cto: "Elon Musk",
+      coo: "Gwynne Shotwell",
+      cto_propulsion: "Tom Mueller",
+      valuation: 180000000000,
+      headquarters: {
+        address: "Rocket Road",
+        city: "Hawthorne",
+        state: "California"
+      },
+      summary: "SpaceX designs, manufactures and launches advanced rockets and spacecraft."
+    },
+    cores: [],
+    dragons: [],
+    history: [],
+    landpads: [],
+    launchpads: [],
+    payloads: [],
+    roadster: null,
+    ships: [],
+    starlink: [],
   };
 
   const solarSystemData = {
-    bodies: solarSystemBodies,
+    bodies: solarSystemBodies || [],
   };
 
   const issData = {
     position: issPosition,
-    tle: issTle,
+    tle: null,
   };
 
   const tleData = {
-    collection: tleCollection,
+    collection: [],
   };
 
   const launchLibraryData = {
-    launches: launchLibraryLaunches,
-    events: launchLibraryEvents,
-    agencies: launchLibraryAgencies,
-    astronauts: launchLibraryAstronauts,
-    stations: launchLibraryStations,
-    expeditions: launchLibraryExpeditions,
+    launches: [],
+    events: [],
+    agencies: [],
+    astronauts: [],
+    stations: [],
+    expeditions: [],
   };
 
-  const isLoading = !spaceXLaunches || !solarSystemBodies || !issPosition || !tleCollection || !launchLibraryLaunches;
+  const isLoading = spaceXLaunchesLoading || spaceXRocketsLoading || solarSystemLoading || 
+                   issLoading || spacePopLoading || newsLoading || exoplanetLoading || 
+                   meteoriteLoading || missionsLoading || earthObsLoading;
 
   useEffect(() => {
     if (!isLoading) {
@@ -245,6 +274,8 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
       spacePopulation,
       newsData,
       earthObservationData,
+      meteoriteData,
+      missionsData,
       allDataLoaded
     }}>
       {children}

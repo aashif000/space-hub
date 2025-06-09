@@ -1,8 +1,10 @@
 
 import React from 'react';
 import { Rocket, Globe, Satellite } from 'lucide-react';
+import { useTheme } from '../contexts/ThemeContext';
 
 const LoadingScreen = () => {
+  const { theme } = useTheme();
   const loadingSteps = [
     'Connecting to NASA mission control...',
     'Loading SpaceX launch data...',
@@ -23,7 +25,11 @@ const LoadingScreen = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-blue-950 to-indigo-950 flex items-center justify-center">
+    <div className={`min-h-screen flex items-center justify-center transition-colors duration-500 ${
+      theme === 'dark' 
+        ? 'bg-gradient-to-br from-slate-950 via-blue-950 to-indigo-950' 
+        : 'bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50'
+    }`}>
       <div className="text-center max-w-md mx-auto px-6">
         {/* Logo Animation */}
         <div className="relative mb-8">
@@ -41,27 +47,39 @@ const LoadingScreen = () => {
           <div className="absolute inset-0 animate-spin" style={{ animationDuration: '4s', animationDirection: 'reverse' }}>
             <Globe className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-4 h-4 text-purple-300" />
           </div>
-        </div>
-
-        {/* Title */}
-        <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-4">
+        </div>        {/* Title */}
+        <h1 className={`text-4xl font-bold bg-gradient-to-r bg-clip-text text-transparent mb-4 ${
+          theme === 'dark' 
+            ? 'from-blue-400 to-purple-400' 
+            : 'from-indigo-600 to-purple-600'
+        }`}>
           Cosmic Nexus
         </h1>
         
-        <p className="text-gray-400 mb-8">
+        <p className={`mb-8 ${
+          theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
+        }`}>
           Initializing space exploration systems...
         </p>
 
         {/* Loading Progress */}
         <div className="mb-6">
-          <div className="w-full bg-slate-800 rounded-full h-2 mb-4">
+          <div className={`w-full rounded-full h-2 mb-4 ${
+            theme === 'dark' ? 'bg-slate-800' : 'bg-gray-200'
+          }`}>
             <div 
-              className="bg-gradient-to-r from-blue-500 to-purple-600 h-2 rounded-full transition-all duration-300"
+              className={`h-2 rounded-full transition-all duration-300 ${
+                theme === 'dark' 
+                  ? 'bg-gradient-to-r from-blue-500 to-purple-600' 
+                  : 'bg-gradient-to-r from-indigo-500 to-purple-500'
+              }`}
               style={{ width: `${((currentStep + 1) / loadingSteps.length) * 100}%` }}
             ></div>
           </div>
           
-          <p className="text-blue-300 text-sm animate-pulse">
+          <p className={`text-sm animate-pulse ${
+            theme === 'dark' ? 'text-blue-300' : 'text-indigo-600'
+          }`}>
             {loadingSteps[currentStep]}
           </p>
         </div>

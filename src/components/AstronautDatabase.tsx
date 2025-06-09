@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Input } from './ui/input';
 import { Badge } from './ui/badge';
+import { useTheme } from '../contexts/ThemeContext';
 import { Users, Search, Rocket, Satellite } from 'lucide-react';
 
 // Import JSON data (assuming files are in the same directory)
@@ -45,6 +46,7 @@ interface SpaceStation {
 }
 
 const SpaceDatabase: React.FC = () => {
+  const { theme } = useTheme();
   const [activeTab, setActiveTab] = useState<'astronauts' | 'spacecraft' | 'stations'>('astronauts');
   const [searchTerm, setSearchTerm] = useState('');
 
