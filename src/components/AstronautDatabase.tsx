@@ -222,7 +222,7 @@ const SpaceDatabase: React.FC = () => {
         </CardContent>
       </Card>
 
-      {/* Data Grid - Increased horizontal size */}
+      {/* Data Grid - Improved layout for better image display */}
       <div className="grid grid-cols-1 gap-6">
         {currentData.length > 0 ? (
           currentData.map((item) => (
@@ -230,18 +230,39 @@ const SpaceDatabase: React.FC = () => {
               key={item.id}
               className="bg-slate-800/50 border-slate-700 hover:bg-slate-800/70 transition-all duration-300 flex flex-col lg:flex-row h-full"
             >
-              {/* Image Container - Increased width */}
-              <div className="lg:w-1/2">
-                {item.image?.image_url && (
-                  <img 
-                    src={item.image.image_url} 
-                    alt={item.name} 
-                    className="w-full h-full max-h-[400px] object-cover rounded-t-lg lg:rounded-l-lg lg:rounded-tr-none"
-                    onError={(e) => {
-                      const target = e.target as HTMLImageElement;
-                      target.style.display = 'none';
-                    }}
-                  />
+              {/* Image Container - Improved responsiveness and aspect ratio */}
+              <div className="lg:w-1/2 relative flex items-center justify-center">
+                {item.image?.image_url ? (
+                  <div className="w-full h-full min-h-[250px] lg:max-h-[400px] relative">
+                    <img 
+                      src={item.image.image_url} 
+                      alt={item.name} 
+                      className="w-full h-full object-cover object-center rounded-t-lg lg:rounded-l-lg lg:rounded-tr-none"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        // Instead of hiding, replace with placeholder
+                        target.src = '/placeholder.svg';
+                        target.classList.add('p-8', 'opacity-70');
+                      }}
+                      loading="lazy"
+                    />
+                    {/* Image expand button for detailed view */}
+                    <button
+                      onClick={() => window.open(item.image?.image_url, '_blank')}
+                      className="absolute bottom-2 right-2 bg-black/70 hover:bg-black/90 text-white rounded-full p-2 transition-opacity opacity-80 hover:opacity-100"
+                      title="View full image"
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                      </svg>
+                    </button>
+                  </div>
+                ) : (
+                  <div className="w-full min-h-[200px] bg-slate-700/50 flex items-center justify-center rounded-t-lg lg:rounded-l-lg lg:rounded-tr-none">
+                    <svg className="h-16 w-16 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                  </div>
                 )}
               </div>
               

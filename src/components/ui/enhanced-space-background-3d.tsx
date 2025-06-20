@@ -1,8 +1,10 @@
 import React, { useRef, useMemo } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
+import { useFrame } from '@react-three/fiber';
 import { Points, PointMaterial } from '@react-three/drei';
 import * as THREE from 'three';
 import { useTheme } from '../../contexts/ThemeContext';
+import { FixedCanvas } from './fixed-canvas';
+import SceneErrorBoundary from './SceneErrorBoundary';
 
 // Advanced Particle System for Space Background
 function AdvancedStarField({ count = 5000 }: { count?: number }) {
@@ -65,11 +67,15 @@ function AdvancedStarField({ count = 5000 }: { count?: number }) {
 // Nebula Effect
 function NebulaEffect() {
   const nebulaRef = useRef<THREE.Mesh>(null);
-  
-  useFrame((state) => {
+    useFrame((state) => {
     if (nebulaRef.current) {
       nebulaRef.current.rotation.z = state.clock.elapsedTime * 0.0005;
-      nebulaRef.current.material.opacity = 0.1 + Math.sin(state.clock.elapsedTime * 0.5) * 0.05;
+      
+      // Handle material opacity safely
+      const material = nebulaRef.current.material;
+      if (material && !Array.isArray(material) && 'opacity' in material) {
+        material.opacity = 0.1 + Math.sin(state.clock.elapsedTime * 0.5) * 0.05;
+      }
     }
   });
 
@@ -127,10 +133,9 @@ function MovingComet({ speed, radius, height, phase }: {
 
   return (
     <group ref={cometRef}>
-      {/* Comet core */}
-      <mesh>
+      {/* Comet core */}      <mesh>
         <sphereGeometry args={[0.5, 8, 8]} />
-        <meshBasicMaterial
+        <meshStandardMaterial
           color="#fbbf24"
           emissive="#f59e0b"
           emissiveIntensity={0.8}
@@ -170,22 +175,23 @@ export const EnhancedSpaceBackground3D: React.FC<{
   const backgroundStyle = theme === 'dark' 
     ? 'linear-gradient(to bottom, #0f0f23, #1a1a2e, #16213e)'
     : 'linear-gradient(to bottom, #87CEEB, #E0F6FF, #F0F8FF)';
-
   return (
     <div className={`fixed inset-0 -z-10 ${className}`}>
-      <Canvas
-        camera={{ position: [0, 0, 5], fov: 75 }}
-        style={{ background: backgroundStyle }}
-        gl={{ antialias: false, alpha: false }}
-        dpr={quality === 'high' ? window.devicePixelRatio : 1}
-      >
-        <AdvancedStarField count={starCount} />
-        {showNebula && <NebulaEffect />}
-        {showComets && <CometSystem />}
-        
-        {/* Ambient lighting for subtle illumination */}
-        <ambientLight intensity={theme === 'dark' ? 0.1 : 0.3} />
-      </Canvas>
+      <SceneErrorBoundary>
+        <FixedCanvas
+          camera={{ position: [0, 0, 5], fov: 75 }}
+          style={{ background: backgroundStyle }}
+          gl={{ antialias: false, alpha: false }}
+          dpr={quality === 'high' ? window.devicePixelRatio : 1}
+        >
+          <AdvancedStarField count={starCount} />
+          {showNebula && <NebulaEffect />}
+          {showComets && <CometSystem />}
+          
+          {/* Ambient lighting for subtle illumination */}
+          <ambientLight intensity={theme === 'dark' ? 0.1 : 0.3} />
+        </FixedCanvas>
+      </SceneErrorBoundary>
     </div>
   );
 };

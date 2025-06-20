@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   Activity, 
   Eye, 
@@ -109,7 +109,6 @@ const useRealTimeAnalytics = () => {
 
   useEffect(() => {
     const updateAnalytics = () => {
-      // Simulate real-time data updates
       setAnalytics(prev => ({
         ...prev,
         fps: Math.max(30, Math.min(60, prev.fps + (Math.random() - 0.5) * 5)),
@@ -157,8 +156,11 @@ const useRealTimeAnalytics = () => {
     updateDeviceInfo();
     updateBatteryInfo();
 
-    const interval = setInterval(updateAnalytics, 1000);
-    return () => clearInterval(interval);
+    updateAnalytics(); // Initial update
+
+    return () => {
+      // Cleanup logic if needed
+    };
   }, []);
 
   return analytics;

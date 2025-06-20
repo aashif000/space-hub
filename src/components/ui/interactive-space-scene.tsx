@@ -1,9 +1,11 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { useFrame, useThree } from '@react-three/fiber';
 import { OrbitControls, Stars, Text } from '@react-three/drei';
 import * as THREE from 'three';
 import { motion } from 'framer-motion';
 import { usePerformanceOptimization, ScenePerformanceMonitor, FPSCounter, QualitySettings } from './performance-monitor';
+import { FixedCanvas } from './fixed-canvas';
+import SceneErrorBoundary from './SceneErrorBoundary';
 
 // Interactive Planet Component
 function InteractivePlanet({ 
@@ -283,11 +285,12 @@ export const InteractiveSpaceScene: React.FC<InteractiveSpaceSceneProps> = ({
   };
 
   return (
-    <div className={`relative ${className}`}>
-      <div style={{ height }} className="w-full rounded-lg overflow-hidden border border-white/10">
-        <Canvas camera={{ position: [0, 5, 15], fov: 60 }}>
-          <SpaceScene onPlanetSelect={setSelectedPlanet} />
-        </Canvas>
+    <div className={`relative ${className}`}>      <div style={{ height }} className="w-full rounded-lg overflow-hidden border border-white/10">
+        <SceneErrorBoundary>
+          <FixedCanvas camera={{ position: [0, 5, 15], fov: 60 }}>
+            <SpaceScene onPlanetSelect={setSelectedPlanet} />
+          </FixedCanvas>
+        </SceneErrorBoundary>
       </div>
 
       {/* Planet Information Panel */}

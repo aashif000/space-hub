@@ -1,9 +1,9 @@
-
 import React, { useState, useEffect } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../ui/card';
 import { Badge } from '../ui/badge';
+import { Button } from '../ui/button';
 import { useTheme } from '../../contexts/ThemeContext';
-import { Users, Rocket, MapPin, Clock } from 'lucide-react';
+import { Users, Rocket, MapPin, Clock, HelpCircle, BookOpen } from 'lucide-react';
 
 interface Astronaut {
   name: string;
@@ -37,8 +37,6 @@ export const SpacePopulationTracker = () => {
 
   useEffect(() => {
     fetchSpacePopulation();
-    const interval = setInterval(fetchSpacePopulation, 60000); // Update every minute
-    return () => clearInterval(interval);
   }, []);
 
   const getCraftColor = (craft: string) => {
@@ -90,16 +88,24 @@ export const SpacePopulationTracker = () => {
           </div>
         </div>
       </div>
-       
-       {/* X1 Config Simulator Embed */}
+         {/* X1 Config Simulator Embed with Documentation */}
       <Card className="bg-slate-800/50 border-slate-700">
         <CardHeader>
-          <CardTitle className="text-white flex items-center gap-3">
-            <Rocket className="w-6 h-6" />
-            X1 Configuration Simulator
-          </CardTitle>
+          <div className="flex items-center justify-between">
+            <CardTitle className="text-white flex items-center gap-3">
+              <Rocket className="w-6 h-6" />
+              X1 Configuration Simulator
+            </CardTitle>
+            <Button variant="outline" className="h-8 px-2 text-xs border-blue-500 text-blue-400 hover:text-blue-300" onClick={() => document.getElementById('x1-simulator-guide')?.scrollIntoView({ behavior: 'smooth' })}>
+              <HelpCircle className="w-3 h-3 mr-1" />
+              How to Use
+            </Button>
+          </div>
+          <CardDescription className="text-gray-400 mt-2">
+            Experiment with the next-generation spacecraft configurations and explore optimal designs for different mission profiles.
+          </CardDescription>
         </CardHeader>
-        <CardContent>
+        <CardContent className="space-y-6">
           <div className="bg-black rounded-lg overflow-hidden">
             <iframe
               src="https://sa-mack.github.io/X1-config-simulator/"
@@ -109,6 +115,56 @@ export const SpacePopulationTracker = () => {
               title="X1 Config Simulator"
               className="w-full"
             />
+          </div>
+          
+          {/* Simulator Guide */}
+          <div id="x1-simulator-guide" className="space-y-4 bg-slate-900/70 rounded-lg p-4 border border-blue-500/30">
+            <div className="flex items-center gap-2 text-blue-400">
+              <BookOpen className="w-4 h-4" />
+              <h3 className="font-medium">X1 Simulator Guide</h3>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-300">
+              <div className="space-y-2">
+                <h4 className="font-medium text-white">Getting Started</h4>
+                <ol className="list-decimal list-inside space-y-1">
+                  <li>Select a mission type from the dropdown menu</li>
+                  <li>Adjust propulsion system configuration</li>
+                  <li>Configure life support and habitat modules</li>
+                  <li>Review power systems and adjust as needed</li>
+                  <li>Check overall mass and system integration</li>
+                </ol>
+              </div>
+              
+              <div className="space-y-2">
+                <h4 className="font-medium text-white">Key Features</h4>
+                <ul className="list-disc list-inside space-y-1">
+                  <li>Real-time performance analysis</li>
+                  <li>Mission duration calculator</li>
+                  <li>Integration checks between systems</li>
+                  <li>3D preview of configured spacecraft</li>
+                  <li>Export configuration to share with others</li>
+                </ul>
+              </div>
+            </div>
+            
+            <div className="space-y-2">
+              <h4 className="font-medium text-white">Mission Types</h4>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+                <div className="bg-gradient-to-r from-orange-500/20 to-red-500/20 p-3 rounded border border-orange-500/30">
+                  <h5 className="text-orange-400 font-medium mb-1">Mars Direct</h5>
+                  <p className="text-xs text-gray-300">Optimize for direct transfer to Mars with minimal orbital transitions.</p>
+                </div>
+                <div className="bg-gradient-to-r from-blue-500/20 to-indigo-500/20 p-3 rounded border border-blue-500/30">
+                  <h5 className="text-blue-400 font-medium mb-1">Lunar Operations</h5>
+                  <p className="text-xs text-gray-300">Configure for repeated Earth-Moon transits and extended lunar surface operations.</p>
+                </div>
+                <div className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 p-3 rounded border border-purple-500/30">
+                  <h5 className="text-purple-400 font-medium mb-1">Deep Space</h5>
+                  <p className="text-xs text-gray-300">Long-duration missions to asteroids or outer planets with extended life support.</p>
+                </div>
+              </div>
+            </div>
           </div>
         </CardContent>
       </Card>

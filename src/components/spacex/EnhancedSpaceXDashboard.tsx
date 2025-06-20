@@ -268,7 +268,7 @@ export const EnhancedSpaceXDashboard: React.FC = () => {
           <TabsTrigger value="rockets">Rockets</TabsTrigger>
           <TabsTrigger value="crew">Crew</TabsTrigger>
           <TabsTrigger value="capsules">Capsules</TabsTrigger>
-          <TabsTrigger value="ships">Ships</TabsTrigger>
+          <TabsTrigger value="space_exploration">Space Exploration</TabsTrigger>
           <TabsTrigger value="starlink">Starlink</TabsTrigger>
           <TabsTrigger value="history">History</TabsTrigger>
           <TabsTrigger value="cores">Cores</TabsTrigger>
@@ -407,13 +407,22 @@ export const EnhancedSpaceXDashboard: React.FC = () => {
                     <div className="flex items-center">
                       <Users className="w-4 h-4 mr-2 text-gray-400" />
                       {member.agency}
-                    </div>
-                    {member.image && (
-                      <img
-                        src={member.image}
-                        alt={member.name}
-                        className="w-full h-32 object-cover rounded-md mt-2"
-                      />
+                    </div>                    {member.image && (
+                      <div className="relative group cursor-pointer mt-2">
+                        <img
+                          src={member.image}
+                          alt={member.name}
+                          className="w-full h-40 object-contain rounded-md transition-all duration-300 hover:scale-[1.02] bg-slate-900/50"
+                        />
+                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-slate-900/70 rounded-md">
+                          <button 
+                            className="px-3 py-1 bg-indigo-500/80 hover:bg-indigo-500 text-white text-sm rounded-md transition-colors"
+                            onClick={() => window.open(member.image, '_blank')}
+                          >
+                            View Full Image
+                          </button>
+                        </div>
+                      </div>
                     )}
                     <div className="mt-2">
                       <a
@@ -463,48 +472,224 @@ export const EnhancedSpaceXDashboard: React.FC = () => {
               </Card>
             ))}
           </div>
-        </TabsContent>
-
-        {/* --- Ships Tab --- */}
-        <TabsContent value="ships" className="p-4 bg-slate-800/20 rounded-b-lg">
+        </TabsContent>        {/* --- Space Exploration Tab --- */}
+        <TabsContent value="space_exploration" className="p-4 bg-slate-800/20 rounded-b-lg">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {filterBySearch(ships, 'name').map((ship) => (
-              <Card
-                key={ship.id}
-                className="bg-slate-800/50 border-slate-700 hover:bg-slate-800/70 transition-all duration-300"
-              >
-                <CardHeader>
-                  <div className="flex items-center justify-between">
-                    <CardTitle className="text-white">{ship.name}</CardTitle>
-                    <Badge variant={ship.active ? 'default' : 'secondary'}>
-                      {ship.active ? 'Active' : 'Inactive'}
-                    </Badge>
+            {/* Mars Exploration */}
+            <Card className="bg-slate-800/50 border-slate-700 hover:bg-slate-800/70 transition-all duration-300">
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <CardTitle className="text-white">Mars Exploration</CardTitle>
+                  <Badge variant="default" className="bg-red-500">
+                    Active
+                  </Badge>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4 text-sm text-gray-300">
+                  <div className="relative h-40 overflow-hidden rounded-md bg-black">
+                    <img
+                      src="https://mars.nasa.gov/system/resources/detail_files/25560_PIA24428-Perseverance-SelfieWithIngenuity-Vertical-web.jpg"
+                      alt="Mars Perseverance Rover"
+                      className="w-full h-full object-cover hover:scale-105 transition-transform"
+                    />
                   </div>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-2 text-sm text-gray-300">
-                    <div>
-                      <span className="font-medium">Type:</span> {ship.type || 'N/A'}
-                    </div>
-                    <div>
-                      <span className="font-medium">Home Port:</span>{' '}
-                      {ship.home_port || 'Unknown'}
-                    </div>
-                    <div>
-                      <span className="font-medium">Roles:</span>{' '}
-                      {ship.roles.length > 0 ? ship.roles.join(', ') : 'None'}
-                    </div>
-                    {ship.image && (
-                      <img
-                        src={ship.image}
-                        alt={ship.name}
-                        className="w-full h-32 object-cover rounded-md mt-2"
-                      />
-                    )}
+                  <div>
+                    <h3 className="text-white font-medium mb-2">Current Missions</h3>
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>Perseverance Rover (2020-Present)</li>
+                      <li>Ingenuity Helicopter (2020-Present)</li>
+                      <li>Curiosity Rover (2012-Present)</li>
+                      <li>InSight Lander (2018-2022)</li>
+                    </ul>
                   </div>
-                </CardContent>
-              </Card>
-            ))}
+                  <div>
+                    <span className="font-medium">Next Mission:</span>{' '}
+                    Mars Sample Return - 2028
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+            
+            {/* Moon Exploration */}
+            <Card className="bg-slate-800/50 border-slate-700 hover:bg-slate-800/70 transition-all duration-300">
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <CardTitle className="text-white">Artemis Program</CardTitle>
+                  <Badge variant="default" className="bg-blue-500">
+                    In Progress
+                  </Badge>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4 text-sm text-gray-300">
+                  <div className="relative h-40 overflow-hidden rounded-md bg-black">
+                    <img
+                      src="https://www.nasa.gov/wp-content/uploads/2022/08/artemisithumbnailimage1041x1041.jpg"
+                      alt="NASA Artemis Mission"
+                      className="w-full h-full object-cover hover:scale-105 transition-transform"
+                    />
+                  </div>
+                  <div>
+                    <h3 className="text-white font-medium mb-2">Program Goals</h3>
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>Land first woman and person of color on the Moon</li>
+                      <li>Establish sustainable lunar presence</li>
+                      <li>Prepare for future Mars missions</li>
+                      <li>Gateway lunar orbiting outpost</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <span className="font-medium">Next Launch:</span>{' '}
+                    Artemis II - Nov 2024
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+            
+            {/* Deep Space */}
+            <Card className="bg-slate-800/50 border-slate-700 hover:bg-slate-800/70 transition-all duration-300">
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <CardTitle className="text-white">Deep Space Missions</CardTitle>
+                  <Badge variant="secondary">
+                    Long Duration
+                  </Badge>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4 text-sm text-gray-300">
+                  <div className="relative h-40 overflow-hidden rounded-md bg-black">
+                    <img
+                      src="https://voyager.jpl.nasa.gov/assets/images/gallery/spacecraft/spacecraft-grand-tour.jpg"
+                      alt="Voyager Spacecraft"
+                      className="w-full h-full object-cover hover:scale-105 transition-transform"
+                    />
+                  </div>
+                  <div>
+                    <h3 className="text-white font-medium mb-2">Active Missions</h3>
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>Voyager 1 (1977) - Interstellar space</li>
+                      <li>Voyager 2 (1977) - Interstellar space</li>
+                      <li>New Horizons (2006) - Kuiper Belt</li>
+                      <li>Parker Solar Probe (2018) - Sun</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <span className="font-medium">Distance of Voyager 1:</span>{' '}
+                    14.6 billion miles from Earth
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+            
+            {/* Space Telescopes */}
+            <Card className="bg-slate-800/50 border-slate-700 hover:bg-slate-800/70 transition-all duration-300">
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <CardTitle className="text-white">Space Telescopes</CardTitle>
+                  <Badge variant="default" className="bg-purple-500">
+                    Observing
+                  </Badge>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4 text-sm text-gray-300">
+                  <div className="relative h-40 overflow-hidden rounded-md bg-black">
+                    <img
+                      src="https://cdn.spacetelescope.org/archives/images/large/james-webb.jpg"
+                      alt="James Webb Space Telescope"
+                      className="w-full h-full object-cover hover:scale-105 transition-transform"
+                    />
+                  </div>
+                  <div>
+                    <h3 className="text-white font-medium mb-2">Major Telescopes</h3>
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>James Webb Space Telescope (2021)</li>
+                      <li>Hubble Space Telescope (1990)</li>
+                      <li>Chandra X-ray Observatory (1999)</li>
+                      <li>Fermi Gamma-ray Space Telescope (2008)</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <span className="font-medium">JWST Location:</span>{' '}
+                    L2 Lagrange Point, 1.5 million km from Earth
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+            
+            {/* Asteroid & Comet Missions */}
+            <Card className="bg-slate-800/50 border-slate-700 hover:bg-slate-800/70 transition-all duration-300">
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <CardTitle className="text-white">Small Bodies Exploration</CardTitle>
+                  <Badge variant="default" className="bg-amber-500">
+                    Sample Return
+                  </Badge>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4 text-sm text-gray-300">
+                  <div className="relative h-40 overflow-hidden rounded-md bg-black">
+                    <img
+                      src="https://www.nasa.gov/wp-content/uploads/2023/02/main_image_osiris-rex_collecting_sample_at_bennu_1041x1041.jpg"
+                      alt="OSIRIS-REx at Bennu"
+                      className="w-full h-full object-cover hover:scale-105 transition-transform"
+                    />
+                  </div>
+                  <div>
+                    <h3 className="text-white font-medium mb-2">Recent Missions</h3>
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>OSIRIS-REx - Asteroid Bennu sample (2023)</li>
+                      <li>DART - Asteroid impact test (2022)</li>
+                      <li>Hayabusa2 - Asteroid Ryugu sample (2020)</li>
+                      <li>Rosetta - Comet 67P/Churyumov–Gerasimenko (2014)</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <span className="font-medium">Upcoming:</span>{' '}
+                    NASA Lucy mission - Multiple Trojan asteroids (2021-2033)
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+            
+            {/* Future Technologies */}
+            <Card className="bg-slate-800/50 border-slate-700 hover:bg-slate-800/70 transition-all duration-300">
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <CardTitle className="text-white">Future Tech</CardTitle>
+                  <Badge variant="secondary" className="bg-green-500/50 text-green-300">
+                    In Development
+                  </Badge>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4 text-sm text-gray-300">
+                  <div className="relative h-40 overflow-hidden rounded-md bg-black">
+                    <img
+                      src="https://www.nasa.gov/wp-content/uploads/2022/03/art-concept-of-a-nuclear-thermal-engine-nasa-bwxt.jpg"
+                      alt="Nuclear Propulsion Concept"
+                      className="w-full h-full object-cover hover:scale-105 transition-transform"
+                    />
+                  </div>
+                  <div>
+                    <h3 className="text-white font-medium mb-2">Propulsion & Power</h3>
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>Nuclear Thermal Propulsion</li>
+                      <li>Solar Electric Propulsion</li>
+                      <li>Fusion-Based Spacecraft</li>
+                      <li>Advanced Space Habitats</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <span className="font-medium">Target:</span>{' '}
+                    Reduce Mars travel time from 9 months to under 3 months
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </TabsContent>
 

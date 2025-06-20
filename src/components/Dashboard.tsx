@@ -62,31 +62,33 @@ const Dashboard = () => {
         }`}>
           Welcome to Cosmic Nexus - Your gateway to space exploration data
         </p>
-      </div>
-
-      {/* Statistics Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      </div>      {/* Statistics Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {stats.map((stat, index) => (
-          <div key={index} className="bg-slate-800/50 rounded-lg p-6 border border-gray-600 hover:border-blue-500/50 transition-all duration-300">
+          <div key={index} className="bg-slate-800/50 rounded-lg p-6 border border-gray-600 hover:border-blue-500/50 transition-all duration-300 aspect-square flex flex-col">
             <div className="flex items-center justify-between mb-4">
-              <stat.icon className={`w-8 h-8 text-${stat.color}-400`} />
+              <div className={`p-3 rounded-full bg-${stat.color}-500/20`}>
+                <stat.icon className={`w-6 h-6 text-${stat.color}-400`} />
+              </div>
               <span className={`px-2 py-1 bg-${stat.color}-500/20 text-${stat.color}-400 text-xs rounded-full`}>
                 LIVE
               </span>
             </div>
-            <h3 className="text-2xl font-bold text-white mb-1">{stat.value}</h3>
-            <p className="text-gray-400 text-sm font-medium mb-1">{stat.title}</p>
-            <p className="text-gray-500 text-xs">{stat.description}</p>
+            <div className="flex flex-col justify-center flex-grow">
+              <h3 className="text-3xl font-bold text-white mb-2">{stat.value}</h3>
+              <p className="text-gray-400 text-sm font-medium mb-1">{stat.title}</p>
+              <p className="text-gray-500 text-xs">{stat.description}</p>
+            </div>
           </div>
         ))}
-      </div>
-
-      {/* Recent Activity */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      </div>      {/* Recent Activity */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Latest SpaceX Launch */}
-        <div className="bg-slate-800/50 rounded-lg p-6 border border-gray-600">
+        <div className="bg-slate-800/50 rounded-lg p-6 border border-gray-600 hover:border-blue-500/30 transition-duration-300">
           <h3 className="text-xl font-bold text-white mb-4 flex items-center">
-            <Rocket className="w-6 h-6 mr-2 text-blue-400" />
+            <div className="p-2 rounded-lg bg-blue-500/20 mr-3">
+              <Rocket className="w-5 h-5 text-blue-400" />
+            </div>
             Latest SpaceX Launch
           </h3>
           {spaceXData?.launches?.[0] && (
@@ -105,12 +107,12 @@ const Dashboard = () => {
               </div>
             </div>
           )}
-        </div>
-
-        {/* ISS Position */}
-        <div className="bg-slate-800/50 rounded-lg p-6 border border-gray-600">
+        </div>        {/* ISS Position */}
+        <div className="bg-slate-800/50 rounded-lg p-6 border border-gray-600 hover:border-green-500/30 transition-duration-300">
           <h3 className="text-xl font-bold text-white mb-4 flex items-center">
-            <Satellite className="w-6 h-6 mr-2 text-green-400" />
+            <div className="p-2 rounded-lg bg-green-500/20 mr-3">
+              <Satellite className="w-5 h-5 text-green-400" />
+            </div>
             ISS Current Position
           </h3>
           {issData?.position && (
@@ -136,25 +138,24 @@ const Dashboard = () => {
             </div>
           )}
         </div>
-      </div>
-
-      {/* System Status */}
-      <div className="bg-slate-800/50 rounded-lg p-6 border border-gray-600">
+      </div>      {/* System Status */}
+      <div className="bg-slate-800/50 rounded-lg p-6 border border-gray-600 hover:border-purple-500/30 transition-duration-300">
         <h3 className="text-xl font-bold text-white mb-4 flex items-center">
-          <Activity className="w-6 h-6 mr-2 text-purple-400" />
+          <div className="p-2 rounded-lg bg-purple-500/20 mr-3">
+            <Activity className="w-5 h-5 text-purple-400" />
+          </div>
           System Connection
-        </h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="flex items-center justify-between p-3 bg-green-500/10 rounded-lg border border-green-500/20">
-            <span className="text-green-400">SpaceX</span>
+        </h3>        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div className="flex items-center justify-between p-3 bg-green-500/10 rounded-lg border border-green-500/20 hover:border-green-500/40 transition-all duration-200">
+            <span className="text-green-400 font-medium">SpaceX</span>
             <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
           </div>
-          <div className="flex items-center justify-between p-3 bg-green-500/10 rounded-lg border border-green-500/20">
-            <span className="text-green-400">ISS Tracker</span>
+          <div className="flex items-center justify-between p-3 bg-green-500/10 rounded-lg border border-green-500/20 hover:border-green-500/40 transition-all duration-200">
+            <span className="text-green-400 font-medium">ISS Tracker</span>
             <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
           </div>
-          <div className="flex items-center justify-between p-3 bg-green-500/10 rounded-lg border border-green-500/20">
-            <span className="text-green-400">Launch Library</span>
+          <div className="flex items-center justify-between p-3 bg-green-500/10 rounded-lg border border-green-500/20 hover:border-green-500/40 transition-all duration-200">
+            <span className="text-green-400 font-medium">Launch Library</span>
             <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
           </div>
         </div>

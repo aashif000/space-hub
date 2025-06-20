@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theme Debug Test</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            transition: all 0.3s ease;
+        }
+        
+        .dark {
+            background-color: #0f0f23;
+            color: white;
+        }
+        
+        .light {
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+        
+        .debug-panel {
+            padding: 20px;
+            border: 2px solid;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .dark .debug-panel {
+            border-color: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .light .debug-panel {
+            border-color: rgba(0, 0, 0, 0.2);
+            background: rgba(0, 0, 0, 0.05);
+        }
+        
+        button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .dark button {
+            background: #3b82f6;
+            color: white;
+        }
+        
+        .light button {
+            background: #2563eb;
+            color: white;
+        }
+        
+        button:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="dark">
+    <h1>Theme Debug Test</h1>
+    
+    <div class="debug-panel">
+        <h2>Current Theme Status</h2>
+        <p>HTML class: <span id="html-class"></span></p>
+        <p>Body class: <span id="body-class"></span></p>
+        <p>Computed background: <span id="computed-bg"></span></p>
+        <p>Computed color: <span id="computed-color"></span></p>
+    </div>
+    
+    <button onclick="toggleTheme()">Toggle Theme</button>
+    <button onclick="checkLocalStorage()">Check LocalStorage</button>
+    
+    <div class="debug-panel">
+        <h3>LocalStorage Data</h3>
+        <p id="localstorage-data"></p>
+    </div>
+    
+    <script>
+        function updateDebugInfo() {
+            document.getElementById('html-class').textContent = document.documentElement.className;
+            document.getElementById('body-class').textContent = document.body.className;
+            
+            const styles = window.getComputedStyle(document.body);
+            document.getElementById('computed-bg').textContent = styles.backgroundColor;
+            document.getElementById('computed-color').textContent = styles.color;
+        }
+        
+        function toggleTheme() {
+            const html = document.documentElement;
+            const body = document.body;
+            
+            if (body.classList.contains('dark')) {
+                html.classList.remove('dark');
+                html.classList.add('light');
+                body.classList.remove('dark');
+                body.classList.add('light');
+                localStorage.setItem('space-hub-theme', 'light');
+            } else {
+                html.classList.remove('light');
+                html.classList.add('dark');
+                body.classList.remove('light');
+                body.classList.add('dark');
+                localStorage.setItem('space-hub-theme', 'dark');
+            }
+            
+            updateDebugInfo();
+        }
+        
+        function checkLocalStorage() {
+            const theme = localStorage.getItem('space-hub-theme');
+            document.getElementById('localstorage-data').textContent = `Theme: ${theme || 'not set'}`;
+        }
+        
+        // Initialize
+        updateDebugInfo();
+        checkLocalStorage();
+        
+        // Update every second to monitor changes
+        setInterval(updateDebugInfo, 1000);
+    </script>
+</body>
+</html>

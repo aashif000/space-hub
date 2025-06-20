@@ -2,9 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Theme transitions */
+.theme-transitioning {
+  will-change: background-color, color, border-color;
+}
+
+.theme-transitioning * {
+  transition-property: background-color, color, border-color, box-shadow;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+}
+
+/* Skip transitions for performance */
+.theme-transitioning canvas,
+.theme-transitioning video,
+.theme-transitioning iframe,
+.theme-transitioning .no-transition,
+.theme-transitioning .no-transition *,
+.theme-transitioning [data-no-transition],
+.theme-transitioning [data-no-transition] * {
+  transition: none !important;
+}
+
 @layer base {
   :root {
-    /* Light mode - daytime space exploration */
+    /* Light mode */
     --background: 210 40% 98%; 
     --foreground: 222.2 84% 4.9%;
 
@@ -14,7 +36,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    /* Purple theme for space exploration */
+    /* Primary colors */
     --primary: 267 75% 40%;
     --primary-foreground: 210 40% 98%;
 
@@ -30,47 +52,38 @@
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
+    /* Navigation and borders */
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
     --ring: 222.2 84% 4.9%;
 
     --radius: 0.5rem;
 
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-
-    /* Enhanced space theme variables for light mode */
-    --space-canvas-bg: rgba(135, 206, 235, 0.1); /* Light blue tint */
+    /* Space theme specific variables */
+    --space-bg-primary: #87CEEB;
+    --space-bg-secondary: #E0F6FF;
+    --space-bg-tertiary: #F0F8FF;
+    --space-text-primary: #1a1a1a;
+    --space-text-secondary: #4a4a4a;
     --space-panel-bg: rgba(255, 255, 255, 0.95);
-    --space-panel-border: rgba(0, 0, 0, 0.1);
-    --space-text-primary: rgba(0, 0, 0, 0.9);
-    --space-text-secondary: rgba(0, 0, 0, 0.7);
-    --space-button-bg: rgba(267, 75%, 40%, 1);
-    --space-button-hover: rgba(267, 75%, 35%, 1);
-    --space-accent: rgba(262, 83%, 58%, 1);
-    --space-star-color: rgba(255, 255, 255, 0.8);
-    --space-planet-glow: rgba(255, 215, 0, 0.3);
+    --space-border: rgba(0, 0, 0, 0.1);
+    --space-shadow: rgba(0, 0, 0, 0.1);
+  }  
 
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }  .dark {
-    --background: 240 27% 8%; /* Deep space background */
+  .dark {
+    --background: 240 27% 8%;
     --foreground: 210 40% 98%;
 
-    --card: 232 27% 12%; /* Slightly lighter than background for cards */
+    --card: 232 27% 12%;
     --card-foreground: 210 40% 98%;
 
     --popover: 240 27% 8%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 267 75% 60%; /* Vibrant purple for primary actions */
+    --primary: 267 75% 60%;
     --primary-foreground: 210 40% 98%;
 
-    --secondary: 217 76% 25%; /* Deep blue for secondary elements */
+    --secondary: 217 76% 25%;
     --secondary-foreground: 210 40% 98%;
 
     --muted: 217.2 32.6% 17.5%;
@@ -85,26 +98,16 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
 
-    /* Enhanced space theme variables for dark mode */
-    --space-canvas-bg: rgba(5, 5, 15, 1); /* Deep space background */
-    --space-panel-bg: rgba(15, 15, 25, 0.95);
-    --space-panel-border: rgba(100, 100, 200, 0.3);
-    --space-text-primary: rgba(255, 255, 255, 0.95);
-    --space-text-secondary: rgba(255, 255, 255, 0.7);
-    --space-button-bg: rgba(267, 75%, 60%, 1);
-    --space-button-hover: rgba(267, 75%, 70%, 1);
-    --space-accent: rgba(262, 83%, 70%, 1);
-    --space-star-color: rgba(255, 255, 255, 1);
-    --space-planet-glow: rgba(255, 215, 0, 0.6);
+    /* Space theme specific variables */
+    --space-bg-primary: #0f0f23;
+    --space-bg-secondary: #1a1a2e;
+    --space-bg-tertiary: #16213e;
+    --space-text-primary: #ffffff;
+    --space-text-secondary: #e2e8f0;
+    --space-panel-bg: rgba(0, 0, 0, 0.9);
+    --space-border: rgba(255, 255, 255, 0.1);
+    --space-shadow: rgba(0, 0, 0, 0.5);
   }
 }
 
@@ -115,773 +118,73 @@
 
   html, body {
     @apply bg-background text-foreground;
-    transition: background-color 0.5s ease, color 0.3s ease;
+    will-change: background-color, color;
   }
   
-  /* Ensure theme classes are inherited by all children */
-  html.dark,
-  html.dark *,
-  body.dark,
-  body.dark * {
+  /* Ensure theme classes are inherited properly */
+  html.dark, body.dark {
     color-scheme: dark;
   }
   
-  html.light,
-  html.light *,
-  body.light,
-  body.light * {
+  html.light, body.light {
     color-scheme: light;
   }
 }
 
-/* Enhanced smooth theme transitions */
-* {
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+/* Space component styling with optimizations */
+.space-panel {
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--space-border);
+  background: var(--space-panel-bg);
+  will-change: background-color, backdrop-filter;
 }
 
-/* Theme-specific body styling */
-body {
-  transition: background-color 0.5s ease;
+.space-text-primary {
+  color: var(--space-text-primary);
 }
 
-/* Space-themed animations and effects */
-@keyframes twinkle {
-  0% { opacity: 0.3; }
-  50% { opacity: 1; }
-  100% { opacity: 0.3; }
+.space-text-secondary {
+  color: var(--space-text-secondary);
 }
 
-.stars-small,
-.stars-medium,
-.stars-large {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-repeat: repeat;
-}
-
-.stars-small {
-  background-image: radial-gradient(1px 1px at 20% 50%, white, transparent),
-                    radial-gradient(1px 1px at 90% 30%, white, transparent),
-                    radial-gradient(1px 1px at 70% 80%, white, transparent),
-                    radial-gradient(1px 1px at 30% 20%, white, transparent);
-  background-size: 100% 100%;
-  animation: twinkle 4s infinite;
-}
-
-.stars-medium {
-  background-image: radial-gradient(1.5px 1.5px at 50% 20%, white, transparent),
-                    radial-gradient(1.5px 1.5px at 10% 80%, white, transparent),
-                    radial-gradient(1.5px 1.5px at 30% 50%, white, transparent);
-  background-size: 100% 100%;
-  animation: twinkle 7s infinite;
-}
-
-.stars-large {
-  background-image: radial-gradient(2px 2px at 80% 70%, white, transparent),
-                    radial-gradient(2px 2px at 20% 40%, white, transparent);
-  background-size: 100% 100%;
-  animation: twinkle 10s infinite;
-}
-
-/* Enhanced star visibility for light mode */
-.light .stars-small,
-.light .stars-medium,
-.light .stars-large {
+.light .stars {
   opacity: 0.3;
 }
 
-.dark .stars-small,
-.dark .stars-medium,
-.dark .stars-large {
+.dark .stars {
   opacity: 1;
 }
 
-/* Space-themed gradients and theme-aware styles */
-.cosmic-gradient {
-  background: linear-gradient(to bottom right, 
-    rgba(30, 27, 75, 0.9), 
-    rgba(88, 28, 135, 0.9), 
-    rgba(15, 23, 42, 0.9));
-  backdrop-filter: blur(12px);
-}
-
-.light .cosmic-gradient {
-  background: linear-gradient(to bottom right, 
-    rgba(219, 234, 254, 0.9), 
-    rgba(196, 181, 253, 0.9), 
-    rgba(241, 245, 249, 0.9));
-}
-
-.nebula-gradient {
-  background: linear-gradient(to bottom right, 
-    rgba(131, 24, 67, 0.9), 
-    rgba(88, 28, 135, 0.9), 
-    rgba(30, 27, 75, 0.9));
-  backdrop-filter: blur(12px);
-}
-
-.light .nebula-gradient {
-  background: linear-gradient(to bottom right, 
-    rgba(252, 231, 243, 0.9), 
-    rgba(196, 181, 253, 0.9), 
-    rgba(219, 234, 254, 0.9));
-}
-
-.mars-gradient {
-  background: linear-gradient(to bottom right, 
-    rgba(69, 10, 10, 0.9), 
-    rgba(154, 52, 18, 0.9), 
-    rgba(127, 29, 29, 0.9));
-  backdrop-filter: blur(12px);
-}
-
-.light .mars-gradient {
-  background: linear-gradient(to bottom right, 
-    rgba(254, 242, 242, 0.9), 
-    rgba(255, 237, 213, 0.9), 
-    rgba(254, 226, 226, 0.9));
-}
-
-.earth-gradient {
-  background: linear-gradient(to bottom right, 
-    rgba(12, 74, 110, 0.9), 
-    rgba(22, 78, 99, 0.9), 
-    rgba(30, 58, 138, 0.9));
-  backdrop-filter: blur(12px);
-}
-
-.light .earth-gradient {
-  background: linear-gradient(to bottom right, 
-    rgba(240, 249, 255, 0.9), 
-    rgba(224, 242, 254, 0.9), 
-    rgba(219, 234, 254, 0.9));
-}
-
-/* Additional utility classes */
-.text-glow {
-  text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
-}
-
-.light .text-glow {
-  text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-}
-
-.space-border {
-  border: 1px solid rgba(59, 130, 246, 0.2);
-  transition: border-color 0.3s ease;
-}
-
-.space-border:hover {
-  border-color: rgba(59, 130, 246, 0.4);
-}
-
-.light .space-border {
-  border-color: rgba(59, 130, 246, 0.3);
-}
-
-.light .space-border:hover {
-  border-color: rgba(59, 130, 246, 0.6);
-}
-
-/* Theme toggle animation */
-.theme-toggle-button {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.theme-toggle-button:hover {
-  transform: scale(1.05);
-}
-
-/* Enhanced panel styling for themes */
-.space-panel {
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: all 0.3s ease;
-}
-
-.light .space-panel {
-  border-color: rgba(0, 0, 0, 0.1);
-  background: rgba(255, 255, 255, 0.95);
-}
-
-.dark .space-panel {
-  background: rgba(15, 15, 25, 0.95);
-}
-
-/* Loading spinner for theme transitions */
-.loading-spinner {
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-/* Custom fade-in animations */
-@keyframes fade-in-up {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fade-in-down {
-  from {
-    opacity: 0;
-    transform: translateY(-30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fade-in-scale {
-  from {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes floating {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-}
-
-@keyframes glow-pulse {
-  0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); }
-  50% { box-shadow: 0 0 40px rgba(59, 130, 246, 0.6); }
-}
-
-.animate-fade-in-up {
-  animation: fade-in-up 0.8s ease-out forwards;
-  opacity: 0;
-}
-
-.animate-fade-in-down {
-  animation: fade-in-down 0.8s ease-out forwards;
-  opacity: 0;
-}
-
-.animate-fade-in-scale {
-  animation: fade-in-scale 0.6s ease-out forwards;
-  opacity: 0;
-}
-
-.animate-floating {
-  animation: floating 3s ease-in-out infinite;
-}
-
-.animate-glow-pulse {
-  animation: glow-pulse 2s ease-in-out infinite;
-}
-
-/* Enhanced space particle effects */
-@keyframes particle-drift {
-  0% { transform: translateX(0) translateY(0) scale(1); opacity: 0.8; }
-  50% { transform: translateX(50px) translateY(-30px) scale(1.2); opacity: 1; }
-  100% { transform: translateX(100px) translateY(-60px) scale(0.8); opacity: 0; }
-}
-
-.space-particles::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: 
-    radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.8), transparent),
-    radial-gradient(1px 1px at 80% 80%, rgba(59,130,246,0.6), transparent),
-    radial-gradient(1px 1px at 40% 40%, rgba(147,51,234,0.4), transparent),
-    radial-gradient(1px 1px at 90% 10%, rgba(236,72,153,0.3), transparent);
-  animation: particle-drift 8s linear infinite;
-}
-
-/* Enhanced sidebar and space exploration animations */
-@keyframes twinkle {
-  0%, 100% { 
-    opacity: 0.3; 
-    transform: scale(0.8); 
-    filter: brightness(0.8);
-  }
-  50% { 
-    opacity: 1; 
-    transform: scale(1.2); 
-    filter: brightness(1.5);
-  }
-}
-
+/* Theme-aware animations with reduced reflow */
 @keyframes float {
-  0%, 100% { 
-    transform: translateY(0px) rotate(0deg); 
-    opacity: 0.7;
-  }
-  50% { 
-    transform: translateY(-15px) rotate(180deg); 
-    opacity: 1;
-  }
-}
-
-@keyframes spin-slow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-@keyframes energy-pulse {
-  0%, 100% { 
-    box-shadow: 0 0 20px rgba(6, 182, 212, 0.3), inset 0 0 20px rgba(6, 182, 212, 0.1);
-    transform: scale(1);
-  }
-  50% { 
-    box-shadow: 0 0 40px rgba(6, 182, 212, 0.8), inset 0 0 30px rgba(6, 182, 212, 0.3);
-    transform: scale(1.05);
-  }
-}
-
-@keyframes holographic-scan {
-  0% { transform: translateY(-100%); opacity: 0; }
-  10%, 90% { opacity: 1; }
-  100% { transform: translateY(100vh); opacity: 0; }
-}
-
-@keyframes border-glow {
-  0%, 100% { 
-    border-color: rgba(6, 182, 212, 0.5);
-    box-shadow: inset 0 0 20px rgba(6, 182, 212, 0.2);
-  }
-  50% { 
-    border-color: rgba(6, 182, 212, 1);
-    box-shadow: inset 0 0 40px rgba(6, 182, 212, 0.4);
-  }
-}
-
-@keyframes particle-float {
-  0%, 100% { 
-    transform: translateY(0px) translateX(0px) rotate(0deg);
-    opacity: 0.6;
-  }
-  25% { 
-    transform: translateY(-20px) translateX(10px) rotate(90deg);
-    opacity: 1;
-  }
-  50% { 
-    transform: translateY(-10px) translateX(-5px) rotate(180deg);
-    opacity: 0.8;
-  }
-  75% { 
-    transform: translateY(-30px) translateX(15px) rotate(270deg);
-    opacity: 0.9;
-  }
-}
-
-/* Utility classes for enhanced animations */
-.animate-twinkle {
-  animation: twinkle 2s ease-in-out infinite;
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -10px, 0); }
 }
 
 .animate-float {
   animation: float 3s ease-in-out infinite;
-}
-
-.animate-spin-slow {
-  animation: spin-slow 8s linear infinite;
-}
-
-.animate-energy-pulse {
-  animation: energy-pulse 2s ease-in-out infinite;
-}
-
-.animate-border-glow {
-  animation: border-glow 3s ease-in-out infinite;
-}
-
-.animate-particle-float {
-  animation: particle-float 4s ease-in-out infinite;
-}
-
-/* Enhanced space background effects */
-.space-gradient-enhanced {
-  background: 
-    radial-gradient(ellipse at top, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-    radial-gradient(ellipse at bottom, rgba(255, 119, 198, 0.2) 0%, transparent 50%),
-    linear-gradient(to bottom, #0f0f23, #1a1a2e, #16213e);
-}
-
-/* Enhanced Modern Navigation Styles */
-.backdrop-blur-2xl {
-  backdrop-filter: blur(40px);
-}
-
-.nav-card-glow {
-  box-shadow: 
-    0 0 0 1px rgba(59, 130, 246, 0.1),
-    0 2px 4px rgba(0, 0, 0, 0.1),
-    0 8px 16px rgba(59, 130, 246, 0.1),
-    0 16px 32px rgba(59, 130, 246, 0.05);
-}
-
-.nav-card-glow:hover {
-  box-shadow: 
-    0 0 0 1px rgba(59, 130, 246, 0.2),
-    0 4px 8px rgba(0, 0, 0, 0.15),
-    0 16px 32px rgba(59, 130, 246, 0.15),
-    0 32px 64px rgba(59, 130, 246, 0.1);
-}
-
-/* Modern Grid Patterns */
-.space-grid {
-  background-image: 
-    linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px);
-  background-size: 50px 50px;
-}
-
-/* Enhanced Animations */
-@keyframes float-gentle {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  33% { transform: translateY(-10px) rotate(0.5deg); }
-  66% { transform: translateY(-5px) rotate(-0.5deg); }
-}
-
-@keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); }
-  50% { box-shadow: 0 0 40px rgba(59, 130, 246, 0.6); }
-}
-
-@keyframes gradient-shift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-.animate-float-gentle { animation: float-gentle 6s ease-in-out infinite; }
-.animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
-.animate-gradient-shift { 
-  animation: gradient-shift 3s ease infinite; 
-  background-size: 200% 200%;
-}
-
-/* Navigation Menu Enhancements */
-.nav-menu-overlay {
-  background: 
-    radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(168, 85, 247, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 40% 80%, rgba(34, 197, 94, 0.1) 0%, transparent 50%);
-}
-
-.nav-card {
-  position: relative;
-  overflow: hidden;
-}
-
-.nav-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-  transition: left 0.5s;
-}
-
-.nav-card:hover::before {
-  left: 100%;
-}
-
-/* Status Indicator Styles */
-.status-dot {
-  box-shadow: 0 0 10px currentColor;
-}
-
-/* Enhanced Button Styles */
-.menu-button {
-  position: relative;
-  overflow: hidden;
-}
-
-.menu-button::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  background: radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, transparent 70%);
-  transition: width 0.6s, height 0.6s;
-  transform: translate(-50%, -50%);
-}
-
-.menu-button:hover::after {
-  width: 300px;
-  height: 300px;
-}
-
-/* Responsive Enhancements */
-@media (max-width: 768px) {
-  .nav-menu-overlay {
-    background: rgba(2, 6, 23, 0.98);
-  }
-  
-  .container {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-}
-
-/* Performance Optimizations */
-.will-change-transform {
   will-change: transform;
 }
 
-.will-change-opacity {
-  will-change: opacity;
+/* Space background effects with hardware acceleration */
+.space-gradient {
+  background: linear-gradient(to bottom,
+    var(--space-bg-primary),
+    var(--space-bg-secondary),
+    var(--space-bg-tertiary)
+  );
+  transform: translateZ(0);
+  will-change: background-image;
 }
 
-/* Smooth scrolling for navigation */
-.nav-scroll {
-  scroll-behavior: smooth;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+/* Space panel styling with optimized transitions */
+.space-panel {
+  background: rgba(0, 0, 0, 0.2);
+  border-color: rgba(255, 255, 255, 0.1);
+  will-change: background-color, border-color;
 }
 
-.nav-scroll::-webkit-scrollbar {
-  display: none;
-}
-
-/* Enhanced theme-specific space scene styling */
-.space-scene-light {
-  --space-bg-primary: #87CEEB;
-  --space-bg-secondary: #E0F6FF;
-  --space-bg-tertiary: #F0F8FF;
-  --space-text-primary: #1a1a1a;
-  --space-text-secondary: #4a4a4a;
-  --space-panel-bg: rgba(255, 255, 255, 0.95);
-  --space-border: rgba(0, 0, 0, 0.1);
-  --space-shadow: rgba(0, 0, 0, 0.1);
-}
-
-.space-scene-dark {
-  --space-bg-primary: #0f0f23;
-  --space-bg-secondary: #1a1a2e;
-  --space-bg-tertiary: #16213e;
-  --space-text-primary: #ffffff;
-  --space-text-secondary: #e2e8f0;
-  --space-panel-bg: rgba(0, 0, 0, 0.9);
-  --space-border: rgba(255, 255, 255, 0.1);
-  --space-shadow: rgba(0, 0, 0, 0.5);
-}
-
-/* Light mode overrides for better visibility */
-.light .space-controls {
-  background: var(--space-panel-bg);
-  border: 1px solid var(--space-border);
-  box-shadow: 0 4px 6px var(--space-shadow);
-}
-
-.light .space-text-primary {
-  color: var(--space-text-primary);
-}
-
-.light .space-text-secondary {
-  color: var(--space-text-secondary);
-}
-
-/* Dark mode maintains existing styling */
-.dark .space-controls {
-  background: var(--space-panel-bg);
-  border: 1px solid var(--space-border);
-  backdrop-filter: blur(12px);
-}
-
-/* Enhanced theme transition effects and better visual styling */
-.theme-button {
-  background: linear-gradient(45deg, rgb(147, 51, 234), rgb(79, 70, 229));
-  border: none;
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(147, 51, 234, 0.3);
-}
-
-.theme-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(147, 51, 234, 0.4);
-}
-
-.light .theme-button {
-  background: linear-gradient(45deg, rgb(99, 102, 241), rgb(139, 92, 246));
-  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
-}
-
-.light .theme-button:hover {
-  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
-}
-
-/* Planet info panel enhancements */
-.planet-info-panel {
-  backdrop-filter: blur(20px);
-  border-radius: 1rem;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  overflow: hidden;
-}
-
-.light .planet-info-panel {
-  border-color: rgba(0, 0, 0, 0.1);
-  background: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-}
-
-.dark .planet-info-panel {
-  background: rgba(15, 15, 25, 0.9);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-}
-
-/* Global Site-Wide Theme Support */
-.light {
-  --site-bg-primary: rgba(239, 246, 255, 1);
-  --site-bg-secondary: rgba(255, 255, 255, 1);
-  --site-text-primary: rgba(17, 24, 39, 1);
-  --site-text-secondary: rgba(75, 85, 99, 1);
-  --site-accent-primary: rgba(99, 102, 241, 1);
-  --site-accent-secondary: rgba(139, 92, 246, 1);
-  --site-border: rgba(209, 213, 219, 1);
-  --site-shadow: rgba(0, 0, 0, 0.1);
-  --site-card-bg: rgba(255, 255, 255, 0.8);
-  --site-header-bg: rgba(255, 255, 255, 0.9);
-}
-
-.dark {
-  --site-bg-primary: rgba(2, 6, 23, 1);
-  --site-bg-secondary: rgba(15, 23, 42, 1);
-  --site-text-primary: rgba(248, 250, 252, 1);
-  --site-text-secondary: rgba(203, 213, 225, 1);
-  --site-accent-primary: rgba(34, 211, 238, 1);
-  --site-accent-secondary: rgba(168, 85, 247, 1);
-  --site-border: rgba(51, 65, 85, 1);
-  --site-shadow: rgba(0, 0, 0, 0.5);
-  --site-card-bg: rgba(15, 23, 42, 0.8);
-  --site-header-bg: rgba(2, 6, 23, 0.9);
-}
-
-/* Theme-aware component styles */
-.theme-card {
-  background: var(--site-card-bg);
-  color: var(--site-text-primary);
-  border: 1px solid var(--site-border);
-  box-shadow: 0 4px 6px var(--site-shadow);
-  transition: all 0.3s ease;
-}
-
-.theme-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px var(--site-shadow);
-}
-
-.theme-text-primary {
-  color: var(--site-text-primary);
-}
-
-.theme-text-secondary {
-  color: var(--site-text-secondary);
-}
-
-.theme-accent-primary {
-  color: var(--site-accent-primary);
-}
-
-.theme-accent-secondary {
-  color: var(--site-accent-secondary);
-}
-
-.theme-bg-primary {
-  background-color: var(--site-bg-primary);
-}
-
-.theme-bg-secondary {
-  background-color: var(--site-bg-secondary);
-}
-
-.theme-border {
-  border-color: var(--site-border);
-}
-
-/* Enhanced site-wide animations */
-.theme-transition {
-  transition: background-color 0.5s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* Site-wide gradient overlays */
-.light .site-gradient-overlay {
-  background: linear-gradient(135deg, 
-    rgba(99, 102, 241, 0.1) 0%, 
-    rgba(139, 92, 246, 0.1) 50%, 
-    rgba(219, 39, 119, 0.1) 100%);
-}
-
-.dark .site-gradient-overlay {
-  background: linear-gradient(135deg, 
-    rgba(34, 211, 238, 0.1) 0%, 
-    rgba(168, 85, 247, 0.1) 50%, 
-    rgba(236, 72, 153, 0.1) 100%);
-}
-
-/* Navigation and UI enhancements */
-.theme-nav-button {
-  background: var(--site-card-bg);
-  color: var(--site-text-primary);
-  border: 1px solid var(--site-border);
-  backdrop-filter: blur(12px);
-  transition: all 0.3s ease;
-}
-
-.theme-nav-button:hover {
-  background: var(--site-accent-primary);
-  color: white;
-  transform: scale(1.05);
-}
-
-.light .theme-nav-button:hover {
-  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
-}
-
-.dark .theme-nav-button:hover {
-  box-shadow: 0 8px 25px rgba(34, 211, 238, 0.3);
-}
-
-/* Enhanced loading and transition states */
-.theme-loading {
-  background: var(--site-bg-primary);
-  color: var(--site-text-primary);
-}
-
-.theme-loading .spinner {
-  border-color: var(--site-accent-primary);
-  border-top-color: transparent;
-}
-
-/* Site-wide responsive theme adjustments */
-@media (max-width: 768px) {
-  .light {
-    --site-card-bg: rgba(255, 255, 255, 0.95);
-    --site-header-bg: rgba(255, 255, 255, 0.95);
-  }
-  
-  .dark {
-    --site-card-bg: rgba(15, 23, 42, 0.95);
-    --site-header-bg: rgba(2, 6, 23, 0.95);
-  }
+.dark .space-panel {
+  background: rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.1);
 }

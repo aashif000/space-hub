@@ -97,14 +97,14 @@ const SatelliteTracker = () => {
   const { data: issPosition } = useQuery({
     queryKey: ['iss-position'],
     queryFn: () => fetch('https://api.wheretheiss.at/v1/satellites/25544').then(res => res.json()),
-    refetchInterval: 5000,
+    refetchInterval: false, // Disabled automatic refetch
   });
 
   // TLE Data Query
   const { data: issTle } = useQuery({
     queryKey: ['iss-tle'],
     queryFn: () => fetch('https://api.wheretheiss.at/v1/satellites/25544/tles').then(res => res.json()),
-    refetchInterval: 60000,
+    refetchInterval: false, // Disabled automatic refetch
   });
 
   useEffect(() => {

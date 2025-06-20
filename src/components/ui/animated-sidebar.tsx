@@ -17,7 +17,7 @@ export const AnimatedSidebar: React.FC<AnimatedSidebarProps> = ({ children, clas
 
   const shouldBeExpanded = isExpanded || isHovered;
 
-  // Initialize star field
+  // Initialize star field  // Static effects initialization
   useEffect(() => {
     const stars = Array.from({ length: 15 }, (_, i) => ({
       id: i,
@@ -26,16 +26,10 @@ export const AnimatedSidebar: React.FC<AnimatedSidebarProps> = ({ children, clas
       delay: Math.random() * 3
     }));
     setStarField(stars);
-  }, []);
-
-  // Dynamic glow and energy pulse effects
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const time = Date.now();
-      setGlowIntensity(0.4 + Math.sin(time * 0.003) * 0.4);
-      setEnergyPulse(Math.sin(time * 0.002) * 0.5 + 0.5);
-    }, 50);
-    return () => clearInterval(interval);
+    
+    // Set static values instead of animating
+    setGlowIntensity(0.6);
+    setEnergyPulse(0.7);
   }, []);
   return (
     <div

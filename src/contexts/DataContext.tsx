@@ -142,14 +142,14 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
       solar_lon: 280.123,
       units: "kilometers"
     }, 200),
-    refetchInterval: 5000,
+    refetchInterval: false, // Disabled automatic refetch
   });
 
   // Mock People in Space
   const { data: spacePopulation, isLoading: spacePopLoading } = useQuery({
     queryKey: ['space-population'],
     queryFn: () => mockApiCall(mockSpaceData.spacePopulation, 300),
-    refetchInterval: 60000,
+    refetchInterval: false, // Disabled automatic refetch
   });
 
   // Mock Space News

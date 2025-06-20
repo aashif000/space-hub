@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tour Test</title>
+    <style>
+        .hub-title { 
+            background: blue; 
+            color: white; 
+            padding: 20px; 
+            margin: 20px; 
+        }
+        .featured-missions { 
+            background: green; 
+            color: white; 
+            padding: 20px; 
+            margin: 20px; 
+        }
+        .mission-categories { 
+            background: red; 
+            color: white; 
+            padding: 20px; 
+            margin: 20px; 
+        }
+        .theme-toggle { 
+            background: purple; 
+            color: white; 
+            padding: 20px; 
+            margin: 20px; 
+        }
+        body { padding: 20px; }
+    </style>
+</head>
+<body>
+    <h1 class="hub-title">Nexus Space Hub Title</h1>
+    <div class="featured-missions">Featured Missions Section</div>
+    <div class="mission-categories">Mission Categories Section</div>
+    <button class="theme-toggle">Theme Toggle Button</button>
+    
+    <p>Open browser console and run this to test React Joyride is working:</p>
+    <pre>
+// Test if React Joyride works with basic setup
+const steps = [
+    {
+        target: '.hub-title',
+        content: 'This is the title!',
+    },
+    {
+        target: '.featured-missions',
+        content: 'These are featured missions!',
+    }
+];
+console.log('Steps:', steps);
+    </pre>
+</body>
+</html>

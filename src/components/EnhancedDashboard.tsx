@@ -54,23 +54,25 @@ const AnimatedStat = ({
       initial={{ opacity: 0, y: 20 }}
       animate={controls}
       className="relative group"
-    >
-      <div className="bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 hover:border-white/40 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/20">
-        <div className="flex items-center space-x-4">
-          <div className={`p-3 rounded-lg bg-gradient-to-r ${accentColor} shadow-lg`}>
+    >      <div className="bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 hover:border-white/40 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/20 aspect-square flex flex-col">
+        <div className="flex items-center justify-between mb-4">
+          <div className={`p-3 rounded-full bg-gradient-to-r ${accentColor} shadow-lg`}>
             <Icon className="w-6 h-6 text-white" />
           </div>
-          <div>
-            <motion.div 
-              className="text-2xl font-bold text-white"
-              initial={{ scale: 0.8 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: delay + 0.2, type: "spring", stiffness: 200 }}
-            >
-              {value}
-            </motion.div>
-            <div className="text-sm text-gray-300">{label}</div>
+          <div className="px-2 py-1 bg-white/10 text-white/80 text-xs rounded-full">
+            LIVE
           </div>
+        </div>
+        <div className="flex flex-col justify-center flex-grow">
+          <motion.div 
+            className="text-3xl font-bold text-white mb-2"
+            initial={{ scale: 0.8 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: delay + 0.2, type: "spring", stiffness: 200 }}
+          >
+            {value}
+          </motion.div>
+          <div className="text-sm text-gray-300">{label}</div>
         </div>
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
       </div>
@@ -108,47 +110,48 @@ const MissionCard = ({
     }
   }, [controls, inView, delay]);
 
-  return (
-    <motion.div
+  return (    <motion.div
       ref={ref}
       initial={{ opacity: 0, y: 30 }}
       animate={controls}
       className="group"
     >
-      <SpaceCard className="h-full">
-        <div className="flex items-start justify-between mb-4">
-          <div className="flex items-center space-x-3">
-            <div className="p-2 rounded-lg bg-gradient-to-r from-blue-500 to-purple-600">
-              <Icon className="w-5 h-5 text-white" />
+      <SpaceCard className="h-full aspect-square">
+        <div className="flex flex-col h-full">
+          <div className="flex items-start justify-between mb-4">
+            <div className="flex items-center space-x-3">
+              <div className="p-3 rounded-full bg-gradient-to-r from-blue-500 to-purple-600">
+                <Icon className="w-5 h-5 text-white" />
+              </div>
+              <div>
+                <h3 className="font-semibold text-white">{title}</h3>
+                <span className={`text-xs px-2 py-1 rounded-full ${
+                  status === 'Active' ? 'bg-green-500/20 text-green-400' :
+                  status === 'Planned' ? 'bg-yellow-500/20 text-yellow-400' :
+                  'bg-blue-500/20 text-blue-400'
+                }`}>
+                  {status}
+                </span>
+              </div>
             </div>
-            <div>
-              <h3 className="font-semibold text-white">{title}</h3>
-              <span className={`text-xs px-2 py-1 rounded-full ${
-                status === 'Active' ? 'bg-green-500/20 text-green-400' :
-                status === 'Planned' ? 'bg-yellow-500/20 text-yellow-400' :
-                'bg-blue-500/20 text-blue-400'
-              }`}>
-                {status}
-              </span>
+            <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-white transition-colors" />
+          </div>
+          
+          <p className="text-sm text-gray-300 mb-4 line-clamp-2">{description}</p>
+          
+          <div className="space-y-2 mt-auto">
+            <div className="flex justify-between text-xs text-gray-400">
+              <span>Progress</span>
+              <span>{progress}%</span>
             </div>
-          </div>
-          <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-white transition-colors" />
-        </div>
-        
-        <p className="text-sm text-gray-300 mb-4">{description}</p>
-        
-        <div className="space-y-2">
-          <div className="flex justify-between text-xs text-gray-400">
-            <span>Progress</span>
-            <span>{progress}%</span>
-          </div>
-          <div className="w-full bg-gray-700 rounded-full h-2">
-            <motion.div
-              className="bg-gradient-to-r from-blue-500 to-purple-600 h-2 rounded-full"
-              initial={{ width: 0 }}
-              animate={{ width: `${progress}%` }}
-              transition={{ duration: 1, delay: delay + 0.5 }}
-            />
+            <div className="w-full bg-gray-700 rounded-full h-2">
+              <motion.div
+                className="bg-gradient-to-r from-blue-500 to-purple-600 h-2 rounded-full"
+                initial={{ width: 0 }}
+                animate={{ width: `${progress}%` }}
+                transition={{ duration: 1, delay: delay + 0.5 }}
+              />
+            </div>
           </div>
         </div>
       </SpaceCard>
@@ -156,26 +159,30 @@ const MissionCard = ({
   );
 };
 
-// Floating particles component
-const FloatingParticles = () => {
+// Static particles component - NO ANIMATIONS
+const StaticParticles = () => {
+  const particles = React.useMemo(() => {
+    return Array.from({ length: 20 }, (_, i) => ({
+      id: i,
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      size: Math.random() * 2 + 0.5,
+      opacity: Math.random() * 0.3 + 0.1
+    }));
+  }, []);
+
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {[...Array(20)].map((_, i) => (
-        <motion.div
-          key={i}
-          className="absolute w-1 h-1 bg-white rounded-full opacity-20"
-          initial={{ 
-            x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200),
-            y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
-          }}
-          animate={{
-            x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200),
-            y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
-          }}
-          transition={{
-            duration: Math.random() * 10 + 10,
-            repeat: Infinity,
-            repeatType: "reverse",
+      {particles.map((particle) => (
+        <div
+          key={particle.id}
+          className="absolute w-1 h-1 bg-white rounded-full"
+          style={{
+            left: `${particle.x}%`,
+            top: `${particle.y}%`,
+            width: `${particle.size}px`,
+            height: `${particle.size}px`,
+            opacity: particle.opacity
           }}
         />
       ))}
@@ -230,9 +237,8 @@ export const EnhancedDashboard = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 relative overflow-hidden">
-      {/* Animated background elements */}
-      <FloatingParticles />
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 relative overflow-hidden">      {/* Static background elements */}
+      <StaticParticles />
       
       {/* Main content */}
       <div className="relative z-10 container mx-auto px-6 py-8">
@@ -251,10 +257,8 @@ export const EnhancedDashboard = () => {
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
             Exploring the cosmos through advanced AI and cutting-edge space technology
           </p>
-        </motion.div>
-
-        {/* Stats Section */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        </motion.div>        {/* Stats Section */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
           {stats.map((stat, index) => (
             <AnimatedStat
               key={stat.label}
@@ -333,8 +337,7 @@ export const EnhancedDashboard = () => {
               Explore our ongoing space missions and their progress towards unlocking the mysteries of the universe
             </p>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {missions.map((mission, index) => (
               <MissionCard
                 key={mission.title}
